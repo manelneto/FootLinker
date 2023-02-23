@@ -28,14 +28,10 @@ Please contact us!
 
 Thank you!
 
-André Rodrigues (up202108721@up.pt)
-
-Luiz Queiroz (up202102362@up.pt)
-
-Manuel Neto (up202108744@up.pt)
-
-Patrícia Sousa (up202109256@up.pt)
-
-Rúben Fonseca (up202108830@up.pt)
+*André Rodrigues* (up202108721@up.pt)<br>
+*Luiz Queiroz* (up202102362@up.pt)<br>
+*Manuel Neto* (up202108744@up.pt)<br>
+*Patrícia Sousa* (up202109256@up.pt)<br>
+*Rúben Fonseca* (up202108830@up.pt)
 
 ---
