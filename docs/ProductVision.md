@@ -3,6 +3,16 @@
 
 ### Vision Statement
 
+****
+
+**FootLinker - The mobile app that helps football fans schedule and find matches nearby.**
+
+**For football fans who want help scheduling and finding matches nearby to watch in person, FootLinker does just that by providing schedules, the location of matches nearby and allowing users to register matches as seen in order to generate yearly statistics.**
+
+**With the quick and easy-to-use features of our app, you'll never miss a match again. Don't wait - start planning your next game today with FootLinker!**
+
+**Unleash your passion for football with FootLinker. The only app that will help you know where to go for the biggest and best football games. Get ready to take part in some of the most exciting football matches in style - with FootLinker!**
+
 Start by defining a clear and concise vision for your app, to help members of the team, contributors, and users into focusing their often disparate views into a concise, visual, and short textual form. It provides a "high concept" of the product for marketers, developers, and managers.
 
 A product vision describes the essential of the product and sets the direction to where a product is headed, and what the product will deliver in the future. 
