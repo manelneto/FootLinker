@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "674970951243",
+    "project_id": "footlinker-feup",
+    "storage_bucket": "footlinker-feup.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:674970951243:android:b11fc1e832dbb6ae0137ce",
+        "android_client_info": {
+          "package_name": "pt.up.fe.footlinker.app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "674970951243-01e4ervt7rs6avrec2rtppn9mrb0nju5.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAT2e1M9awhj6bg3uhn3F_mKhxbuW9NoT4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "674970951243-01e4ervt7rs6avrec2rtppn9mrb0nju5.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
