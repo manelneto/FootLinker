@@ -14,7 +14,8 @@ For football fans who love to watch matches at the stadium, FootLinker is a mobi
 - User History - users with an account should be able to check his history of attended matches
 
 ### Assumptions and dependencies
-- User's location from Google Maps
-- Stadiums' locations Google Maps/zerozero
-- Football clubs from FIFA/zerozero
-- Matches' schedules and results from OPTA/zerozero
+- User's location from Google Maps API
+- Stadiums' locations Google Maps API/API-Football
+- Football clubs from API-Football
+- Matches' schedules and results from API-Football
+- Authentication and storage from Firebase
