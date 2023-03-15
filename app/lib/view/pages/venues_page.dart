@@ -1,3 +1,4 @@
+import 'package:app/view/widgets/venue_widget.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import '../../model/team.dart';
@@ -19,18 +20,21 @@ class _VenuesPageState extends State<VenuesPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: FutureBuilder<Team>(
-          future: futureTeam,
-          builder: (context, snapshot) {
-            if (snapshot.hasData) {
-              return Text(snapshot.data!.venue.name);
-            } else if (snapshot.hasError) {
-              return Text('${snapshot.error}');
-            }
-            return const CircularProgressIndicator();
-          }
-      ),
+    return ListView(
+      children: [
+        const Center(child: Text('Estádios')),
+        FutureBuilder<Team>(
+            future: futureTeam,
+            builder: (context, snapshot) {
+              if (snapshot.hasData) {
+                return VenueWidget(venue: snapshot.data!.venue);
+              } else if (snapshot.hasError) {
+                return Text('${snapshot.error}');
+              }
+              return const CircularProgressIndicator();
+            },
+        ),
+      ],
     );
   }
 }

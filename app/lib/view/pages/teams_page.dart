@@ -1,3 +1,4 @@
+import 'package:app/view/widgets/team_widget.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import '../../model/team.dart';
@@ -19,18 +20,21 @@ class _TeamsPageState extends State<TeamsPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: FutureBuilder<Team>(
-        future: futureTeam,
-        builder: (context, snapshot) {
-          if (snapshot.hasData) {
-            return Text(snapshot.data!.name);
-          } else if (snapshot.hasError) {
-            return Text('${snapshot.error}');
-          }
-          return const CircularProgressIndicator();
-        }
-      ),
+    return ListView(
+      children: [
+        const Center(child: Text('Clubes')),
+        FutureBuilder<Team>(
+            future: futureTeam,
+            builder: (context, snapshot) {
+              if (snapshot.hasData) {
+                return TeamWidget(team: snapshot.data!);
+              } else if (snapshot.hasError) {
+                return Text('${snapshot.error}');
+              }
+              return const CircularProgressIndicator();
+            },
+        ),
+      ],
     );
   }
 }

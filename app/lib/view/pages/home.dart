@@ -5,6 +5,7 @@ import 'package:app/view/pages/venues_page.dart';
 import 'package:flutter/material.dart';
 
 import 'friends_page.dart';
+import 'our_page.dart';
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({super.key, required this.title});
@@ -38,6 +39,9 @@ class _MyHomePageState extends State<MyHomePage> {
       case 4:
         page = FriendsPage();
         break;
+      case 5:
+        page = OurPage();
+        break;
       default:
         throw UnimplementedError('no widget for $selectedIndex');
     }
@@ -55,6 +59,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   NavigationRailDestination(icon: Icon(Icons.stadium), label: Text('Estádios')),
                   NavigationRailDestination(icon: Icon(Icons.map), label: Text('Mapa')),
                   NavigationRailDestination(icon: Icon(Icons.people), label: Text('Amigos')),
+                  NavigationRailDestination(icon: Icon(Icons.logo_dev), label: Text('Sobre Nós')),
                 ],
                 selectedIndex: selectedIndex,
                 onDestinationSelected: (value) {
