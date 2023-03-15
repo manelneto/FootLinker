@@ -1,11 +1,10 @@
-import 'package:app/view/pages/map_page.dart';
-import 'package:app/view/pages/start_page.dart';
-import 'package:app/view/pages/teams_page.dart';
-import 'package:app/view/pages/venues_page.dart';
-import 'package:flutter/material.dart';
-
 import 'friends_page.dart';
-import 'our_page.dart';
+import 'map_page.dart';
+import 'credits.dart';
+import 'start_page.dart';
+import 'teams_page.dart';
+import 'venues_page.dart';
+import 'package:flutter/material.dart';
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({super.key, required this.title});
@@ -25,22 +24,22 @@ class _MyHomePageState extends State<MyHomePage> {
     Widget page;
     switch (selectedIndex) {
       case 0:
-        page = StartPage();
+        page = const StartPage();
         break;
       case 1:
-        page = TeamsPage();
+        page = const TeamsPage();
         break;
       case 2:
-        page = VenuesPage();
+        page = const VenuesPage();
         break;
       case 3:
-        page = MapPage();
+        page = const MapPage();
         break;
       case 4:
-        page = FriendsPage();
+        page = const FriendsPage();
         break;
       case 5:
-        page = OurPage();
+        page = const Credits();
         break;
       default:
         throw UnimplementedError('no widget for $selectedIndex');
@@ -59,7 +58,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   NavigationRailDestination(icon: Icon(Icons.stadium), label: Text('Estádios')),
                   NavigationRailDestination(icon: Icon(Icons.map), label: Text('Mapa')),
                   NavigationRailDestination(icon: Icon(Icons.people), label: Text('Amigos')),
-                  NavigationRailDestination(icon: Icon(Icons.logo_dev), label: Text('Sobre Nós')),
+                  NavigationRailDestination(icon: Icon(Icons.logo_dev), label: Text('Créditos')),
                 ],
                 selectedIndex: selectedIndex,
                 onDestinationSelected: (value) {

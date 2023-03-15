@@ -10,6 +10,8 @@ void main() async {
 class MyApp extends StatelessWidget {
   final Future<FirebaseApp> _fbApp = Firebase.initializeApp();
 
+  MyApp({super.key});
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -22,7 +24,7 @@ class MyApp extends StatelessWidget {
         future: _fbApp,
         builder: (context, snapshot) {
           if (snapshot.hasError) {
-            return Text('Algo correu mal...');
+            return const Text('Algo correu mal...');
           } else if (snapshot.hasData) {
             return const MyHomePage(title: 'FootLinker');
           } else {

@@ -40,9 +40,12 @@
 
 
 ### Vertical prototype
-To help on validating all the architectural, design and technological decisions made, we usually implement a vertical prototype, a thin vertical slice of the system.
 
-In this subsection please describe which feature you have implemented, and how, together with a snapshot of the user interface, if applicable.
+We have implemented a vertical prototype with six screens and a navigation bar.
 
-At this phase, instead of a complete user story, you can simply implement a feature that demonstrates thay you can use the technology, for example, show a screen with the app credits (name and authors).
-
+The first screen ("home") is just a temporary screen that, in the future, will be the main page of the app.
+The second screen ("teams") shows the user's favorite club, fetched from the football API given a hardcoded ID.
+The third screen ("venues") shows that club's stadium, also fetched from the football API given the team ID.
+The fourth screen ("map") contains a usable Google Maps interface, temporarily centered on the location of Estádio do Dragão, given its hardcoded coordinates.
+The fifth screen ("friends") lists the user friends that, for now, are simply fetched from a database of names and surnames hosted on Firebase cloud storage (FireStore).
+The sixth and last screen ("credits") lists the names of the authors of the apps, i. e., our names.

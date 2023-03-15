@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import '../../model/user.dart';
@@ -14,8 +13,8 @@ class UserWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListTile(
-      leading: Icon(Icons.person),
-      title: Text(user.name + ' ' + user.surname),
+      leading: const Icon(Icons.person),
+      title: Text('${user.name} ${user.surname}'),
     );
   }
 }

@@ -1,10 +1,11 @@
 import 'package:app/view/widgets/team_widget.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import '../../model/team.dart';
 import '../../controller/team_fetcher.dart';
 
 class TeamsPage extends StatefulWidget {
+  const TeamsPage({super.key});
+
   @override
   State<TeamsPage> createState() => _TeamsPageState();
 }

@@ -1,10 +1,11 @@
 import 'package:app/view/widgets/venue_widget.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import '../../model/team.dart';
 import '../../controller/team_fetcher.dart';
 
 class VenuesPage extends StatefulWidget {
+  const VenuesPage({super.key});
+
   @override
   State<VenuesPage> createState() => _VenuesPageState();
 }
@@ -22,7 +23,7 @@ class _VenuesPageState extends State<VenuesPage> {
   Widget build(BuildContext context) {
     return ListView(
       children: [
-        const Center(child: Text('Estádio Favorito')),
+        const Center(child: Text('Estádio Pesquisado:')),
         FutureBuilder<Team>(
             future: futureTeam,
             builder: (context, snapshot) {

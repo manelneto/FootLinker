@@ -1,11 +1,12 @@
 import 'package:app/controller/user_fetcher.dart';
 import 'package:app/view/widgets/user_widget.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import '../../model/user.dart';
 
 class FriendsPage extends StatefulWidget {
+  const FriendsPage({super.key});
+
   @override
   State<FriendsPage> createState() => _FriendsPageState();
 }

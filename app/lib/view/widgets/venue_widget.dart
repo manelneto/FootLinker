@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import '../../model/venue.dart';
@@ -14,8 +13,8 @@ class VenueWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListTile(
-      leading: Icon(Icons.stadium),
-      title: Text(venue.name + ' - ' + venue.city),
+      leading: const Icon(Icons.stadium),
+      title: Text('${venue.name} - ${venue.city}'),
     );
   }
 }
