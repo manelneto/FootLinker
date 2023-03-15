@@ -44,8 +44,19 @@
 We have implemented a vertical prototype with six screens and a navigation bar.
 
 The first screen ("home") is just a temporary screen that, in the future, will be the main page of the app.
+![home](../images/home.png)
+
 The second screen ("teams") shows the user's favorite club, fetched from the football API given a hardcoded ID.
+![teams](../images/teams.png)
+
 The third screen ("venues") shows that club's stadium, also fetched from the football API given the team ID.
+![venues](../images/venues.png)
+
 The fourth screen ("map") contains a usable Google Maps interface, temporarily centered on the location of Estádio do Dragão, given its hardcoded coordinates.
+![map](../images/map.png)
+
 The fifth screen ("friends") lists the user friends that, for now, are simply fetched from a database of names and surnames hosted on Firebase cloud storage (FireStore).
+![friends](../images/friends.png)
+
 The sixth and last screen ("credits") lists the names of the authors of the apps, i. e., our names.
+![credits](../images/credits.png)
