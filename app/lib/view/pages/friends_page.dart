@@ -11,12 +11,12 @@ class FriendsPage extends StatefulWidget {
 }
 
 class _FriendsPageState extends State<FriendsPage> {
-  late Future<User> futureUser;
+  late Future<List<User>> friends;
 
   @override
   void initState() {
     super.initState();
-    futureUser = UserFetcher().fetchUser();
+    friends = UserFetcher().fetchUsers();
   }
 
   @override
@@ -25,11 +25,18 @@ class _FriendsPageState extends State<FriendsPage> {
       children: [
         const Center(child: Text('Amigos')),
         Center(
-          child: FutureBuilder<User>(
-              future: futureUser,
+          child: FutureBuilder<List<User>>(
+              future: friends,
               builder: (context, snapshot) {
                 if (snapshot.hasData) {
-                  return UserWidget(user: snapshot.data!);
+                  return ListView.builder(
+                    scrollDirection: Axis.vertical,
+                    shrinkWrap: true,
+                    itemCount: snapshot.data!.length,
+                    itemBuilder: (BuildContext context, int index) {
+                      return UserWidget(user: snapshot.data![index]);
+                      },
+                  );
                 } else if (snapshot.hasError) {
                   return Text('${snapshot.error}');
                 }

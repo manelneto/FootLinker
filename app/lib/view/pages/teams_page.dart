@@ -22,7 +22,7 @@ class _TeamsPageState extends State<TeamsPage> {
   Widget build(BuildContext context) {
     return ListView(
       children: [
-        const Center(child: Text('Clubes')),
+        const Center(child: Text('Clube Favorito')),
         FutureBuilder<Team>(
             future: futureTeam,
             builder: (context, snapshot) {

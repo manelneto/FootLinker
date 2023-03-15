@@ -22,7 +22,7 @@ class _VenuesPageState extends State<VenuesPage> {
   Widget build(BuildContext context) {
     return ListView(
       children: [
-        const Center(child: Text('Estádios')),
+        const Center(child: Text('Estádio Favorito')),
         FutureBuilder<Team>(
             future: futureTeam,
             builder: (context, snapshot) {
