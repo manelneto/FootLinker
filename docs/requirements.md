@@ -13,7 +13,6 @@
 
 **Venue:** A venue is the stadium where a match is played. It is uniquely identified by an id, has a name, an adress, a city and an image. Each venue has its own capacity (number of seats) and its surface kind (usually, grass).  
 
-Example:
  <p align="center" justify="center">
   <img src="../images/DomainModel.png"/>
 </p>
