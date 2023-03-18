@@ -3,7 +3,7 @@
 
 ### Domain model
 
-**Fixture:** A fixture is a football match between two teams ("home" and "away") played at certain date and time, at a stadium which usually is the venue of the "home" team. It is uniquely identified by an id, has a referee and, after full-time, it has a score reflecting how many goals each team scored.
+**Match:** A fixture is a football match between two teams ("home" and "away") played at certain date and time, at a stadium which usually is the venue of the "home" team (if it has one). It is uniquely identified by an id, has a referee and, after full-time, it has a score reflecting how many goals each team scored.
 
 **League:** A league is a competition with its own rules, which applies to its fixtures, i. e., all fixtures of a league follow a certain pattern (for example, fixtures of a league are usually played at that league's country). It is uniquely identified by an id, has a name and a logo. A league is played in a season and it can have one or more rounds (such as "normal round", "relegation round" or "promotion round").
 
