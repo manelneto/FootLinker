@@ -7,11 +7,11 @@
 
 **FootLinker Business Logic:** module responsible for the app logic
 
+**Firebase:** module responsible for cloud storage and users' authentication
+
 **API-Footbal:** external API responsible for supplying all information related to football (fixtures, leagues, teams, venues, ...)
 
 **Google Maps API:** external API responsible for location services and giving directions to stadiums
-
-**Firebase:** external server responsible for cloud storage and users' authentication
 
 ![LogicalView](../images/LogicalArchitecture.png)
 
