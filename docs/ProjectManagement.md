@@ -25,3 +25,4 @@ We feel that we are not yet able to do accurate estimations of effort and time, 
 
 **Plan:**
 
+![Start of Iteration 1](/images/iteration1start.png)
