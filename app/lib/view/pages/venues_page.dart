@@ -21,21 +21,63 @@ class _VenuesPageState extends State<VenuesPage> {
 
   @override
   Widget build(BuildContext context) {
-    return ListView(
-      children: [
-        const Center(child: Text('Estádio Pesquisado:')),
-        FutureBuilder<Team>(
-            future: futureTeam,
-            builder: (context, snapshot) {
-              if (snapshot.hasData) {
-                return VenueWidget(venue: snapshot.data!.venue);
-              } else if (snapshot.hasError) {
-                return Text('${snapshot.error}');
-              }
-              return const CircularProgressIndicator();
-            },
+    return Scaffold(
+      backgroundColor: Colors.grey[200],
+      appBar: AppBar(
+        backgroundColor: Colors.green[700],
+        title: Text('Estádios',
+          style: TextStyle(
+            fontWeight: FontWeight.bold,
+          ),
         ),
-      ],
+        centerTitle: true,
+        elevation: 0.0,
+      ),
+      body: Padding(
+        padding: EdgeInsets.all(16),
+        child: TextField(
+          style: TextStyle(
+            color: Colors.black,
+          ),
+          decoration: InputDecoration(
+            filled: true,
+            fillColor: Colors.white,
+            border: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(8.0),
+              borderSide: BorderSide.none,
+            ),
+            hintText: 'Pesquise um estádio',
+            suffixIcon: Icon(Icons.search),
+          ),
+        ),
+      ),
     );
   }
 }
+
+
+
+
+
+
+
+
+
+
+/*
+ListView(
+children: [
+const Center(child: Text('Estádio Pesquisado:')),
+FutureBuilder<Team>(
+future: futureTeam,
+builder: (context, snapshot) {
+if (snapshot.hasData) {
+return VenueWidget(venue: snapshot.data!.venue);
+} else if (snapshot.hasError) {
+return Text('${snapshot.error}');
+}
+return const CircularProgressIndicator();
+},
+),
+],
+),*/
