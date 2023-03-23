@@ -1,7 +1,7 @@
+import 'package:app/model/venue.dart';
 import 'package:app/view/widgets/venue_widget.dart';
 import 'package:flutter/material.dart';
-import '../../model/team.dart';
-import '../../controller/team_fetcher.dart';
+import '../../controller/venue_fetcher.dart';
 
 class VenuesPage extends StatefulWidget {
   const VenuesPage({super.key});
@@ -11,12 +11,12 @@ class VenuesPage extends StatefulWidget {
 }
 
 class _VenuesPageState extends State<VenuesPage> {
-  late Future<Team> futureTeam;
+  late Future<Venue> futureVenue;
 
   @override
   void initState() {
     super.initState();
-    futureTeam = TeamFetcher().fetchTeam();
+    futureVenue = VenueFetcher().fetchVenue();
   }
 
   @override
@@ -24,11 +24,11 @@ class _VenuesPageState extends State<VenuesPage> {
     return ListView(
       children: [
         const Center(child: Text('Estádio Pesquisado:')),
-        FutureBuilder<Team>(
-            future: futureTeam,
+        FutureBuilder<Venue>(
+            future: futureVenue,
             builder: (context, snapshot) {
               if (snapshot.hasData) {
-                return VenueWidget(venue: snapshot.data!.venue);
+                return VenueWidget(venue: snapshot.data!);
               } else if (snapshot.hasError) {
                 return Text('${snapshot.error}');
               }

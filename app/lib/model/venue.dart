@@ -24,14 +24,15 @@ class Venue {
   });
 
   factory Venue.fromJson(Map<String, dynamic> json) {
+    var venue = json['response'][0];
     return Venue(
-      id: json['id'],
-      name: json['name'],
-      address: json['address'],
-      city: json['city'],
-      capacity: json['capacity'],
-      surface: json['surface'],
-      image: json['image'],
+      id: venue['id'],
+      name: venue['name'],
+      address: venue['address'],
+      city: venue['city'],
+      capacity: venue['capacity'],
+      surface: venue['surface'],
+      image: venue['image'],
     );
   }
 }
