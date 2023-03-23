@@ -35,4 +35,12 @@ class Venue {
       image: venue['image'],
     );
   }
+
+  factory Venue.fromJsonMatch(Map<String, dynamic> venue) {
+    return Venue.fromMatch(
+      id: venue['id'],
+      name: venue['name'],
+      city: venue['city'],
+    );
+  }
 }

@@ -26,16 +26,17 @@ class Match {
   });
 
   factory Match.fromJson(Map<String, dynamic> json) {
+    var match = json['response'][0];
     return Match(
-      id: json['id'],
-      referee: json['referee'],
-      date: json['date'],
-      time: json['date'],
-      venue: Venue.fromJson(json['venue']),
-      league: League.fromJson(json['league']),
-      home: Team.fromJson(json['teams']['home']),
-      away: Team.fromJson(json['teams']['away']),
-      score: json['score']['fulltime']['home'] + ' - ' + json['score']['fulltime']['away'],
+      id: match['fixture']['id'],
+      referee: match['fixture']['referee'],
+      date: match['fixture']['date'],
+      time: match['fixture']['date'],
+      venue: Venue.fromJsonMatch(match['fixture']['venue']),
+      league: League.fromJson(match['league']),
+      home: Team.fromJsonMatch(match['teams']['home']),
+      away: Team.fromJsonMatch(match['teams']['away']),
+      score: '${match['score']['fulltime']['home']} - ${match['score']['fulltime']['away']}',
     );
   }
 }

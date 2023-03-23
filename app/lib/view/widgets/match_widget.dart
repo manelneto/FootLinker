@@ -14,7 +14,7 @@ class MatchWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return ListTile(
       leading: const Icon(Icons.sports_soccer),
-      title: Text('${match.home.name} - (${match.away.name}) (${match.score}'),
+      title: Text('${match.home.name} - ${match.away.name}\n${match.score}'),
     );
   }
 }

@@ -34,4 +34,12 @@ class Team {
         logo: team['logo'],
     );
   }
+
+  factory Team.fromJsonMatch(Map<String, dynamic> team) {
+    return Team.fromMatch(
+      id: team['id'],
+      name: team['name'],
+      logo: team['logo'],
+    );
+  }
 }

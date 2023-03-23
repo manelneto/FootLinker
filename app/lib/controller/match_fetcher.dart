@@ -7,7 +7,7 @@ import '../model/match.dart';
 class MatchFetcher {
   Future<Match> fetchMatch() async {
     final response = await http.get(
-        Uri.parse('https://v3.football.api-sports.io/teams?id=239625'),
+        Uri.parse("https://v3.football.api-sports.io/fixtures?id=215662"),
         headers: {
           'x-rapidapi-key': '28e2bd7ea34da73c2eb4e946fe77c052',
           'x-rapidapi-host': 'v3.football.api-sports.io',

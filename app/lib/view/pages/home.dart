@@ -1,3 +1,5 @@
+import 'package:app/view/pages/matches_page.dart';
+
 import 'friends_page.dart';
 import 'map_page.dart';
 import 'credits.dart';
@@ -33,12 +35,15 @@ class _MyHomePageState extends State<MyHomePage> {
         page = const VenuesPage();
         break;
       case 3:
-        page = const MapPage();
+        page = const MatchesPage();
         break;
       case 4:
-        page = const FriendsPage();
+        page = const MapPage();
         break;
       case 5:
+        page = const FriendsPage();
+        break;
+      case 6:
         page = const Credits();
         break;
       default:
@@ -56,6 +61,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   NavigationRailDestination(icon: Icon(Icons.home), label: Text('Página Principal')),
                   NavigationRailDestination(icon: Icon(Icons.sports_soccer), label: Text('Clubes')),
                   NavigationRailDestination(icon: Icon(Icons.stadium), label: Text('Estádios')),
+                  NavigationRailDestination(icon: Icon(Icons.list), label: Text('Jogos')),
                   NavigationRailDestination(icon: Icon(Icons.map), label: Text('Mapa')),
                   NavigationRailDestination(icon: Icon(Icons.people), label: Text('Amigos')),
                   NavigationRailDestination(icon: Icon(Icons.logo_dev), label: Text('Créditos')),
