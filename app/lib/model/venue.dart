@@ -1,11 +1,17 @@
 class Venue {
   final int id;
   final String name;
-  final String address;
+  String address = "";
   final String city;
-  final int capacity;
-  final String surface;
-  final String image;
+  int capacity = 0;
+  String surface = "";
+  String image = "";
+
+  Venue.fromMatch({
+    required this.id,
+    required this.name,
+    required this.city,
+  });
 
   Venue({
     required this.id,
@@ -14,7 +20,8 @@ class Venue {
     required this.city,
     required this.capacity,
     required this.surface,
-    required this.image});
+    required this.image,
+  });
 
   factory Venue.fromJson(Map<String, dynamic> json) {
     return Venue(
