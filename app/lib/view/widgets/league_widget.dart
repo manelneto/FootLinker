@@ -12,9 +12,6 @@ class LeagueWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ListTile(
-      leading: const Icon(Icons.emoji_events),
-      title: Text('${league.name}'),
-    );
+      return Text(league.name);
   }
 }

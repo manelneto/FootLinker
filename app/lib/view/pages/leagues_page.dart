@@ -11,30 +11,39 @@ class LeaguesPage extends StatefulWidget {
 }
 
 class _LeaguesPageState extends State<LeaguesPage> {
-  late Future<League> futureLeague;
+  List<int> ids = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11];
+  List<Future<League>> leagues = [];
+  late Future<League> league;
 
   @override
   void initState() {
     super.initState();
-    futureLeague = LeagueFetcher().fetchLeague();
+    for (var id in ids) {
+      leagues.add(LeagueFetcher().fetchLeague(id));
+    }
   }
 
   @override
   Widget build(BuildContext context) {
     return ListView(
       children: [
-        const Center(child: Text('Liga para Teste')),
-        FutureBuilder<League>(
-          future: futureLeague,
-          builder: (context, snapshot) {
-            if (snapshot.hasData) {
-              return LeagueWidget(league: snapshot.data!);
-            } else if (snapshot.hasError) {
-              return Text('${snapshot.error}');
-            }
-            return const CircularProgressIndicator();
-          },
-        ),
+        const Center(child: Text('Ligas')),
+        for (var league in leagues)
+          ListTile(
+              leading: const Icon(Icons.emoji_events),
+              title: ElevatedButton(
+                onPressed: () {const LeaguesPage();},
+                child: FutureBuilder<League>(
+                future: league,
+                builder: (context, snapshot) {
+                  if (snapshot.hasData) {
+                    return LeagueWidget(league: snapshot.data!);
+                  } else if (snapshot.hasError) {
+                    return Text('${snapshot.error}');
+                  }
+                  return const CircularProgressIndicator();
+                },
+              ))),
       ],
     );
   }
