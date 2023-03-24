@@ -1,28 +1,26 @@
 class League {
   final int id;
   final String name;
-  final String country;
+  final String type;
   final String logo;
-  final int season;
-  final String round;
+  final String country;
 
   League({
     required this.id,
     required this.name,
-    required this.country,
+    required this.type,
     required this.logo,
-    required this.season,
-    required this.round,
+    required this.country,
   });
 
   factory League.fromJson(Map<String, dynamic> json) {
+    var league = json['response'][0];
     return League(
-      id: json['id'],
-      name: json['name'],
-      country: json['country'],
-      logo: json['logo'],
-      season: json['season'],
-      round: json['round'],
+      id: league['league']['id'],
+      name: league['league']['name'],
+      type: league['league']['type'],
+      logo: league['league']['logo'],
+      country: league['country']['name'],
     );
   }
 }
