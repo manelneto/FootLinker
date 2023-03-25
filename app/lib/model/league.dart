@@ -23,4 +23,8 @@ class League {
       country: league['country']['name'],
     );
   }
+
+  String getLogo() {
+    return logo;
+  }
 }
