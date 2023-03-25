@@ -6,6 +6,8 @@ class Venue {
   final int capacity;
   final String surface;
   final String image;
+  final double lat;
+  final double lng;
 
   Venue({
     required this.id,
@@ -14,7 +16,9 @@ class Venue {
     required this.city,
     required this.capacity,
     required this.surface,
-    required this.image});
+    required this.image,
+    required this.lat,
+    required this.lng});
 
   factory Venue.fromJson(Map<String, dynamic> json) {
     return Venue(
@@ -25,6 +29,8 @@ class Venue {
       capacity: json['capacity'],
       surface: json['surface'],
       image: json['image'],
+      lat: json['lat'],
+      lng: json['lng'],
     );
   }
 }

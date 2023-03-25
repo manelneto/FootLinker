@@ -1,8 +1,8 @@
-import 'package:app/view/widgets/venue_widget.dart';
 import 'package:flutter/material.dart';
 import '../../model/team.dart';
 import '../../controller/team_fetcher.dart';
 import '../../model/venue.dart';
+import 'package:app/view/pages/venue_page.dart';
 
 class VenuesPage extends StatefulWidget {
   const VenuesPage({super.key});
@@ -15,7 +15,8 @@ class _VenuesPageState extends State<VenuesPage> {
   late Future<Team> futureTeam;
 
   static List<Venue> main_venue_list = [
-    Venue(id: 0, name: 'Estadio do Dragao', address: 'Via Futebol Clube do Porto', city: 'Porto', capacity: 50033, surface: 'n sei', image: 'n sei'),
+    Venue(id: 0, name: 'Estadio do Dragao', address: 'Via Futebol Clube do Porto', city: 'Porto', capacity: 50033, surface: 'n sei', image: 'assets/estadiodragao.jpeg', lat: 41.16177, lng: -8.5857797),
+    Venue(id: 1, name: 'Maracana', address: 'Rua Professor Eurico Rabelo', city: 'Rio de Janeiro', capacity: 78838, surface: 'n sei', image: 'assets/maracana.jpeg', lat: -22.9121089, lng: -43.2323445),
   ];
 
   List<Venue> display_list = List.from(main_venue_list);
@@ -71,6 +72,9 @@ class _VenuesPageState extends State<VenuesPage> {
                 child: ListView.builder(
                   itemCount: display_list.length,
                   itemBuilder: (context, index) => ListTile(
+                    onTap: () {
+                      Navigator.push(context, MaterialPageRoute(builder: (context) => VenuePage(display_list[index])));
+                    },
                     contentPadding: EdgeInsets.all(8.0),
                     title: Text(
                         display_list[index].name,

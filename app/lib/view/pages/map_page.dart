@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 class MapPage extends StatefulWidget {
-  const MapPage({super.key});
+  final double lat;
+  final double lng;
+  MapPage(this.lat, this.lng, {Key? key}) : super(key: key);
 
   @override
   State<MapPage> createState() => _MapState();
@@ -11,7 +13,7 @@ class MapPage extends StatefulWidget {
 class _MapState extends State<MapPage> {
   late GoogleMapController mapController;
 
-  final LatLng _center = const LatLng(41.16177,-8.5857797); // Estádio do Dragão para teste
+  // Estádio do Dragão para teste (41.16177,-8.5857797)
 
   void _onMapCreated(GoogleMapController controller) {
     mapController = controller;
@@ -22,8 +24,8 @@ class _MapState extends State<MapPage> {
     return GoogleMap(
         onMapCreated: _onMapCreated,
         initialCameraPosition: CameraPosition(
-          target: _center,
-          zoom: 20.0,
+          target: LatLng(widget.lat, widget.lng),
+          zoom: 17.0,
         ),
     );
   }

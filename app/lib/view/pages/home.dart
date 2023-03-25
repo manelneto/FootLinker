@@ -1,4 +1,3 @@
-import 'package:app/view/pages/venue_page.dart';
 import 'friends_page.dart';
 import 'map_page.dart';
 import 'credits.dart';
@@ -34,16 +33,13 @@ class _MyHomePageState extends State<MyHomePage> {
         page = const VenuesPage();
         break;
       case 3:
-        page = const MapPage();
+        page = MapPage(41.16177, -8.5857797);
         break;
       case 4:
         page = const FriendsPage();
         break;
       case 5:
         page = const Credits();
-        break;
-      case 6:
-        page = const VenuePage();
         break;
       default:
         throw UnimplementedError('no widget for $selectedIndex');
@@ -63,7 +59,6 @@ class _MyHomePageState extends State<MyHomePage> {
                   NavigationRailDestination(icon: Icon(Icons.map), label: Text('Mapa')),
                   NavigationRailDestination(icon: Icon(Icons.people), label: Text('Amigos')),
                   NavigationRailDestination(icon: Icon(Icons.logo_dev), label: Text('Créditos')),
-                  NavigationRailDestination(icon: Icon(Icons.stadium), label: Text('Estádio')),
                 ],
                 selectedIndex: selectedIndex,
                 onDestinationSelected: (value) {
