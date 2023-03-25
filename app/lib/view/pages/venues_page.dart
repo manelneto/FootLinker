@@ -15,7 +15,7 @@ class _VenuesPageState extends State<VenuesPage> {
   late Future<Team> futureTeam;
 
   static List<Venue> main_venue_list = [
-    Venue(id: 0, name: 'Estadio do dragao', address: 'Rua', city: 'Porto', capacity: 50000, surface: 'n sei', image: 'n sei'),
+    Venue(id: 0, name: 'Estadio do Dragao', address: 'Via Futebol Clube do Porto', city: 'Porto', capacity: 50033, surface: 'n sei', image: 'n sei'),
   ];
 
   List<Venue> display_list = List.from(main_venue_list);
