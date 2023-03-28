@@ -1,45 +1,36 @@
-import 'package:app/model/venue.dart';
-
 class Team {
   final int id;
   final String name;
-  String code = "";
-  String country = "";
-  int founded = 0;
   final String logo;
-
-  Team.fromMatch({
-    required this.id,
-    required this.name,
-    required this.logo,
-  });
+  String code;
+  String country;
+  int founded;
 
   Team({
     required this.id,
     required this.name,
-    required this.code,
-    required this.country,
-    required this.founded,
     required this.logo,
+    this.code = "",
+    this.country = "",
+    this.founded = 0,
   });
 
   factory Team.fromJson(Map<String, dynamic> json) {
-    var team = json['response'][0]['team'];
     return Team(
-        id: team['id'],
-        name: team['name'],
-        code: team['code'],
-        country: team['country'],
-        founded: team['founded'],
-        logo: team['logo'],
+      id: json['team']['id'],
+      name: json['team']['name'],
+      logo: json['team']['logo'],
+      code: json['team']['code'],
+      country: json['team']['country'],
+      founded: json['team']['founded'],
     );
   }
 
-  factory Team.fromJsonMatch(Map<String, dynamic> team) {
-    return Team.fromMatch(
-      id: team['id'],
-      name: team['name'],
-      logo: team['logo'],
+  factory Team.fromJsonMatch(Map<String, dynamic> json) {
+    return Team(
+      id: json['id'],
+      name: json['name'],
+      logo: json['logo'],
     );
   }
 }

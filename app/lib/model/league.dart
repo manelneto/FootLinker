@@ -1,30 +1,36 @@
 class League {
   final int id;
   final String name;
-  final String type;
-  final String logo;
   final String country;
+  final String logo;
+  //final String season;
+
 
   League({
     required this.id,
     required this.name,
-    required this.type,
-    required this.logo,
     required this.country,
+    required this.logo,
+    //required this.season,
   });
 
   factory League.fromJson(Map<String, dynamic> json) {
-    var league = json['response'][0];
     return League(
-      id: league['league']['id'],
-      name: league['league']['name'],
-      type: league['league']['type'],
-      logo: league['league']['logo'],
-      country: league['country']['name'],
+      id: json['league']['id'],
+      name: json['league']['name'],
+      country: json['country']['name'],
+      logo: json['league']['logo'],
+      //season: json['seasons'].last()['year'],
     );
   }
 
-  String getLogo() {
-    return logo;
+  factory League.fromJsonMatch(Map<String, dynamic> json) {
+    return League(
+      id: json['id'],
+      name: json['name'],
+      country: json['country'],
+      logo: json['logo'],
+      //season: json['season'],
+    );
   }
 }
