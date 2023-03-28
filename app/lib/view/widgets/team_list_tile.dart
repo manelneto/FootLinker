@@ -29,8 +29,18 @@ class TeamListTile extends StatelessWidget {
           semanticLabel: 'Team Logo',
         ),
       ),
-      title: Center(child: Text(team.name, textAlign: TextAlign.center,)),
-      subtitle: Center(child: Text(team.code, textAlign: TextAlign.center,)),
+      title: Center(
+        child: Text(
+          team.name,
+          textAlign: TextAlign.center,
+        ),
+      ),
+      subtitle: Center(
+        child: Text(
+          team.code,
+          textAlign: TextAlign.center,
+        ),
+      ),
     );
   }
 }

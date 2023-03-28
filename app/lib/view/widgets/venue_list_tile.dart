@@ -29,8 +29,18 @@ class VenueListTile extends StatelessWidget {
           semanticLabel: 'Venue Image',
         ),
       ),
-      title: Center(child: Text(venue.name, textAlign: TextAlign.center,),),
-      subtitle: Center(child: Text(venue.city, textAlign: TextAlign.center,),),
+      title: Center(
+        child: Text(
+          venue.name,
+          textAlign: TextAlign.center,
+        ),
+      ),
+      subtitle: Center(
+        child: Text(
+          venue.city,
+          textAlign: TextAlign.center,
+        ),
+      ),
     );
   }
 }
