@@ -1,4 +1,4 @@
-import 'package:app/view/widgets/team_widget.dart';
+import 'package:app/view/widgets/team_list_tile.dart';
 import 'package:flutter/material.dart';
 import '../../model/team.dart';
 import '../../controller/team_fetcher.dart';
@@ -11,31 +11,41 @@ class TeamsPage extends StatefulWidget {
 }
 
 class _TeamsPageState extends State<TeamsPage> {
-  late Future<Team> futureTeam;
+  ListView _teams(data) {
+    return ListView.builder(
+      itemCount: data.length,
+      itemBuilder: (context, index) {
+        return TeamListTile(
+          team: data[index],
+        );
+      },
+    );
+  }
 
-  @override
-  void initState() {
-    super.initState();
-    futureTeam = TeamFetcher().fetchTeam();
+  FutureBuilder _teamsData() {
+    return FutureBuilder<List<Team>>(
+      future: TeamFetcher().fetchTeams('portugal'),
+      builder: (BuildContext context, AsyncSnapshot<List<Team>> snapshot) {
+        if (snapshot.hasData) {
+          List<Team> data = snapshot.data!;
+          return _teams(data);
+        } else if (snapshot.hasError) {
+          return Text('${snapshot.error}');
+        }
+        return const CircularProgressIndicator();
+      },
+    );
   }
 
   @override
   Widget build(BuildContext context) {
-    return ListView(
-      children: [
-        const Center(child: Text('Clube Favorito')),
-        FutureBuilder<Team>(
-            future: futureTeam,
-            builder: (context, snapshot) {
-              if (snapshot.hasData) {
-                return TeamWidget(team: snapshot.data!);
-              } else if (snapshot.hasError) {
-                return Text('${snapshot.error}');
-              }
-              return const CircularProgressIndicator();
-            },
-        ),
-      ],
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Equipas'),
+      ),
+      body: Center(
+        child: _teamsData(),
+      ),
     );
   }
 }

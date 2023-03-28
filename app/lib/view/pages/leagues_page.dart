@@ -1,4 +1,4 @@
-import 'package:app/view/widgets/league_widget.dart';
+import 'package:app/view/widgets/league_list_tile.dart';
 import 'package:flutter/material.dart';
 import '../../model/league.dart';
 import '../../controller/league_fetcher.dart';
@@ -11,69 +11,41 @@ class LeaguesPage extends StatefulWidget {
 }
 
 class _LeaguesPageState extends State<LeaguesPage> {
-  List<int> ids = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
-  List<Future<League>> leagues = [];
-  late Future<League> league;
+  ListView _leagues(data) {
+    return ListView.builder(
+      itemCount: data.length,
+      itemBuilder: (context, index) {
+        return LeagueListTile(
+          league: data[index],
+        );
+      },
+    );
+  }
 
-  @override
-  void initState() {
-    super.initState();
-    for (var id in ids) {
-      leagues.add(LeagueFetcher().fetchLeague(id));
-    }
+  FutureBuilder _leaguesData() {
+    return FutureBuilder<List<League>>(
+      future: LeagueFetcher().fetchLeagues('portugal'),
+      builder: (BuildContext context, AsyncSnapshot<List<League>> snapshot) {
+        if (snapshot.hasData) {
+          List<League> data = snapshot.data!;
+          return _leagues(data);
+        } else if (snapshot.hasError) {
+          return Text('${snapshot.error}');
+        }
+        return const CircularProgressIndicator();
+      },
+    );
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: GridView.count(crossAxisCount: 2, children: [
-        for (var league in leagues)
-          InkWell(
-              splashColor: Colors.black,
-              onTap: () {
-                const LeaguesPage(); //o que o botão faz
-              },
-              child: Column(mainAxisSize: MainAxisSize.min, children: [
-                Ink.image(
-                    image: const NetworkImage(''),
-                    height: 100,
-                    width: 100,
-                    fit: BoxFit.cover),
-                const SizedBox(height: 3),
-                FutureBuilder<League>(
-                  future: league,
-                  builder: (context, snapshot) {
-                    if (snapshot.hasData) {
-                      return LeagueWidget(league: snapshot.data!);
-                    } else if (snapshot.hasError) {
-                      return Text('${snapshot.error}');
-                    }
-                    return const CircularProgressIndicator();
-                  },
-                ),
-                const SizedBox(height: 6),
-              ]))
-      ]),
+      appBar: AppBar(
+        title: const Text('Ligas'),
+      ),
+      body: Center(
+        child: _leaguesData(),
+      ),
     );
   }
 }
-
-/*
-ElevatedButton(
-                onPressed: () {
-                  const LeaguesPage();
-                },
-                style: ElevatedButton.styleFrom(
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(10))),
-                child: FutureBuilder<League>(
-                  future: league,
-                  builder: (context, snapshot) {
-                    if (snapshot.hasData) {
-                      return LeagueWidget(league: snapshot.data!);
-                    } else if (snapshot.hasError) {
-                      return Text('${snapshot.error}');
-                    }
-                    return const CircularProgressIndicator();
-                  },
-                )),*/

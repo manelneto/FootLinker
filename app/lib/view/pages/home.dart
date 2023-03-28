@@ -1,7 +1,5 @@
-import 'package:app/view/pages/leagues_page.dart';
-import 'package:app/view/pages/matches_page.dart';
-
 import 'friends_page.dart';
+import 'leagues_page.dart';
 import 'map_page.dart';
 import 'credits.dart';
 import 'start_page.dart';

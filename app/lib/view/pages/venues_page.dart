@@ -1,5 +1,5 @@
 import 'package:app/model/venue.dart';
-import 'package:app/view/widgets/venue_widget.dart';
+import 'package:app/view/widgets/venue_list_tile.dart';
 import 'package:flutter/material.dart';
 import '../../controller/venue_fetcher.dart';
 
@@ -11,31 +11,39 @@ class VenuesPage extends StatefulWidget {
 }
 
 class _VenuesPageState extends State<VenuesPage> {
-  late Future<Venue> futureVenue;
+  ListView _venues(data) {
+    return ListView.builder(
+      itemCount: data.length,
+      itemBuilder: (context, index) {
+        return VenueListTile(venue: data[index]);
+      },
+    );
+  }
 
-  @override
-  void initState() {
-    super.initState();
-    futureVenue = VenueFetcher().fetchVenue();
+  FutureBuilder _venuesData() {
+    return FutureBuilder<List<Venue>>(
+      future: VenueFetcher().fetchVenues('portugal'),
+      builder: (BuildContext context, AsyncSnapshot<List<Venue>> snapshot) {
+        if (snapshot.hasData) {
+          List<Venue> data = snapshot.data!;
+          return _venues(data);
+        } else if (snapshot.hasError) {
+          return Text('${snapshot.error}');
+        }
+        return const CircularProgressIndicator();
+      },
+    );
   }
 
   @override
   Widget build(BuildContext context) {
-    return ListView(
-      children: [
-        const Center(child: Text('Estádio Pesquisado:')),
-        FutureBuilder<Venue>(
-            future: futureVenue,
-            builder: (context, snapshot) {
-              if (snapshot.hasData) {
-                return VenueWidget(venue: snapshot.data!);
-              } else if (snapshot.hasError) {
-                return Text('${snapshot.error}');
-              }
-              return const CircularProgressIndicator();
-            },
-        ),
-      ],
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Estádios'),
+      ),
+      body: Center(
+        child: _venuesData(),
+      ),
     );
   }
 }
