@@ -13,16 +13,24 @@ class VenueListTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListTile(
-      leading: Image.network(
-        venue.image,
-        loadingBuilder: (context, child, progress) {
-          return progress == null ? child : const LinearProgressIndicator();
-        },
-        fit: BoxFit.contain,
-        semanticLabel: 'Venue Image',
+      leading: ConstrainedBox(
+        constraints: const BoxConstraints(
+          maxHeight: 75,
+          minHeight: 75,
+          maxWidth: 75,
+          minWidth: 75,
+        ),
+        child: Image.network(
+          venue.image,
+          loadingBuilder: (context, child, progress) {
+            return progress == null ? child : const LinearProgressIndicator();
+          },
+          fit: BoxFit.contain,
+          semanticLabel: 'Venue Image',
+        ),
       ),
-      title: Center(child: Text(venue.name)),
-      subtitle: Center(child: Text(venue.city)),
+      title: Center(child: Text(venue.name, textAlign: TextAlign.center,),),
+      subtitle: Center(child: Text(venue.city, textAlign: TextAlign.center,),),
     );
   }
 }

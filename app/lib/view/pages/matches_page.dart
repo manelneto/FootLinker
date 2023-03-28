@@ -30,7 +30,7 @@ class _MatchesPageState extends State<MatchesPage> {
 
   FutureBuilder _matchesData() {
     return FutureBuilder<List<Match>>(
-      future: MatchFetcher().fetchMatches(widget.league.id, 10),
+      future: MatchFetcher().fetchMatches(widget.league.id, 7),
       builder: (BuildContext context, AsyncSnapshot<List<Match>> snapshot) {
         if (snapshot.hasData) {
           List<Match> data = snapshot.data!;

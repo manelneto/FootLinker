@@ -13,11 +13,12 @@ class Team {
     this.code = '',
     this.country = '',
     this.founded = 0,
-    required this.national,
+    this.national = false,
     required this.logo,
   });
 
   factory Team.fromJson(Map<String, dynamic> json) {
+    print('TEAM id: ${json['team']['id'] ?? 0} name: ${json['team']['name'] ?? ''} code: ${json['team']['code'] ?? ''} country: ${json['team']['country'] ?? ''} founded: ${json['team']['founded'] ?? 0} national: ${json['team']['national'] ?? false} logo: ${json['team']['logo'] ?? ""}\n');
     return Team(
       id: json['team']['id'] ?? 0,
       name: json['team']['name'] ?? '',
@@ -30,10 +31,10 @@ class Team {
   }
 
   factory Team.fromJsonMatch(Map<String, dynamic> json) {
+    print('TEAM id: ${json['team']['id'] ?? 0} name: ${json['team']['name'] ?? ''} logo: ${json['team']['logo'] ?? ""}\n');
     return Team(
       id: json['id'] ?? 0,
       name: json['name'] ?? '',
-      national: json['team']['national'] ?? '',
       logo: json['logo'] ?? '',
     );
   }

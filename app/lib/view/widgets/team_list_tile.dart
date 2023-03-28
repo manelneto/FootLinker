@@ -13,16 +13,24 @@ class TeamListTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListTile(
-      leading: Image.network(
-        team.logo,
-        loadingBuilder: (context, child, progress) {
-          return progress == null ? child : const LinearProgressIndicator();
-        },
-        fit: BoxFit.contain,
-        semanticLabel: 'Team Logo',
+      leading: ConstrainedBox(
+        constraints: const BoxConstraints(
+          maxHeight: 60,
+          minHeight: 60,
+          maxWidth: 60,
+          minWidth: 60,
+        ),
+        child: Image.network(
+          team.logo,
+          loadingBuilder: (context, child, progress) {
+            return progress == null ? child : const LinearProgressIndicator();
+          },
+          fit: BoxFit.contain,
+          semanticLabel: 'Team Logo',
+        ),
       ),
-      title: Center(child: Text(team.name)),
-      subtitle: Center(child: Text(team.code)),
+      title: Center(child: Text(team.name, textAlign: TextAlign.center,)),
+      subtitle: Center(child: Text(team.code, textAlign: TextAlign.center,)),
     );
   }
 }

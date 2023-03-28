@@ -24,6 +24,7 @@ class Match {
   });
 
   factory Match.fromJson(Map<String, dynamic> json) {
+    print('MATCH id: ${json['fixture']['id'] ?? 0} referee: ${json['fixture']['referee'] ?? ''} date: ${json['fixture']['date'] ?? ''} timestamp: ${json['fixture']['timestamp'] ?? 0}\n');
     return Match(
       id: json['fixture']['id'] ?? 0,
       referee: json['fixture']['referee'] ?? '',

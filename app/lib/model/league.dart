@@ -17,6 +17,7 @@ class League {
   });
 
   factory League.fromJson(Map<String, dynamic> json) {
+    print('LEAGUE id: ${json['id'] ?? 0} name: ${json['name'] ?? ''} type: ${json['league']['type'] ?? ''} country: ${json['country'] ?? ''} logo: ${json['logo'] ?? ''}\n');
     return League(
       id: json['league']['id'] ?? 0,
       name: json['league']['name'] ?? '',
@@ -28,6 +29,7 @@ class League {
   }
 
   factory League.fromJsonMatch(Map<String, dynamic> json) {
+    print('LEAGUE id: ${json['id'] ?? 0} name: ${json['name'] ?? ''} country: ${json['country'] ?? ''} logo: ${json['logo'] ?? ''}\n');
     return League(
       id: json['id'] ?? 0,
       name: json['name'] ?? '',
