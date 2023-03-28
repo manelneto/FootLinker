@@ -21,18 +21,17 @@ class _LeaguesPageState extends State<LeaguesPage> {
           );
         },
       );
-    } else {
-      return ListView(
-        children: const [
-          Center(
-            child: Text(
-              'Não há ligas para apresentar...',
-              textAlign: TextAlign.center,
-            ),
-          ),
-        ],
-      );
     }
+    return ListView(
+      children: const [
+        Center(
+          child: Text(
+            'Não há ligas para apresentar...',
+            textAlign: TextAlign.center,
+          ),
+        ),
+      ],
+    );
   }
 
   FutureBuilder _leaguesData() {

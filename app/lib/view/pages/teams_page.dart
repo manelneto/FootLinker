@@ -21,18 +21,17 @@ class _TeamsPageState extends State<TeamsPage> {
           );
         },
       );
-    } else {
-      return ListView(
-        children: const [
-          Center(
-            child: Text(
-              'Não há equipas para apresentar...',
-              textAlign: TextAlign.center,
-            ),
-          ),
-        ],
-      );
     }
+    return ListView(
+      children: const [
+        Center(
+          child: Text(
+            'Não há equipas para apresentar...',
+            textAlign: TextAlign.center,
+          ),
+        ),
+      ],
+    );
   }
 
   FutureBuilder _teamsData() {

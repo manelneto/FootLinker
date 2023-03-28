@@ -21,18 +21,17 @@ class _VenuesPageState extends State<VenuesPage> {
           );
         },
       );
-    } else {
-      return ListView(
-        children: const [
-          Center(
-            child: Text(
-              'Não há estádios para apresentar...',
-              textAlign: TextAlign.center,
-            ),
-          ),
-        ],
-      );
     }
+    return ListView(
+      children: const [
+        Center(
+          child: Text(
+            'Não há estádios para apresentar...',
+            textAlign: TextAlign.center,
+          ),
+        ),
+      ],
+    );
   }
 
   FutureBuilder _venuesData() {
