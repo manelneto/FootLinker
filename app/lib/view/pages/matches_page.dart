@@ -18,14 +18,27 @@ class MatchesPage extends StatefulWidget {
 
 class _MatchesPageState extends State<MatchesPage> {
   ListView _matches(data) {
-    return ListView.builder(
-      itemCount: data.length,
-      itemBuilder: (context, index) {
-        return MatchListTile(
-          match: data[index],
-        );
-      },
-    );
+    if (data.length > 0) {
+      return ListView.builder(
+        itemCount: data.length,
+        itemBuilder: (context, index) {
+          return MatchListTile(
+            match: data[index],
+          );
+        },
+      );
+    } else {
+      return ListView(
+        children: const [
+          Center(
+            child: Text(
+              'Não há jogos para apresentar...',
+              textAlign: TextAlign.center,
+            ),
+          ),
+        ],
+      );
+    }
   }
 
   FutureBuilder _matchesData() {

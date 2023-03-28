@@ -12,12 +12,27 @@ class VenuesPage extends StatefulWidget {
 
 class _VenuesPageState extends State<VenuesPage> {
   ListView _venues(data) {
-    return ListView.builder(
-      itemCount: data.length,
-      itemBuilder: (context, index) {
-        return VenueListTile(venue: data[index]);
-      },
-    );
+    if (data.length > 0) {
+      return ListView.builder(
+        itemCount: data.length,
+        itemBuilder: (context, index) {
+          return VenueListTile(
+            venue: data[index],
+          );
+        },
+      );
+    } else {
+      return ListView(
+        children: const [
+          Center(
+            child: Text(
+              'Não há estádios para apresentar...',
+              textAlign: TextAlign.center,
+            ),
+          ),
+        ],
+      );
+    }
   }
 
   FutureBuilder _venuesData() {

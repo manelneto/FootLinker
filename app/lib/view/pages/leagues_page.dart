@@ -12,14 +12,27 @@ class LeaguesPage extends StatefulWidget {
 
 class _LeaguesPageState extends State<LeaguesPage> {
   ListView _leagues(data) {
-    return ListView.builder(
-      itemCount: data.length,
-      itemBuilder: (context, index) {
-        return LeagueListTile(
-          league: data[index],
-        );
-      },
-    );
+    if (data.length > 0) {
+      return ListView.builder(
+        itemCount: data.length,
+        itemBuilder: (context, index) {
+          return LeagueListTile(
+            league: data[index],
+          );
+        },
+      );
+    } else {
+      return ListView(
+        children: const [
+          Center(
+            child: Text(
+              'Não há ligas para apresentar...',
+              textAlign: TextAlign.center,
+            ),
+          ),
+        ],
+      );
+    }
   }
 
   FutureBuilder _leaguesData() {

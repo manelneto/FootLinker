@@ -12,14 +12,27 @@ class TeamsPage extends StatefulWidget {
 
 class _TeamsPageState extends State<TeamsPage> {
   ListView _teams(data) {
-    return ListView.builder(
-      itemCount: data.length,
-      itemBuilder: (context, index) {
-        return TeamListTile(
-          team: data[index],
-        );
-      },
-    );
+    if (data.length > 0) {
+      return ListView.builder(
+        itemCount: data.length,
+        itemBuilder: (context, index) {
+          return TeamListTile(
+            team: data[index],
+          );
+        },
+      );
+    } else {
+      return ListView(
+        children: const [
+          Center(
+            child: Text(
+              'Não há equipas para apresentar...',
+              textAlign: TextAlign.center,
+            ),
+          ),
+        ],
+      );
+    }
   }
 
   FutureBuilder _teamsData() {
