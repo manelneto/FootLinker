@@ -41,7 +41,8 @@ class _TeamsPageState extends State<TeamsPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Equipas'),
+        title: const Center(child: Text('Equipas')),
+        backgroundColor: Theme.of(context).colorScheme.primaryContainer,
       ),
       body: Center(
         child: _teamsData(),

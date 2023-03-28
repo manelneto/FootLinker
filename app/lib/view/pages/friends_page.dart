@@ -22,11 +22,15 @@ class _FriendsPageState extends State<FriendsPage> {
 
   @override
   Widget build(BuildContext context) {
-    return ListView(
-      children: [
-        const Center(child: Text('Amigos')),
-        Center(
-          child: FutureBuilder<List<User>>(
+    return Scaffold(
+      appBar: AppBar(
+        title: const Center(child: Text('Amigos')),
+        backgroundColor: Theme.of(context).colorScheme.primaryContainer,
+      ),
+      body: ListView(
+        children: [
+          Center(
+            child: FutureBuilder<List<User>>(
               future: friends,
               builder: (context, snapshot) {
                 if (snapshot.hasData) {
@@ -42,9 +46,11 @@ class _FriendsPageState extends State<FriendsPage> {
                   return Text('${snapshot.error}');
                 }
                 return const CircularProgressIndicator();
-              }),
-        ),
-      ],
+              },
+            ),
+          ),
+        ],
+      ),
     );
   }
 }
