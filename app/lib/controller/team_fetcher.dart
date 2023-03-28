@@ -9,7 +9,7 @@ class TeamFetcher {
     final response = await http.get(
         Uri.parse('https://v3.football.api-sports.io/teams?country=$country'),
         headers: {
-          'x-rapidapi-key': 'XXX',
+          'x-rapidapi-key': '236387583694a852afa31bbc5eaa0014',
           'x-rapidapi-host': 'v3.football.api-sports.io',
         }
     );
@@ -28,7 +28,7 @@ class TeamFetcher {
     final response = await http.get(
         Uri.parse('https://v3.football.api-sports.io/teams?id=$id'),
         headers: {
-          'x-rapidapi-key': 'XXX',
+          'x-rapidapi-key': '236387583694a852afa31bbc5eaa0014',
           'x-rapidapi-host': 'v3.football.api-sports.io',
         }
     );

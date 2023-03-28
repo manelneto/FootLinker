@@ -20,19 +20,20 @@ class LeagueListTile extends StatelessWidget {
   Widget build(BuildContext context) {
     return ListTile(
       leading: Image.network(
-        league.logo,
-        loadingBuilder: (context, child, progress) {
-          return progress == null ? child : const LinearProgressIndicator();
-        },
-        fit: BoxFit.contain,
-        semanticLabel: 'League Logo',
-      ),
+          league.logo,
+          loadingBuilder: (context, child, progress) {
+            return progress == null ? child : const LinearProgressIndicator();
+          },
+          fit: BoxFit.fitHeight,
+          semanticLabel: 'League Logo',
+        ),
       title: Center(child: Text(league.name)),
       subtitle: Center(child: Text(league.country)),
       trailing: const Icon(Icons.arrow_forward_ios),
       onTap: () {
         _navigateToMatchesPage(context, league);
       },
+
     );
   }
 }
