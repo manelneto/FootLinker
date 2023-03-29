@@ -10,7 +10,7 @@ class MatchFetcher {
 
   Future<List<Match>> fetchMatchesByLeague(int league, int number) async {
     final response = await http.get(
-        Uri.parse('${apiManagement.url}league=$league&next=$number'),
+        Uri.parse('${apiManagement.url}fixtures?league=$league&next=$number'),
         headers: apiManagement.headers,
     );
 
