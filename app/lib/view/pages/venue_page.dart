@@ -17,14 +17,16 @@ class VenuePage extends StatefulWidget {
 }
 
 class _VenuePageState extends State<VenuePage> {
-
   FutureBuilder _locationData() {
     return FutureBuilder(
       future: LocationFetcher().fetchCoordinates(widget.venue.name),
       builder: (BuildContext context, snapshot) {
         if (snapshot.hasData) {
           var data = snapshot.data;
-          return MapWidget(location: data, venue: widget.venue,);
+          return MapWidget(
+            location: data,
+            venue: widget.venue,
+          );
         } else if (snapshot.hasError) {
           return Text('${snapshot.error}');
         }
@@ -35,50 +37,71 @@ class _VenuePageState extends State<VenuePage> {
 
   @override
   Widget build(BuildContext context) {
+    String text;
+    if (widget.venue.address == '' && widget.venue.city == '') {
+      text = 'Morada não encontrada';
+    } else if (widget.venue.address == '') {
+      text = widget.venue.city;
+    } else if (widget.venue.city == '') {
+      text = widget.venue.address;
+    } else {
+      text = "${widget.venue.address}, ${widget.venue.city}";
+    }
+    if (widget.venue.capacity != '') {
+      text += "\nCapacidade: ${widget.venue.capacity}";
+    }
     return Scaffold(
-      backgroundColor: Colors.grey[200],
       appBar: AppBar(
-        backgroundColor: Colors.green[700],
-        title: const Text('Estádio',
+        title: const Text(
+          'Estádio',
           style: TextStyle(
             fontWeight: FontWeight.bold,
           ),
         ),
-      centerTitle: true,
-      elevation: 0.0,
+        backgroundColor: Theme.of(context).colorScheme.primaryContainer,
+        centerTitle: true,
       ),
       body: Padding(
-        padding: EdgeInsets.fromLTRB(30.0, 30.0, 30.0, 0.0),
+        padding: const EdgeInsets.fromLTRB(25.0, 25.0, 25.0, 25.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Text(
+            FittedBox(
+              fit: BoxFit.fitWidth,
+              child: Text(
                 widget.venue.name.toUpperCase(),
-              style: TextStyle(
-                color: Colors.green[700],
-                letterSpacing: 1.0,
-                fontSize: 28.0,
-                fontWeight: FontWeight.bold,
+                style: const TextStyle(
+                  letterSpacing: 1.0,
+                  fontSize: 30.0,
+                  fontWeight: FontWeight.bold,
+                ),
               ),
             ),
-            const SizedBox(height: 10.0,),
-            CircleAvatar(
-                radius: 80.0,
-                child: Image.network(widget.venue.image,),
+            const SizedBox(
+              height: 25.0,
             ),
-            const SizedBox(height: 10.0,),
-            Text(
-              "Endereço: ${widget.venue.address}\nCidade: ${widget.venue.city}\nCapacidade: ${widget.venue.capacity}",
-              style: TextStyle(
-                color: Colors.green[700],
-                fontWeight: FontWeight.bold,
-                fontSize: 16.0
+            CircleAvatar(
+              backgroundImage: NetworkImage(widget.venue.image),
+              radius: 100.0,
+            ),
+            const SizedBox(
+              height: 25.0,
+            ),
+            FittedBox(
+              fit: BoxFit.fitWidth,
+              child: Text(
+                text,
+                style: const TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 15.0,
+                ),
+                textAlign: TextAlign.center,
               ),
             ),
             Container(
-                margin: EdgeInsets.fromLTRB(0.0, 10.0, 0.0, 0.0),
-                height: 300.0,
-                child: _locationData(),
+              margin: const EdgeInsets.fromLTRB(0.0, 25.0, 0.0, 0.0),
+              height: 350.0,
+              child: _locationData(),
             ),
           ],
         ),
