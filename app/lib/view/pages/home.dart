@@ -1,3 +1,5 @@
+import 'package:app/view/pages/matches_page.dart';
+import 'package:location/location.dart';
 import 'friends_page.dart';
 import 'leagues_page.dart';
 import 'credits.dart';
@@ -16,11 +18,44 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  late bool _serviceEnabled;
+  late PermissionStatus _permissionGranted;
+  late LocationData _userLocation;
+  bool locationSet = false;
+
+  Future<void> _getUserLocation() async {
+    Location location = Location();
+
+    _serviceEnabled = await location.serviceEnabled();
+    if (!_serviceEnabled) {
+      _serviceEnabled = await location.requestService();
+      if (!_serviceEnabled) {
+        return;
+      }
+    }
+
+    _permissionGranted = await location.hasPermission();
+    if (_permissionGranted == PermissionStatus.denied) {
+      _permissionGranted = await location.requestPermission();
+      if (_permissionGranted != PermissionStatus.granted) {
+        return;
+      }
+    }
+
+    final locationData = await location.getLocation();
+
+    setState(
+      () {
+        _userLocation = locationData;
+        locationSet = true;
+      },
+    );
+  }
+
   var selectedIndex = 0;
 
   @override
   Widget build(BuildContext context) {
-
     Widget page;
     switch (selectedIndex) {
       case 0:
@@ -36,45 +71,84 @@ class _MyHomePageState extends State<MyHomePage> {
         page = const LeaguesPage();
         break;
       case 4:
-        page = const FriendsPage();
+        if (locationSet) {
+          page = MatchesPage(locationData: _userLocation);
+        } else {
+          page = const StartPage();
+        }
         break;
       case 5:
+        page = const FriendsPage();
+        break;
+      case 6:
         page = const Credits();
         break;
       default:
         throw UnimplementedError('no widget for $selectedIndex');
     }
 
-    return LayoutBuilder(builder: (context, constraints) {
-      return Scaffold(
-        body: Row(
-          children: [
-            SafeArea(
-              child: NavigationRail(
-                extended: constraints.maxWidth >= 600,
-                destinations: const [
-                  NavigationRailDestination(icon: Icon(Icons.home), label: Text('Página Principal')),
-                  NavigationRailDestination(icon: Icon(Icons.sports_soccer), label: Text('Clubes')),
-                  NavigationRailDestination(icon: Icon(Icons.stadium), label: Text('Estádios')),
-                  NavigationRailDestination(icon: Icon(Icons.emoji_events), label: Text('Ligas')),
-                  NavigationRailDestination(icon: Icon(Icons.people), label: Text('Amigos')),
-                  NavigationRailDestination(icon: Icon(Icons.logo_dev), label: Text('Créditos')),
-                ],
-                selectedIndex: selectedIndex,
-                onDestinationSelected: (value) {
-                  setState(() {selectedIndex = value;});
-                },
+    return LayoutBuilder(
+      builder: (context, constraints) {
+        return Scaffold(
+          body: Row(
+            children: [
+              SafeArea(
+                child: NavigationRail(
+                  extended: constraints.maxWidth >= 600,
+                  destinations: const [
+                    NavigationRailDestination(
+                      icon: Icon(Icons.home),
+                      label: Text('Página Principal'),
+                    ),
+                    NavigationRailDestination(
+                      icon: Icon(Icons.sports_soccer),
+                      label: Text('Clubes'),
+                    ),
+                    NavigationRailDestination(
+                      icon: Icon(Icons.stadium),
+                      label: Text('Estádios'),
+                    ),
+                    NavigationRailDestination(
+                      icon: Icon(Icons.emoji_events),
+                      label: Text('Ligas'),
+                    ),
+                    NavigationRailDestination(
+                      icon: Icon(Icons.map),
+                      label: Text('Jogos Perto'),
+                    ),
+                    NavigationRailDestination(
+                      icon: Icon(Icons.people),
+                      label: Text('Amigos'),
+                    ),
+                    NavigationRailDestination(
+                      icon: Icon(Icons.logo_dev),
+                      label: Text('Créditos'),
+                    ),
+                  ],
+                  selectedIndex: selectedIndex,
+                  onDestinationSelected: (value) {
+                    setState(() {
+                      selectedIndex = value;
+                    });
+                  },
+                ),
               ),
-            ),
-            Expanded(
-              child: Container(
-                color: Theme.of(context).colorScheme.primaryContainer,
-                child: page,
+              Expanded(
+                child: Container(
+                  color: Theme.of(context).colorScheme.primaryContainer,
+                  child: page,
+                ),
               ),
-            ),
-          ],
-        ),
-      );
-    });
+            ],
+          ),
+          floatingActionButton: FloatingActionButton(
+            onPressed: _getUserLocation,
+            tooltip: 'Location',
+            backgroundColor: Colors.white,
+            child: const Icon(Icons.location_on),
+          ),
+        );
+      },
+    );
   }
 }
