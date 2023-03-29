@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../model/league.dart';
-import '../pages/matches_page.dart';
+import '../pages/league_page.dart';
 
 class LeagueListTile extends StatelessWidget {
   const LeagueListTile({
@@ -13,7 +13,7 @@ class LeagueListTile extends StatelessWidget {
 
   void _navigateToMatchesPage(BuildContext context, League league) {
     Navigator.of(context).push(
-        MaterialPageRoute(builder: (context) => MatchesPage(league: league)));
+        MaterialPageRoute(builder: (context) => LeaguePage(league: league)));
   }
 
   @override
