@@ -11,6 +11,8 @@ class VenuesPage extends StatefulWidget {
 }
 
 class _VenuesPageState extends State<VenuesPage> {
+  late List<Venue> data;
+
   ListView _venues(data) {
     if (data.length > 0) {
       return ListView.builder(
@@ -39,7 +41,7 @@ class _VenuesPageState extends State<VenuesPage> {
       future: VenueFetcher().fetchVenues('portugal'),
       builder: (BuildContext context, AsyncSnapshot<List<Venue>> snapshot) {
         if (snapshot.hasData) {
-          List<Venue> data = snapshot.data!;
+          data = snapshot.data!;
           return _venues(data);
         } else if (snapshot.hasError) {
           return Text('${snapshot.error}');

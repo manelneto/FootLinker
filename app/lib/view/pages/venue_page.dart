@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:app/model/venue.dart';
 import 'package:app/view/widgets/map_widget.dart';
 
+import '../../controller/location_fetcher.dart';
+
 class VenuePage extends StatefulWidget {
   const VenuePage({
     super.key,
@@ -16,13 +18,28 @@ class VenuePage extends StatefulWidget {
 
 class _VenuePageState extends State<VenuePage> {
 
+  FutureBuilder _locationData() {
+    return FutureBuilder(
+      future: LocationFetcher().fetchCoordinates(widget.venue.name),
+      builder: (BuildContext context, snapshot) {
+        if (snapshot.hasData) {
+          var data = snapshot.data;
+          return MapWidget(location: data, venue: widget.venue,);
+        } else if (snapshot.hasError) {
+          return Text('${snapshot.error}');
+        }
+        return const CircularProgressIndicator();
+      },
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.grey[200],
       appBar: AppBar(
         backgroundColor: Colors.green[700],
-        title: Text('Estádio',
+        title: const Text('Estádio',
           style: TextStyle(
             fontWeight: FontWeight.bold,
           ),
@@ -44,12 +61,12 @@ class _VenuePageState extends State<VenuePage> {
                 fontWeight: FontWeight.bold,
               ),
             ),
-            SizedBox(height: 10.0,),
+            const SizedBox(height: 10.0,),
             CircleAvatar(
-              backgroundImage: AssetImage(widget.venue.image),
-              radius: 80.0,
+                radius: 80.0,
+                child: Image.network(widget.venue.image,),
             ),
-            SizedBox(height: 10.0,),
+            const SizedBox(height: 10.0,),
             Text(
               "Endereço: ${widget.venue.address}\nCidade: ${widget.venue.city}\nCapacidade: ${widget.venue.capacity}",
               style: TextStyle(
@@ -58,11 +75,11 @@ class _VenuePageState extends State<VenuePage> {
                 fontSize: 16.0
               ),
             ),
-            /*Container(
+            Container(
                 margin: EdgeInsets.fromLTRB(0.0, 10.0, 0.0, 0.0),
-                child: MapPage(widget.venue.lat, widget.venue.lng),
-                height: 400.0,
-            ),*/
+                height: 300.0,
+                child: _locationData(),
+            ),
           ],
         ),
       ),

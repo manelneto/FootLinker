@@ -1,19 +1,25 @@
+import 'package:geocoding/geocoding.dart';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
-class MapPage extends StatefulWidget {
-  final double lat;
-  final double lng;
-  MapPage(this.lat, this.lng, {Key? key}) : super(key: key);
+import '../../model/venue.dart';
+
+class MapWidget extends StatefulWidget {
+  const MapWidget({
+    super.key,
+    required this.venue,
+    required this.location,
+  });
+
+  final Venue venue;
+  final Location location;
 
   @override
-  State<MapPage> createState() => _MapState();
+  State<MapWidget> createState() => _MapState();
 }
 
-class _MapState extends State<MapPage> {
+class _MapState extends State<MapWidget> {
   late GoogleMapController mapController;
-
-  // Estádio do Dragão para teste (41.16177,-8.5857797)
 
   void _onMapCreated(GoogleMapController controller) {
     mapController = controller;
@@ -21,12 +27,23 @@ class _MapState extends State<MapPage> {
 
   @override
   Widget build(BuildContext context) {
-    return GoogleMap(
-        onMapCreated: _onMapCreated,
-        initialCameraPosition: CameraPosition(
-          target: LatLng(widget.lat, widget.lng),
-          zoom: 17.0,
+    final Set<Marker> markers = {
+      Marker(
+        markerId: MarkerId(widget.venue.name),
+        position: LatLng(
+            widget.location.latitude, widget.location.longitude,
         ),
+        infoWindow: InfoWindow(title: widget.venue.name, snippet: widget.venue.address),
+      ),
+    };
+
+    return GoogleMap(
+      onMapCreated: _onMapCreated,
+      initialCameraPosition: CameraPosition(
+        target: LatLng(widget.location.latitude, widget.location.longitude),
+        zoom: 16.0,
+      ),
+      markers: markers,
     );
   }
 }
