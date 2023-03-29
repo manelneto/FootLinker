@@ -24,8 +24,14 @@ class _FriendsPageState extends State<FriendsPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Center(child: Text('Amigos')),
+        title: const Text(
+          'Amigos',
+          style: TextStyle(
+            fontWeight: FontWeight.bold,
+          ),
+        ),
         backgroundColor: Theme.of(context).colorScheme.primaryContainer,
+        centerTitle: true,
       ),
       body: ListView(
         children: [

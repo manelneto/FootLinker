@@ -53,8 +53,14 @@ class _LeaguesPageState extends State<LeaguesPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Center(child: Text('Ligas')),
+        title: const Text(
+          'Ligas',
+          style: TextStyle(
+            fontWeight: FontWeight.bold,
+          ),
+        ),
         backgroundColor: Theme.of(context).colorScheme.primaryContainer,
+        centerTitle: true,
       ),
       body: Center(
         child: _leaguesData(),

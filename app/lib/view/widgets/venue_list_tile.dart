@@ -1,3 +1,4 @@
+import 'package:app/view/pages/venue_page.dart';
 import 'package:flutter/material.dart';
 
 import '../../model/venue.dart';
@@ -9,6 +10,11 @@ class VenueListTile extends StatelessWidget {
   });
 
   final Venue venue;
+
+  void _navigateToVenuePage(BuildContext context, Venue venue) {
+    Navigator.of(context).push(
+        MaterialPageRoute(builder: (context) => VenuePage(venue: venue)));
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -41,6 +47,9 @@ class VenueListTile extends StatelessWidget {
           textAlign: TextAlign.center,
         ),
       ),
+      onTap: () {
+        _navigateToVenuePage(context, venue);
+      },
     );
   }
 }

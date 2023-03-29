@@ -4,8 +4,8 @@ import '../../model/league.dart';
 import '../../model/match.dart';
 import '../../controller/match_fetcher.dart';
 
-class MatchesPage extends StatefulWidget {
-  const MatchesPage({
+class LeaguePage extends StatefulWidget {
+  const LeaguePage({
     super.key,
     required this.league,
   });
@@ -13,10 +13,10 @@ class MatchesPage extends StatefulWidget {
   final League league;
 
   @override
-  State<MatchesPage> createState() => _MatchesPageState();
+  State<LeaguePage> createState() => _LeaguePageState();
 }
 
-class _MatchesPageState extends State<MatchesPage> {
+class _LeaguePageState extends State<LeaguePage> {
   ListView _matches(data) {
     if (data.length > 0) {
       return ListView.builder(
@@ -59,7 +59,14 @@ class _MatchesPageState extends State<MatchesPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(widget.league.name),
+        title: Text(
+          widget.league.name,
+          style: const TextStyle(
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+        backgroundColor: Theme.of(context).colorScheme.primaryContainer,
+        centerTitle: true,
       ),
       body: Center(
         child: _matchesData(),
