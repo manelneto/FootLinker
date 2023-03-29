@@ -2,16 +2,16 @@ import 'dart:convert';
 
 import 'package:http/http.dart' as http;
 
+import '../api_management.dart';
 import '../model/venue.dart';
 
 class VenueFetcher {
+  ApiManagement apiManagement = ApiManagement();
+
   Future<List<Venue>> fetchVenues(String country) async {
     final response = await http.get(
-        Uri.parse('https://api-football-v1.p.rapidapi.com/v3/venues?country=$country'),
-        headers: {
-          'X-RapidAPI-Key': 'f98943d9bamshd4cccfea72196b8p106219jsnd303daf9b388',
-          'X-RapidAPI-Host': 'api-football-v1.p.rapidapi.com',
-        }
+        Uri.parse('${apiManagement.url}venues?country=$country'),
+        headers: apiManagement.headers,
     );
 
     if (response.statusCode == 200) {
@@ -26,11 +26,8 @@ class VenueFetcher {
 
   Future<Venue> fetchVenue(int id) async {
     final response = await http.get(
-        Uri.parse('https://api-football-v1.p.rapidapi.com/v3/venues?id=$id'),
-        headers: {
-          'X-RapidAPI-Key': 'f98943d9bamshd4cccfea72196b8p106219jsnd303daf9b388',
-          'X-RapidAPI-Host': 'api-football-v1.p.rapidapi.com',
-        }
+        Uri.parse('${apiManagement.url}venues?id=$id'),
+        headers: apiManagement.headers,
     );
 
     if (response.statusCode == 200) {

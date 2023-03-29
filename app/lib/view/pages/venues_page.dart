@@ -55,8 +55,14 @@ class _VenuesPageState extends State<VenuesPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Center(child: Text('Estádios')),
+        title: const Text(
+          'Estádios',
+          style: TextStyle(
+            fontWeight: FontWeight.bold,
+          ),
+        ),
         backgroundColor: Theme.of(context).colorScheme.primaryContainer,
+        centerTitle: true,
       ),
       body: Center(
         child: _venuesData(),

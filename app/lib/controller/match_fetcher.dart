@@ -2,16 +2,16 @@ import 'dart:convert';
 
 import 'package:http/http.dart' as http;
 
+import '../api_management.dart';
 import '../model/match.dart';
 
 class MatchFetcher {
+  ApiManagement apiManagement = ApiManagement();
+
   Future<List<Match>> fetchMatchesByLeague(int league, int number) async {
     final response = await http.get(
-        Uri.parse('https://api-football-v1.p.rapidapi.com/v3/fixtures?league=$league&next=$number'),
-        headers: {
-          'X-RapidAPI-Key': 'f98943d9bamshd4cccfea72196b8p106219jsnd303daf9b388',
-          'X-RapidAPI-Host': 'api-football-v1.p.rapidapi.com',
-        }
+        Uri.parse('${apiManagement.url}league=$league&next=$number'),
+        headers: apiManagement.headers,
     );
 
     if (response.statusCode == 200) {
@@ -26,11 +26,8 @@ class MatchFetcher {
 
   Future<Match> fetchMatch(int id) async {
     final response = await http.get(
-        Uri.parse('https://api-football-v1.p.rapidapi.com/v3/fixtures?id=$id'),
-        headers: {
-          'X-RapidAPI-Key': 'f98943d9bamshd4cccfea72196b8p106219jsnd303daf9b388',
-          'X-RapidAPI-Host': 'api-football-v1.p.rapidapi.com',
-        }
+        Uri.parse('${apiManagement.url}fixtures?id=$id'),
+        headers: apiManagement.headers,
     );
 
     if (response.statusCode == 200) {
