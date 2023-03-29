@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:app/model/venue.dart';
-import 'package:app/view/pages/map_page.dart';
+import 'package:app/view/widgets/map_widget.dart';
 
 class VenuePage extends StatefulWidget {
   const VenuePage({
