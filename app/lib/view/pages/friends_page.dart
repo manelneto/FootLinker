@@ -1,5 +1,5 @@
 import 'package:app/controller/user_fetcher.dart';
-import 'package:app/view/widgets/user_widget.dart';
+import 'package:app/view/widgets/user_list_tile.dart';
 import 'package:flutter/material.dart';
 
 import '../../model/user.dart';
@@ -22,11 +22,15 @@ class _FriendsPageState extends State<FriendsPage> {
 
   @override
   Widget build(BuildContext context) {
-    return ListView(
-      children: [
-        const Center(child: Text('Amigos')),
-        Center(
-          child: FutureBuilder<List<User>>(
+    return Scaffold(
+      appBar: AppBar(
+        title: const Center(child: Text('Amigos')),
+        backgroundColor: Theme.of(context).colorScheme.primaryContainer,
+      ),
+      body: ListView(
+        children: [
+          Center(
+            child: FutureBuilder<List<User>>(
               future: friends,
               builder: (context, snapshot) {
                 if (snapshot.hasData) {
@@ -35,17 +39,18 @@ class _FriendsPageState extends State<FriendsPage> {
                     shrinkWrap: true,
                     itemCount: snapshot.data!.length,
                     itemBuilder: (BuildContext context, int index) {
-                      return UserWidget(user: snapshot.data![index]);
-                      },
+                      return UserListTile(user: snapshot.data![index]);
+                    },
                   );
                 } else if (snapshot.hasError) {
                   return Text('${snapshot.error}');
                 }
                 return const CircularProgressIndicator();
-              }
-              ),
-        ),
-      ],
+              },
+            ),
+          ),
+        ],
+      ),
     );
   }
 }

@@ -3,8 +3,12 @@ import 'package:app/model/venue.dart';
 import 'package:app/view/pages/map_page.dart';
 
 class VenuePage extends StatefulWidget {
-  Venue venue;
-  VenuePage(this.venue, {Key? key}) : super(key: key);
+  const VenuePage({
+    super.key,
+    required this.venue,
+  });
+
+  final Venue venue;
 
   @override
   State<VenuePage> createState() => _VenuePageState();
@@ -54,11 +58,11 @@ class _VenuePageState extends State<VenuePage> {
                 fontSize: 16.0
               ),
             ),
-            Container(
+            /*Container(
                 margin: EdgeInsets.fromLTRB(0.0, 10.0, 0.0, 0.0),
                 child: MapPage(widget.venue.lat, widget.venue.lng),
                 height: 400.0,
-            ),
+            ),*/
           ],
         ),
       ),
