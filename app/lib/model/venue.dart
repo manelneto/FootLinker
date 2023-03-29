@@ -20,7 +20,7 @@ class Venue {
   });
 
   factory Venue.fromJson(Map<String, dynamic> json) {
-    print('VENUE id: ${json['id'] ?? 0} name: ${json['name'] ?? ''} address: ${json['address'] ?? ''} city: ${json['city'] ?? ''} country: ${json['country'] ?? ''} capacity: ${json['capacity'] ?? 0} surface: ${json['surface'] ?? ''} image: ${json['image'] ?? ''}\n');
+    // print('VENUE id: ${json['id'] ?? 0} name: ${json['name'] ?? ''} address: ${json['address'] ?? ''} city: ${json['city'] ?? ''} country: ${json['country'] ?? ''} capacity: ${json['capacity'] ?? 0} surface: ${json['surface'] ?? ''} image: ${json['image'] ?? ''}\n');
     return Venue(
       id: json['id'] ?? 0,
       name: json['name'] ?? '',
@@ -34,7 +34,7 @@ class Venue {
   }
 
   factory Venue.fromJsonMatch(Map<String, dynamic> json) {
-    print('VENUE id: ${json['id'] ?? 0} name: ${json['name'] ?? ''} city: ${json['city'] ?? ''}\n');
+    // print('VENUE id: ${json['id'] ?? 0} name: ${json['name'] ?? ''} city: ${json['city'] ?? ''}\n');
     return Venue(
       id: json['id'] ?? 0,
       name: json['name'] ?? '',

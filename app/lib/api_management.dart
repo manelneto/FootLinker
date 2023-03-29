@@ -19,7 +19,7 @@ class ApiManagement {
 
     String urlFootballAPI = "https://v3.football.api-sports.io/";
 
-    if (true) {
+    if (rapid) {
       headers = headersRapidAPI;
       url = urlRapidAPI;
     } else {
