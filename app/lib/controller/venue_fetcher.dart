@@ -7,10 +7,10 @@ import '../model/venue.dart';
 class VenueFetcher {
   Future<List<Venue>> fetchVenues(String country) async {
     final response = await http.get(
-        Uri.parse('https://v3.football.api-sports.io/venues?country=$country'),
+        Uri.parse('https://api-football-v1.p.rapidapi.com/v3/venues?country=$country'),
         headers: {
-          'x-rapidapi-key': '236387583694a852afa31bbc5eaa0014',
-          'x-rapidapi-host': 'v3.football.api-sports.io',
+          'X-RapidAPI-Key': 'f98943d9bamshd4cccfea72196b8p106219jsnd303daf9b388',
+          'X-RapidAPI-Host': 'api-football-v1.p.rapidapi.com',
         }
     );
 
@@ -26,10 +26,10 @@ class VenueFetcher {
 
   Future<Venue> fetchVenue(int id) async {
     final response = await http.get(
-        Uri.parse('https://v3.football.api-sports.io/venues?id=$id'),
+        Uri.parse('https://api-football-v1.p.rapidapi.com/v3/venues?id=$id'),
         headers: {
-          'x-rapidapi-key': '236387583694a852afa31bbc5eaa0014',
-          'x-rapidapi-host': 'v3.football.api-sports.io',
+          'X-RapidAPI-Key': 'f98943d9bamshd4cccfea72196b8p106219jsnd303daf9b388',
+          'X-RapidAPI-Host': 'api-football-v1.p.rapidapi.com',
         }
     );
 

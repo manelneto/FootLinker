@@ -31,7 +31,7 @@ class Team {
   }
 
   factory Team.fromJsonMatch(Map<String, dynamic> json) {
-    print('TEAM id: ${json['team']['id'] ?? 0} name: ${json['team']['name'] ?? ''} logo: ${json['team']['logo'] ?? ""}\n');
+    print('TEAM id: ${json['id'] ?? 0} name: ${json['name'] ?? ''} logo: ${json['logo'] ?? ""}\n');
     return Team(
       id: json['id'] ?? 0,
       name: json['name'] ?? '',

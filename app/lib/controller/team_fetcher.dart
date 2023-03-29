@@ -7,10 +7,10 @@ import '../model/team.dart';
 class TeamFetcher {
   Future<List<Team>> fetchTeams(String country) async {
     final response = await http.get(
-        Uri.parse('https://v3.football.api-sports.io/teams?country=$country'),
+        Uri.parse('https://api-football-v1.p.rapidapi.com/v3/teams?country=$country'),
         headers: {
-          'x-rapidapi-key': '236387583694a852afa31bbc5eaa0014',
-          'x-rapidapi-host': 'v3.football.api-sports.io',
+          'X-RapidAPI-Key': 'f98943d9bamshd4cccfea72196b8p106219jsnd303daf9b388',
+          'X-RapidAPI-Host': 'api-football-v1.p.rapidapi.com',
         }
     );
 
@@ -26,10 +26,10 @@ class TeamFetcher {
 
   Future<Team> fetchTeam(int id) async {
     final response = await http.get(
-        Uri.parse('https://v3.football.api-sports.io/teams?id=$id'),
+        Uri.parse('https://api-football-v1.p.rapidapi.com/v3/teams?id=$id'),
         headers: {
-          'x-rapidapi-key': '236387583694a852afa31bbc5eaa0014',
-          'x-rapidapi-host': 'v3.football.api-sports.io',
+          'X-RapidAPI-Key': 'f98943d9bamshd4cccfea72196b8p106219jsnd303daf9b388',
+          'X-RapidAPI-Host': 'api-football-v1.p.rapidapi.com',
         }
     );
 

@@ -5,12 +5,12 @@ import 'package:http/http.dart' as http;
 import '../model/match.dart';
 
 class MatchFetcher {
-  Future<List<Match>> fetchMatches(int league, int number) async {
+  Future<List<Match>> fetchMatchesByLeague(int league, int number) async {
     final response = await http.get(
-        Uri.parse('https://v3.football.api-sports.io/fixtures?league=$league&next=$number'),
+        Uri.parse('https://api-football-v1.p.rapidapi.com/v3/fixtures?league=$league&next=$number'),
         headers: {
-          'x-rapidapi-key': '236387583694a852afa31bbc5eaa0014',
-          'x-rapidapi-host': 'v3.football.api-sports.io',
+          'X-RapidAPI-Key': 'f98943d9bamshd4cccfea72196b8p106219jsnd303daf9b388',
+          'X-RapidAPI-Host': 'api-football-v1.p.rapidapi.com',
         }
     );
 
@@ -26,10 +26,10 @@ class MatchFetcher {
 
   Future<Match> fetchMatch(int id) async {
     final response = await http.get(
-        Uri.parse('https://v3.football.api-sports.io/fixtures?id=$id'),
+        Uri.parse('https://api-football-v1.p.rapidapi.com/v3/fixtures?id=$id'),
         headers: {
-          'x-rapidapi-key': '236387583694a852afa31bbc5eaa0014',
-          'x-rapidapi-host': 'v3.football.api-sports.io',
+          'X-RapidAPI-Key': 'f98943d9bamshd4cccfea72196b8p106219jsnd303daf9b388',
+          'X-RapidAPI-Host': 'api-football-v1.p.rapidapi.com',
         }
     );
 
