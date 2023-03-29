@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 
 import '../../model/user.dart';
 
-class UserWidget extends StatelessWidget {
-  const UserWidget({
+class UserListTile extends StatelessWidget {
+  const UserListTile({
     super.key,
     required this.user,
   });
@@ -14,7 +14,7 @@ class UserWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return ListTile(
       leading: const Icon(Icons.person),
-      title: Text('${user.name} ${user.surname}'),
+      title: Center(child: Text('${user.name} ${user.surname}')),
     );
   }
 }

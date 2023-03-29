@@ -2,12 +2,12 @@ import 'dart:convert';
 
 import 'package:http/http.dart' as http;
 
-import '../model/team.dart';
+import '../model/venue.dart';
 
-class TeamFetcher {
-  Future<List<Team>> fetchTeams(String country) async {
+class VenueFetcher {
+  Future<List<Venue>> fetchVenues(String country) async {
     final response = await http.get(
-        Uri.parse('https://api-football-v1.p.rapidapi.com/v3/teams?country=$country'),
+        Uri.parse('https://api-football-v1.p.rapidapi.com/v3/venues?country=$country'),
         headers: {
           'X-RapidAPI-Key': 'f98943d9bamshd4cccfea72196b8p106219jsnd303daf9b388',
           'X-RapidAPI-Host': 'api-football-v1.p.rapidapi.com',
@@ -16,17 +16,17 @@ class TeamFetcher {
 
     if (response.statusCode == 200) {
       var body = jsonDecode(response.body);
-      List<dynamic> teamsList = body['response'];
-      List<Team> teams = teamsList.map((dynamic item) => Team.fromJson(item)).toList();
-      return teams;
+      List<dynamic> venuesList = body['response'];
+      List<Venue> venues = venuesList.map((dynamic item) => Venue.fromJson(item)).toList();
+      return venues;
     } else {
       throw Exception(response.reasonPhrase);
     }
   }
 
-  Future<Team> fetchTeam(int id) async {
+  Future<Venue> fetchVenue(int id) async {
     final response = await http.get(
-        Uri.parse('https://api-football-v1.p.rapidapi.com/v3/teams?id=$id'),
+        Uri.parse('https://api-football-v1.p.rapidapi.com/v3/venues?id=$id'),
         headers: {
           'X-RapidAPI-Key': 'f98943d9bamshd4cccfea72196b8p106219jsnd303daf9b388',
           'X-RapidAPI-Host': 'api-football-v1.p.rapidapi.com',
@@ -35,9 +35,9 @@ class TeamFetcher {
 
     if (response.statusCode == 200) {
       var body = jsonDecode(response.body);
-      List<dynamic> teamsList = body['response'];
-      List<Team> teams = teamsList.map((dynamic item) => Team.fromJson(item)).toList();
-      return teams[0];
+      List<dynamic> venuesList = body['response'];
+      List<Venue> venues = venuesList.map((dynamic item) => Venue.fromJson(item)).toList();
+      return venues[0];
     } else {
       throw Exception(response.reasonPhrase);
     }

@@ -2,12 +2,12 @@ import 'dart:convert';
 
 import 'package:http/http.dart' as http;
 
-import '../model/team.dart';
+import '../model/league.dart';
 
-class TeamFetcher {
-  Future<List<Team>> fetchTeams(String country) async {
+class LeagueFetcher {
+  Future<List<League>> fetchLeagues(String country) async {
     final response = await http.get(
-        Uri.parse('https://api-football-v1.p.rapidapi.com/v3/teams?country=$country'),
+        Uri.parse('https://api-football-v1.p.rapidapi.com/v3/leagues?country=$country'),
         headers: {
           'X-RapidAPI-Key': 'f98943d9bamshd4cccfea72196b8p106219jsnd303daf9b388',
           'X-RapidAPI-Host': 'api-football-v1.p.rapidapi.com',
@@ -16,17 +16,17 @@ class TeamFetcher {
 
     if (response.statusCode == 200) {
       var body = jsonDecode(response.body);
-      List<dynamic> teamsList = body['response'];
-      List<Team> teams = teamsList.map((dynamic item) => Team.fromJson(item)).toList();
-      return teams;
+      List<dynamic> leaguesList = body['response'];
+      List<League> leagues = leaguesList.map((dynamic item) => League.fromJson(item)).toList();
+      return leagues;
     } else {
       throw Exception(response.reasonPhrase);
     }
   }
 
-  Future<Team> fetchTeam(int id) async {
+  Future<League> fetchLeague(int id) async {
     final response = await http.get(
-        Uri.parse('https://api-football-v1.p.rapidapi.com/v3/teams?id=$id'),
+        Uri.parse('https://api-football-v1.p.rapidapi.com/v3/leagues?id=$id'),
         headers: {
           'X-RapidAPI-Key': 'f98943d9bamshd4cccfea72196b8p106219jsnd303daf9b388',
           'X-RapidAPI-Host': 'api-football-v1.p.rapidapi.com',
@@ -35,9 +35,9 @@ class TeamFetcher {
 
     if (response.statusCode == 200) {
       var body = jsonDecode(response.body);
-      List<dynamic> teamsList = body['response'];
-      List<Team> teams = teamsList.map((dynamic item) => Team.fromJson(item)).toList();
-      return teams[0];
+      List<dynamic> leaguesList = body['response'];
+      List<League> leagues = leaguesList.map((dynamic item) => League.fromJson(item)).toList();
+      return leagues[0];
     } else {
       throw Exception(response.reasonPhrase);
     }
