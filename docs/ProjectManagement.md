@@ -30,3 +30,15 @@ We feel that we are not yet able to do accurate estimations of effort and time, 
 ![End of Iteration 1](/images/iteration1end.png)
 
 **Retrospective:**
+
+We think that Iteration 1 went smoothly because we implemented all three features planned for this iteration. Besides this, we believe that the features were well implemented, useful and functional.
+
+The one problem we faced was the lack of communication between our team. This resulted in one feature that was left to be completed very close to the deadline.
+
+One thing that still puzzles us is related to the interaction with the API - it is a little unreliable and it has a limit of 100 request each day which complicates testing.
+
+### Iteration 2
+
+**Plan:**
+
+![Start of Iteration 2](/images/iteration2start.png)
