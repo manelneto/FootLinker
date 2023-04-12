@@ -1,6 +1,7 @@
 import 'package:app/view/pages/matches_page.dart';
 import 'package:location/location.dart';
 import 'friends_page.dart';
+import 'history_page.dart';
 import 'leagues_page.dart';
 import 'credits.dart';
 import 'start_page.dart';
@@ -83,6 +84,9 @@ class _MyHomePageState extends State<MyHomePage> {
       case 6:
         page = const Credits();
         break;
+      case 7:
+        page = const HistoryPage();
+        break;
       default:
         throw UnimplementedError('no widget for $selectedIndex');
     }
@@ -123,6 +127,10 @@ class _MyHomePageState extends State<MyHomePage> {
                     NavigationRailDestination(
                       icon: Icon(Icons.logo_dev),
                       label: Text('Créditos'),
+                    ),
+                    NavigationRailDestination(
+                      icon: Icon(Icons.logo_dev),
+                      label: Text('Histórico'),
                     ),
                   ],
                   selectedIndex: selectedIndex,

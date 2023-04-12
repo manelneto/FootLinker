@@ -1,4 +1,6 @@
+import 'package:app/main.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 import '../../model/match.dart';
 
@@ -12,6 +14,8 @@ class MatchListTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var appState = context.watch<MyAppState>();
+
     return ListTile(
       leading: ConstrainedBox(
         constraints: const BoxConstraints(
@@ -58,6 +62,7 @@ class MatchListTile extends StatelessWidget {
           semanticLabel: 'Away Team Logo',
         ),
       ),
+      onTap: () { appState.toggleHistory(match); },
     );
   }
 }
