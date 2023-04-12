@@ -1,7 +1,8 @@
 import 'package:app/view/pages/home.dart';
-import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+
 import 'model/match.dart';
 
 void main() async {
@@ -19,26 +20,25 @@ class MyApp extends StatelessWidget {
     return ChangeNotifierProvider(
       create: (context) => MyAppState(),
       child: MaterialApp(
-        title: 'FootLinker',
-        theme: ThemeData(
-          useMaterial3: true,
-          colorScheme: ColorScheme.fromSeed(seedColor: Colors.green),
-        ),
-        home: FutureBuilder(
-          future: _fbApp,
-          builder: (context, snapshot) {
-            if (snapshot.hasError) {
-              return const Text('Algo correu mal...');
-            } else if (snapshot.hasData) {
-              return const MyHomePage(title: 'FootLinker');
-            } else {
-              return const Center(
-                child: CircularProgressIndicator(),
-              );
-            }
-          },
-        )
-      ),
+          title: 'FootLinker',
+          theme: ThemeData(
+            useMaterial3: true,
+            colorScheme: ColorScheme.fromSeed(seedColor: Colors.green),
+          ),
+          home: FutureBuilder(
+            future: _fbApp,
+            builder: (context, snapshot) {
+              if (snapshot.hasError) {
+                return const Text('Algo correu mal...');
+              } else if (snapshot.hasData) {
+                return const MyHomePage(title: 'FootLinker');
+              } else {
+                return const Center(
+                  child: CircularProgressIndicator(),
+                );
+              }
+            },
+          )),
     );
   }
 }

@@ -1,8 +1,9 @@
 import 'package:app/view/widgets/match_list_tile.dart';
 import 'package:flutter/material.dart';
 import 'package:location/location.dart';
-import '../../model/match.dart';
+
 import '../../controller/match_fetcher.dart';
+import '../../model/match.dart';
 
 class MatchesPage extends StatefulWidget {
   const MatchesPage({

@@ -9,10 +9,10 @@ class LeagueFetcher {
   ApiManagement apiManagement = ApiManagement();
 
   Future<List<League>> fetchLeagues(String country) async {
-      final response = await http.get(
-        Uri.parse("${apiManagement.url}leagues?country=$country"),
-        headers: apiManagement.headers,
-      );
+    final response = await http.get(
+      Uri.parse("${apiManagement.url}leagues?country=$country"),
+      headers: apiManagement.headers,
+    );
 
     if (response.statusCode == 200) {
       var body = jsonDecode(response.body);

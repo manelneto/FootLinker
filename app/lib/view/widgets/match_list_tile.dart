@@ -62,7 +62,9 @@ class MatchListTile extends StatelessWidget {
           semanticLabel: 'Away Team Logo',
         ),
       ),
-      onTap: () { appState.toggleHistory(match); },
+      onTap: () {
+        appState.toggleHistory(match);
+      },
     );
   }
 }

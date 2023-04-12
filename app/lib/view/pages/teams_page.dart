@@ -1,7 +1,8 @@
 import 'package:app/view/widgets/team_list_tile.dart';
 import 'package:flutter/material.dart';
-import '../../model/team.dart';
+
 import '../../controller/team_fetcher.dart';
+import '../../model/team.dart';
 
 class TeamsPage extends StatefulWidget {
   const TeamsPage({super.key});

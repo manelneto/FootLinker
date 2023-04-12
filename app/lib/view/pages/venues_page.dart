@@ -1,6 +1,7 @@
 import 'package:app/model/venue.dart';
 import 'package:app/view/widgets/venue_list_tile.dart';
 import 'package:flutter/material.dart';
+
 import '../../controller/venue_fetcher.dart';
 
 class VenuesPage extends StatefulWidget {

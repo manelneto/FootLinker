@@ -1,5 +1,5 @@
-import 'package:geocoding/geocoding.dart';
 import 'package:flutter/material.dart';
+import 'package:geocoding/geocoding.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 import '../../model/venue.dart';
@@ -31,9 +31,11 @@ class _MapState extends State<MapWidget> {
       Marker(
         markerId: MarkerId(widget.venue.name),
         position: LatLng(
-            widget.location.latitude, widget.location.longitude,
+          widget.location.latitude,
+          widget.location.longitude,
         ),
-        infoWindow: InfoWindow(title: widget.venue.name, snippet: widget.venue.address),
+        infoWindow:
+            InfoWindow(title: widget.venue.name, snippet: widget.venue.address),
       ),
     };
 

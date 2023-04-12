@@ -1,13 +1,14 @@
 import 'package:app/view/pages/matches_page.dart';
+import 'package:flutter/material.dart';
 import 'package:location/location.dart';
+
+import 'credits.dart';
 import 'friends_page.dart';
 import 'history_page.dart';
 import 'leagues_page.dart';
-import 'credits.dart';
 import 'start_page.dart';
 import 'teams_page.dart';
 import 'venues_page.dart';
-import 'package:flutter/material.dart';
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({super.key, required this.title});

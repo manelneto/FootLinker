@@ -1,6 +1,6 @@
-import 'package:flutter/material.dart';
 import 'package:app/model/venue.dart';
 import 'package:app/view/widgets/map_widget.dart';
+import 'package:flutter/material.dart';
 
 import '../../controller/location_fetcher.dart';
 

@@ -14,14 +14,14 @@ class HistoryPage extends StatelessWidget {
 
     if (appState.history.isEmpty) {
       return const Center(
-        child: Text('Ainda não adicionou nenhum jogo ao histórico.\nExperimente ...!'),
+        child: Text(
+            'Ainda não adicionou nenhum jogo ao histórico.\nExperimente ...!'),
       );
     }
 
     return ListView(
       children: [
-        for (var match in appState.history)
-          MatchListTile(match: match),
+        for (var match in appState.history) MatchListTile(match: match),
       ],
     );
   }

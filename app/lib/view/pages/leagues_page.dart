@@ -1,7 +1,8 @@
 import 'package:app/view/widgets/league_list_tile.dart';
 import 'package:flutter/material.dart';
-import '../../model/league.dart';
+
 import '../../controller/league_fetcher.dart';
+import '../../model/league.dart';
 
 class LeaguesPage extends StatefulWidget {
   const LeaguesPage({super.key});

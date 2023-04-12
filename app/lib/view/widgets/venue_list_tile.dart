@@ -12,8 +12,8 @@ class VenueListTile extends StatelessWidget {
   final Venue venue;
 
   void _navigateToVenuePage(BuildContext context, Venue venue) {
-    Navigator.of(context).push(
-        MaterialPageRoute(builder: (context) => VenuePage(venue: venue)));
+    Navigator.of(context)
+        .push(MaterialPageRoute(builder: (context) => VenuePage(venue: venue)));
   }
 
   @override

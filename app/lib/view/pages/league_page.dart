@@ -1,8 +1,9 @@
 import 'package:app/view/widgets/match_list_tile.dart';
 import 'package:flutter/material.dart';
+
+import '../../controller/match_fetcher.dart';
 import '../../model/league.dart';
 import '../../model/match.dart';
-import '../../controller/match_fetcher.dart';
 
 class LeaguePage extends StatefulWidget {
   const LeaguePage({

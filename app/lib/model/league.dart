@@ -4,8 +4,8 @@ class League {
   String type;
   final String country;
   final String logo;
-  //final String season;
 
+  //final String season;
 
   League({
     required this.id,
