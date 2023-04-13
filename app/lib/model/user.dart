@@ -13,4 +13,8 @@ class User {
       surname: json['surname'],
     );
   }
+
+  void show() {
+    print('USER name: $name surname $surname\n');
+  }
 }

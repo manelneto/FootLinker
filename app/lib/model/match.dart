@@ -11,6 +11,8 @@ class Match {
   final League league;
   final Team home;
   final Team away;
+  final int homeGoals;
+  final int awayGoals;
 
   Match({
     required this.id,
@@ -21,19 +23,26 @@ class Match {
     required this.league,
     required this.home,
     required this.away,
+    required this.homeGoals,
+    required this.awayGoals,
   });
 
   factory Match.fromJson(Map<String, dynamic> json) {
-    // print('MATCH id: ${json['fixture']['id'] ?? 0} referee: ${json['fixture']['referee'] ?? ''} date: ${json['fixture']['date'] ?? ''} timestamp: ${json['fixture']['timestamp'] ?? 0}\n');
     return Match(
-      id: json['fixture']['id'] ?? 0,
+      id: json['fixture']['id'] ?? -1,
       referee: json['fixture']['referee'] ?? '',
       date: json['fixture']['date'] ?? '',
-      timestamp: json['fixture']['timestamp'] ?? 0,
+      timestamp: json['fixture']['timestamp'] ?? -1,
       venue: Venue.fromJsonMatch(json['fixture']['venue']),
       league: League.fromJsonMatch(json['league']),
       home: Team.fromJsonMatch(json['teams']['home']),
       away: Team.fromJsonMatch(json['teams']['away']),
+      homeGoals: json['goals']['home'] ?? - 1,
+      awayGoals: json['goals']['away'] ?? - 1,
     );
+  }
+
+  void show() {
+    print('MATCH id: $id referee: $referee date: $date timestamp: $timestamp venue: ${venue.name} league: ${league.name} home: ${home.name} away: ${away.name} homeGoals: $homeGoals awayGoals: $awayGoals\n');
   }
 }
