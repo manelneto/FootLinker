@@ -17,25 +17,40 @@ class Team {
     required this.logo,
   });
 
-  factory Team.fromJson(Map<String, dynamic> json) {
-    // print('TEAM id: ${json['team']['id'] ?? 0} name: ${json['team']['name'] ?? ''} code: ${json['team']['code'] ?? ''} country: ${json['team']['country'] ?? ''} founded: ${json['team']['founded'] ?? 0} national: ${json['team']['national'] ?? false} logo: ${json['team']['logo'] ?? ""}\n');
+  factory Team.fromException(Exception exception) {
     return Team(
-      id: json['team']['id'] ?? 0,
+      id: -1,
+      name: exception.toString(),
+      code: 'code',
+      country: 'country',
+      founded: -1,
+      national: false,
+      logo: 'https://picsum.photos/200',
+    );
+  }
+
+  factory Team.fromJson(Map<String, dynamic> json) {
+    return Team(
+      id: json['team']['id'] ?? -1,
       name: json['team']['name'] ?? '',
       code: json['team']['code'] ?? '',
       country: json['team']['country'] ?? '',
-      founded: json['team']['founded'] ?? 0,
+      founded: json['team']['founded'] ?? -1,
       national: json['team']['national'] ?? false,
       logo: json['team']['logo'] ?? "",
     );
   }
 
   factory Team.fromJsonMatch(Map<String, dynamic> json) {
-    // print('TEAM id: ${json['id'] ?? 0} name: ${json['name'] ?? ''} logo: ${json['logo'] ?? ""}\n');
     return Team(
-      id: json['id'] ?? 0,
+      id: json['id'] ?? -1,
       name: json['name'] ?? '',
       logo: json['logo'] ?? '',
     );
+  }
+
+  void show() {
+    print(
+        'TEAM id: $id name: $name code: $code country: $country founded: $founded national: $national logo: $logo\n');
   }
 }

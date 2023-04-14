@@ -3,7 +3,6 @@
 import 'package:firebase_core/firebase_core.dart' show FirebaseOptions;
 import 'package:flutter/foundation.dart'
     show defaultTargetPlatform, kIsWeb, TargetPlatform;
-import 'firebase_options.dart';
 
 /// Default [FirebaseOptions] for use with your Firebase apps.
 ///
@@ -68,7 +67,8 @@ class DefaultFirebaseOptions {
     messagingSenderId: '674970951243',
     projectId: 'footlinker-feup',
     storageBucket: 'footlinker-feup.appspot.com',
-    iosClientId: '674970951243-gpoiltmc4lfb2f6ej7p4t86u8quoc6mc.apps.googleusercontent.com',
+    iosClientId:
+        '674970951243-gpoiltmc4lfb2f6ej7p4t86u8quoc6mc.apps.googleusercontent.com',
     iosBundleId: 'pt.up.fe.footlinker.app',
   );
 
@@ -78,7 +78,8 @@ class DefaultFirebaseOptions {
     messagingSenderId: '674970951243',
     projectId: 'footlinker-feup',
     storageBucket: 'footlinker-feup.appspot.com',
-    iosClientId: '674970951243-gpoiltmc4lfb2f6ej7p4t86u8quoc6mc.apps.googleusercontent.com',
+    iosClientId:
+        '674970951243-gpoiltmc4lfb2f6ej7p4t86u8quoc6mc.apps.googleusercontent.com',
     iosBundleId: 'pt.up.fe.footlinker.app',
   );
 }

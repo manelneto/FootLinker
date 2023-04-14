@@ -1,54 +1,28 @@
-import 'package:app/view/pages/matches_page.dart';
-import 'package:location/location.dart';
-import 'friends_page.dart';
-import 'leagues_page.dart';
-import 'credits.dart';
-import 'start_page.dart';
-import 'teams_page.dart';
-import 'venues_page.dart';
+import 'package:app/view/pages/credits_page.dart';
+import 'package:app/view/pages/friends_page.dart';
+import 'package:app/view/pages/history_page.dart';
+import 'package:app/view/pages/leagues_page.dart';
+import 'package:app/view/pages/nearby_matches_page.dart';
+import 'package:app/view/pages/start_page.dart';
+import 'package:app/view/pages/teams_page.dart';
+import 'package:app/view/pages/venues_page.dart';
 import 'package:flutter/material.dart';
 
 class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key, required this.title});
-
-  final String title;
+  const MyHomePage({
+    super.key,
+  });
 
   @override
   State<MyHomePage> createState() => _MyHomePageState();
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  late bool _serviceEnabled;
-  late PermissionStatus _permissionGranted;
-  late LocationData _userLocation;
-  bool locationSet = false;
-
-  Future<void> _getUserLocation() async {
-    Location location = Location();
-
-    _serviceEnabled = await location.serviceEnabled();
-    if (!_serviceEnabled) {
-      _serviceEnabled = await location.requestService();
-      if (!_serviceEnabled) {
-        return;
-      }
-    }
-
-    _permissionGranted = await location.hasPermission();
-    if (_permissionGranted == PermissionStatus.denied) {
-      _permissionGranted = await location.requestPermission();
-      if (_permissionGranted != PermissionStatus.granted) {
-        return;
-      }
-    }
-
-    final locationData = await location.getLocation();
-
-    setState(
-      () {
-        _userLocation = locationData;
-        locationSet = true;
-      },
+  void _navigateToHistoryPage(BuildContext context) {
+    Navigator.of(context).push(
+      MaterialPageRoute(
+        builder: (context) => const HistoryPage(),
+      ),
     );
   }
 
@@ -71,20 +45,16 @@ class _MyHomePageState extends State<MyHomePage> {
         page = const LeaguesPage();
         break;
       case 4:
-        if (locationSet) {
-          page = MatchesPage(locationData: _userLocation);
-        } else {
-          page = const StartPage();
-        }
+        page = const NearbyMatchesPage();
         break;
       case 5:
         page = const FriendsPage();
         break;
       case 6:
-        page = const Credits();
+        page = const CreditsPage();
         break;
       default:
-        throw UnimplementedError('no widget for $selectedIndex');
+        throw UnimplementedError('Índice inválido: $selectedIndex');
     }
 
     return LayoutBuilder(
@@ -142,10 +112,10 @@ class _MyHomePageState extends State<MyHomePage> {
             ],
           ),
           floatingActionButton: FloatingActionButton(
-            onPressed: _getUserLocation,
-            tooltip: 'Location',
+            onPressed: () => _navigateToHistoryPage(context),
+            tooltip: 'History Page',
             backgroundColor: Colors.white,
-            child: const Icon(Icons.location_on),
+            child: const Icon(Icons.history),
           ),
         );
       },

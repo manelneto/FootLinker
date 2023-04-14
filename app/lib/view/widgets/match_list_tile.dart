@@ -1,6 +1,7 @@
+import 'package:app/main.dart';
+import 'package:app/model/match.dart';
 import 'package:flutter/material.dart';
-
-import '../../model/match.dart';
+import 'package:provider/provider.dart';
 
 class MatchListTile extends StatelessWidget {
   const MatchListTile({
@@ -12,6 +13,15 @@ class MatchListTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var appState = context.watch<MyAppState>();
+
+    String title = '${match.home.name} - ${match.away.name}';
+    if (match.homeGoals != -1 && match.awayGoals != -1) {
+      title += '\n${match.homeGoals} - ${match.awayGoals}';
+    }
+
+    String subtitle = '${match.venue.name}\n${match.date.substring(8, 10)}/${match.date.substring(5, 7)} - ${match.date.substring(11, 16)}';
+
     return ListTile(
       leading: ConstrainedBox(
         constraints: const BoxConstraints(
@@ -31,14 +41,14 @@ class MatchListTile extends StatelessWidget {
       ),
       title: Center(
         child: Text(
-          '${match.home.name} - ${match.away.name}',
+          title,
           textAlign: TextAlign.center,
         ),
       ),
       isThreeLine: true,
       subtitle: Center(
         child: Text(
-          '${match.venue.name}\n${match.date.substring(8, 10)}/${match.date.substring(5, 7)} - ${match.date.substring(11, 16)}',
+          subtitle,
           textAlign: TextAlign.center,
         ),
       ),
@@ -58,6 +68,14 @@ class MatchListTile extends StatelessWidget {
           semanticLabel: 'Away Team Logo',
         ),
       ),
+      onTap: () {
+        if (match.homeGoals != -1 && match.awayGoals != -1) {
+          appState.addToHistory(match, context);
+        }
+      },
+      onLongPress: () {
+        appState.removeFromHistory(match, context);
+      },
     );
   }
 }

@@ -1,17 +1,19 @@
+import 'package:app/controller/league_fetcher.dart';
+import 'package:app/model/league.dart';
 import 'package:app/view/widgets/league_list_tile.dart';
 import 'package:flutter/material.dart';
-import '../../model/league.dart';
-import '../../controller/league_fetcher.dart';
 
 class LeaguesPage extends StatefulWidget {
-  const LeaguesPage({super.key});
+  const LeaguesPage({
+    super.key,
+  });
 
   @override
   State<LeaguesPage> createState() => _LeaguesPageState();
 }
 
 class _LeaguesPageState extends State<LeaguesPage> {
-  ListView _leagues(data) {
+  Widget _leagues(data) {
     if (data.length > 0) {
       return ListView.builder(
         itemCount: data.length,
@@ -22,21 +24,17 @@ class _LeaguesPageState extends State<LeaguesPage> {
         },
       );
     }
-    return ListView(
-      children: const [
-        Center(
-          child: Text(
-            'Não há ligas para apresentar...',
-            textAlign: TextAlign.center,
-          ),
-        ),
-      ],
+    return const Center(
+      child: Text(
+        'Não há ligas para apresentar...',
+        textAlign: TextAlign.center,
+      ),
     );
   }
 
   FutureBuilder _leaguesData() {
     return FutureBuilder<List<League>>(
-      future: LeagueFetcher().fetchLeagues('portugal'),
+      future: LeagueFetcher().fetchLeaguesByCountry('portugal'),
       builder: (BuildContext context, AsyncSnapshot<List<League>> snapshot) {
         if (snapshot.hasData) {
           List<League> data = snapshot.data!;

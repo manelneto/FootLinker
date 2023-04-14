@@ -14,7 +14,9 @@ class UserListTile extends StatelessWidget {
   Widget build(BuildContext context) {
     return ListTile(
       leading: const Icon(Icons.person),
-      title: Center(child: Text('${user.name} ${user.surname}')),
+      title: Center(
+        child: Text('${user.name} ${user.surname}'),
+      ),
     );
   }
 }

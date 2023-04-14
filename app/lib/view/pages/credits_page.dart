@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 
-class Credits extends StatelessWidget {
-  const Credits({super.key});
+class CreditsPage extends StatelessWidget {
+  const CreditsPage({
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -10,7 +12,7 @@ class Credits extends StatelessWidget {
       "Luiz Queiroz",
       "Manuel Neto",
       "Patrícia Sousa",
-      "Rúben Fonseca"
+      "Rúben Fonseca",
     ];
 
     return Scaffold(
