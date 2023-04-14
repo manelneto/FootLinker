@@ -46,12 +46,47 @@ class MyApp extends StatelessWidget {
 class MyAppState extends ChangeNotifier {
   var history = <Match>[];
 
-  void toggleHistory(Match match) {
-    if (history.contains(match)) {
-      history.remove(match);
-    } else {
+  void addToHistory(Match match, BuildContext context) {
+    if (!history.contains(match)) {
       history.add(match);
+      notifyListeners();
+      var snackBar = SnackBar(
+        content: Center(
+          child: Text('${match.home.name} - ${match.away.name} adicionado ao histórico!'),
+        ),
+        action: SnackBarAction(
+          label: 'Anular',
+          onPressed: () {
+            history.remove(match);
+            notifyListeners();
+          },
+        ),
+        duration: const Duration(
+          seconds: 1,
+        ),
+      );
+      ScaffoldMessenger.of(context).showSnackBar(snackBar);
     }
+  }
+
+  void removeFromHistory(Match match, BuildContext context) {
+    history.remove(match);
     notifyListeners();
+    var snackBar = SnackBar(
+      content: Center(
+        child: Text('${match.home.name} - ${match.away.name} removido do histórico!'),
+      ),
+      action: SnackBarAction(
+        label: 'Anular',
+        onPressed: () {
+          history.add(match);
+          notifyListeners();
+        },
+      ),
+      duration: const Duration(
+        seconds: 1,
+      ),
+    );
+    ScaffoldMessenger.of(context).showSnackBar(snackBar);
   }
 }

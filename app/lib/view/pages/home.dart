@@ -1,5 +1,6 @@
 import 'package:app/view/pages/credits_page.dart';
 import 'package:app/view/pages/friends_page.dart';
+import 'package:app/view/pages/history_page.dart';
 import 'package:app/view/pages/leagues_page.dart';
 import 'package:app/view/pages/nearby_matches_page.dart';
 import 'package:app/view/pages/start_page.dart';
@@ -17,6 +18,14 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  void _navigateToHistoryPage(BuildContext context) {
+    Navigator.of(context).push(
+      MaterialPageRoute(
+        builder: (context) => const HistoryPage(),
+      ),
+    );
+  }
+
   var selectedIndex = 0;
 
   @override
@@ -103,10 +112,10 @@ class _MyHomePageState extends State<MyHomePage> {
             ],
           ),
           floatingActionButton: FloatingActionButton(
-            onPressed: () {},
-            tooltip: 'DEV',
+            onPressed: () => _navigateToHistoryPage(context),
+            tooltip: 'History Page',
             backgroundColor: Colors.white,
-            child: const Icon(Icons.logo_dev),
+            child: const Icon(Icons.history),
           ),
         );
       },

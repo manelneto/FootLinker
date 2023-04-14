@@ -70,8 +70,11 @@ class MatchListTile extends StatelessWidget {
       ),
       onTap: () {
         if (match.homeGoals != -1 && match.awayGoals != -1) {
-          appState.toggleHistory(match);
+          appState.addToHistory(match, context);
         }
+      },
+      onLongPress: () {
+        appState.removeFromHistory(match, context);
       },
     );
   }

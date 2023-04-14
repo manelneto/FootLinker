@@ -42,10 +42,10 @@ class ApiManagement {
     );
 
     if (response.statusCode == 200) {
-      if (int.parse(response.headers['x-ratelimit-requests-remaining']!) <= 1) {
+      /*if (int.parse(response.headers['x-ratelimit-requests-remaining']!) <= 1) {
         toggleProvider();
         throw Exception('Alcançando o limite diário de pedidos à API');
-      }
+      }*/
       var body = jsonDecode(response.body);
       if (body['errors'].length > 0) {
         throw Exception(body['errors'][0]);

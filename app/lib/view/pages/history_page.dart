@@ -26,7 +26,7 @@ class HistoryPage extends StatelessWidget {
         ),
         body: const Center(
           child: Text(
-            'Ainda não adicionou nenhum jogo ao histórico...\nExperimente!',
+            'Ainda não adicionou nenhum jogo ao histórico...\nExperimente carregar num jogo para o adicionar ou manter premido para o remover.',
             textAlign: TextAlign.center,
           ),
         ),
