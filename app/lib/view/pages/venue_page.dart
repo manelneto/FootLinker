@@ -2,7 +2,7 @@ import 'package:app/model/venue.dart';
 import 'package:app/view/widgets/map_widget.dart';
 import 'package:flutter/material.dart';
 
-import '../../controller/location_fetcher.dart';
+import 'package:app/controller/location_fetcher.dart';
 
 class VenuePage extends StatefulWidget {
   const VenuePage({
@@ -47,7 +47,7 @@ class _VenuePageState extends State<VenuePage> {
     } else {
       text = "${widget.venue.address}, ${widget.venue.city}";
     }
-    if (widget.venue.capacity != '') {
+    if (widget.venue.capacity != 0) {
       text += "\nCapacidade: ${widget.venue.capacity}";
     }
     return Scaffold(

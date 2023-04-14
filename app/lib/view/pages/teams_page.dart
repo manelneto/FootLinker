@@ -1,18 +1,20 @@
 import 'package:app/view/widgets/team_list_tile.dart';
 import 'package:flutter/material.dart';
 
-import '../../controller/team_fetcher.dart';
-import '../../model/team.dart';
+import 'package:app/controller/team_fetcher.dart';
+import 'package:app/model/team.dart';
 
 class TeamsPage extends StatefulWidget {
-  const TeamsPage({super.key});
+  const TeamsPage({
+    super.key,
+  });
 
   @override
   State<TeamsPage> createState() => _TeamsPageState();
 }
 
 class _TeamsPageState extends State<TeamsPage> {
-  ListView _teams(data) {
+  Widget _teams(data) {
     if (data.length > 0) {
       return ListView.builder(
         itemCount: data.length,
@@ -23,15 +25,11 @@ class _TeamsPageState extends State<TeamsPage> {
         },
       );
     }
-    return ListView(
-      children: const [
-        Center(
-          child: Text(
-            'Não há equipas para apresentar...',
-            textAlign: TextAlign.center,
-          ),
-        ),
-      ],
+    return const Center(
+      child: Text(
+        'Não há equipas para apresentar...',
+        textAlign: TextAlign.center,
+      ),
     );
   }
 

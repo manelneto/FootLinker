@@ -31,7 +31,7 @@ class MyApp extends StatelessWidget {
               if (snapshot.hasError) {
                 return const Text('Algo correu mal...');
               } else if (snapshot.hasData) {
-                return const MyHomePage(title: 'FootLinker');
+                return const MyHomePage();
               } else {
                 return const Center(
                   child: CircularProgressIndicator(),

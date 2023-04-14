@@ -1,9 +1,9 @@
 import 'package:app/view/widgets/match_list_tile.dart';
 import 'package:flutter/material.dart';
 
-import '../../controller/match_fetcher.dart';
-import '../../model/league.dart';
-import '../../model/match.dart';
+import 'package:app/controller/match_fetcher.dart';
+import 'package:app/model/league.dart';
+import 'package:app/model/match.dart';
 
 class LeaguePage extends StatefulWidget {
   const LeaguePage({
@@ -18,7 +18,7 @@ class LeaguePage extends StatefulWidget {
 }
 
 class _LeaguePageState extends State<LeaguePage> {
-  ListView _matches(data) {
+  Widget _matches(data) {
     if (data.length > 0) {
       return ListView.builder(
         itemCount: data.length,
@@ -29,15 +29,11 @@ class _LeaguePageState extends State<LeaguePage> {
         },
       );
     }
-    return ListView(
-      children: const [
-        Center(
-          child: Text(
-            'Não há jogos para apresentar...',
-            textAlign: TextAlign.center,
-          ),
-        ),
-      ],
+    return const Center(
+      child: Text(
+        'Não há jogos para apresentar...',
+        textAlign: TextAlign.center,
+      ),
     );
   }
 
