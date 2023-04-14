@@ -69,7 +69,7 @@ class _NearbyMatchesPageState extends State<NearbyMatchesPage> {
 
   FutureBuilder _matchesData() {
     return FutureBuilder<List<Match>>(
-      future: MatchFetcher().fetchNextMatchesByLocation(_userLocation, 5),
+      future: MatchFetcher().fetchNextMatchesByLocation(_userLocation, 9),
       builder: (BuildContext context, AsyncSnapshot<List<Match>> snapshot) {
         if (snapshot.hasData) {
           List<Match> data = snapshot.data!;

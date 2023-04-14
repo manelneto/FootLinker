@@ -15,12 +15,12 @@ class MatchListTile extends StatelessWidget {
   Widget build(BuildContext context) {
     var appState = context.watch<MyAppState>();
 
-    String subtitle =
-        '${match.venue.name}\n${match.date.substring(8, 10)}/${match.date.substring(5, 7)} - ${match.date.substring(11, 16)}';
-
+    String title = '${match.home.name} - ${match.away.name}';
     if (match.homeGoals != -1 && match.awayGoals != -1) {
-      subtitle += '\n${match.homeGoals} - ${match.awayGoals}';
+      title += '\n${match.homeGoals} - ${match.awayGoals}';
     }
+
+    String subtitle = '${match.venue.name}\n${match.date.substring(8, 10)}/${match.date.substring(5, 7)} - ${match.date.substring(11, 16)}';
 
     return ListTile(
       leading: ConstrainedBox(
@@ -41,7 +41,7 @@ class MatchListTile extends StatelessWidget {
       ),
       title: Center(
         child: Text(
-          '${match.home.name} - ${match.away.name}',
+          title,
           textAlign: TextAlign.center,
         ),
       ),
