@@ -1,9 +1,8 @@
-import 'package:app/view/widgets/match_list_tile.dart';
-import 'package:flutter/material.dart';
-
 import 'package:app/controller/match_fetcher.dart';
 import 'package:app/model/league.dart';
 import 'package:app/model/match.dart';
+import 'package:app/view/widgets/match_list_tile.dart';
+import 'package:flutter/material.dart';
 
 class LeaguePage extends StatefulWidget {
   const LeaguePage({
@@ -39,7 +38,7 @@ class _LeaguePageState extends State<LeaguePage> {
 
   FutureBuilder _matchesData() {
     return FutureBuilder<List<Match>>(
-      future: MatchFetcher().fetchMatchesByLeague(widget.league.id, 9),
+      future: MatchFetcher().fetchNextMatchesByLeague(widget.league.id, 9),
       builder: (BuildContext context, AsyncSnapshot<List<Match>> snapshot) {
         if (snapshot.hasData) {
           List<Match> data = snapshot.data!;

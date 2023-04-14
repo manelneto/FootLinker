@@ -1,7 +1,6 @@
-import 'package:flutter/material.dart';
-
 import 'package:app/model/league.dart';
 import 'package:app/view/pages/league_page.dart';
+import 'package:flutter/material.dart';
 
 class LeagueListTile extends StatelessWidget {
   const LeagueListTile({

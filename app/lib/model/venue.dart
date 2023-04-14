@@ -19,6 +19,14 @@ class Venue {
     this.image = '',
   });
 
+  factory Venue.fromException(Exception e) {
+    return Venue(
+      id: -1,
+      name: e.toString(),
+      city: 'city',
+    );
+  }
+
   factory Venue.fromJson(Map<String, dynamic> json) {
     return Venue(
       id: json['id'] ?? 0,
@@ -41,6 +49,7 @@ class Venue {
   }
 
   void show() {
-    print('VENUE id: $id name: $name address: $address city: $city country: $country capacity: $capacity surface: $surface image: $image\n');
+    print(
+        'VENUE id: $id name: $name address: $address city: $city country: $country capacity: $capacity surface: $surface image: $image\n');
   }
 }

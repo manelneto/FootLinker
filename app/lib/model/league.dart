@@ -13,6 +13,15 @@ class League {
     required this.logo,
   });
 
+  factory League.fromException(Exception exception) {
+    return League(
+      id: -1,
+      name: exception.toString(),
+      country: 'country',
+      logo: 'https://picsum.photos/200',
+    );
+  }
+
   factory League.fromJson(Map<String, dynamic> json) {
     return League(
       id: json['league']['id'] ?? -1,
@@ -33,6 +42,7 @@ class League {
   }
 
   void show() {
-    print('LEAGUE id: $id name: $name type: $type country: $country logo: $logo\n');
+    print(
+        'LEAGUE id: $id name: $name type: $type country: $country logo: $logo\n');
   }
 }

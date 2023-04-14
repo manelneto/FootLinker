@@ -1,7 +1,6 @@
+import 'package:app/model/venue.dart';
 import 'package:app/view/pages/venue_page.dart';
 import 'package:flutter/material.dart';
-
-import 'package:app/model/venue.dart';
 
 class VenueListTile extends StatelessWidget {
   const VenueListTile({

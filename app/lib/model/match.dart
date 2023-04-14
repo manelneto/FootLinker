@@ -27,6 +27,21 @@ class Match {
     required this.awayGoals,
   });
 
+  factory Match.fromException(Exception e) {
+    return Match(
+      id: -1,
+      referee: 'referee',
+      date: 'date',
+      timestamp: -1,
+      venue: Venue.fromException(e),
+      league: League.fromException(e),
+      home: Team.fromException(e),
+      away: Team.fromException(e),
+      homeGoals: -1,
+      awayGoals: -1,
+    );
+  }
+
   factory Match.fromJson(Map<String, dynamic> json) {
     return Match(
       id: json['fixture']['id'] ?? -1,
@@ -37,12 +52,13 @@ class Match {
       league: League.fromJsonMatch(json['league']),
       home: Team.fromJsonMatch(json['teams']['home']),
       away: Team.fromJsonMatch(json['teams']['away']),
-      homeGoals: json['goals']['home'] ?? - 1,
-      awayGoals: json['goals']['away'] ?? - 1,
+      homeGoals: json['goals']['home'] ?? -1,
+      awayGoals: json['goals']['away'] ?? -1,
     );
   }
 
   void show() {
-    print('MATCH id: $id referee: $referee date: $date timestamp: $timestamp venue: ${venue.name} league: ${league.name} home: ${home.name} away: ${away.name} homeGoals: $homeGoals awayGoals: $awayGoals\n');
+    print(
+        'MATCH id: $id referee: $referee date: $date timestamp: $timestamp venue: ${venue.name} league: ${league.name} home: ${home.name} away: ${away.name} homeGoals: $homeGoals awayGoals: $awayGoals\n');
   }
 }

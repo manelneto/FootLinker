@@ -1,8 +1,7 @@
-import 'package:app/view/widgets/league_list_tile.dart';
-import 'package:flutter/material.dart';
-
 import 'package:app/controller/league_fetcher.dart';
 import 'package:app/model/league.dart';
+import 'package:app/view/widgets/league_list_tile.dart';
+import 'package:flutter/material.dart';
 
 class LeaguesPage extends StatefulWidget {
   const LeaguesPage({
@@ -35,7 +34,7 @@ class _LeaguesPageState extends State<LeaguesPage> {
 
   FutureBuilder _leaguesData() {
     return FutureBuilder<List<League>>(
-      future: LeagueFetcher().fetchLeagues('portugal'),
+      future: LeagueFetcher().fetchLeaguesByCountry('portugal'),
       builder: (BuildContext context, AsyncSnapshot<List<League>> snapshot) {
         if (snapshot.hasData) {
           List<League> data = snapshot.data!;

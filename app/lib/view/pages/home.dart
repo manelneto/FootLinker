@@ -1,14 +1,11 @@
-import 'package:app/view/pages/nearby_matches_page.dart';
-import 'package:flutter/material.dart';
-import 'package:location/location.dart';
-
 import 'package:app/view/pages/credits_page.dart';
 import 'package:app/view/pages/friends_page.dart';
-import 'package:app/view/pages/history_page.dart';
 import 'package:app/view/pages/leagues_page.dart';
+import 'package:app/view/pages/nearby_matches_page.dart';
 import 'package:app/view/pages/start_page.dart';
 import 'package:app/view/pages/teams_page.dart';
 import 'package:app/view/pages/venues_page.dart';
+import 'package:flutter/material.dart';
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({

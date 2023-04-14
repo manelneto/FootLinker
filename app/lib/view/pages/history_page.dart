@@ -1,8 +1,7 @@
-import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
-
 import 'package:app/main.dart';
 import 'package:app/view/widgets/match_list_tile.dart';
+import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class HistoryPage extends StatelessWidget {
   const HistoryPage({

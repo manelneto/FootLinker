@@ -1,6 +1,5 @@
-import 'package:flutter/material.dart';
-
 import 'package:app/model/team.dart';
+import 'package:flutter/material.dart';
 
 class TeamListTile extends StatelessWidget {
   const TeamListTile({

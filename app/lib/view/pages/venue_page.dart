@@ -1,8 +1,7 @@
+import 'package:app/controller/location_fetcher.dart';
 import 'package:app/model/venue.dart';
 import 'package:app/view/widgets/map_widget.dart';
 import 'package:flutter/material.dart';
-
-import 'package:app/controller/location_fetcher.dart';
 
 class VenuePage extends StatefulWidget {
   const VenuePage({

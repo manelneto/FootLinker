@@ -1,8 +1,7 @@
 import 'package:app/main.dart';
+import 'package:app/model/match.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-
-import 'package:app/model/match.dart';
 
 class MatchListTile extends StatelessWidget {
   const MatchListTile({
@@ -16,7 +15,8 @@ class MatchListTile extends StatelessWidget {
   Widget build(BuildContext context) {
     var appState = context.watch<MyAppState>();
 
-    String subtitle = '${match.venue.name}\n${match.date.substring(8, 10)}/${match.date.substring(5, 7)} - ${match.date.substring(11, 16)}';
+    String subtitle =
+        '${match.venue.name}\n${match.date.substring(8, 10)}/${match.date.substring(5, 7)} - ${match.date.substring(11, 16)}';
 
     if (match.homeGoals != -1 && match.awayGoals != -1) {
       subtitle += '\n${match.homeGoals} - ${match.awayGoals}';

@@ -1,8 +1,7 @@
+import 'package:app/controller/venue_fetcher.dart';
 import 'package:app/model/venue.dart';
 import 'package:app/view/widgets/venue_list_tile.dart';
 import 'package:flutter/material.dart';
-
-import 'package:app/controller/venue_fetcher.dart';
 
 class VenuesPage extends StatefulWidget {
   const VenuesPage({
@@ -37,7 +36,7 @@ class _VenuesPageState extends State<VenuesPage> {
 
   FutureBuilder _venuesData() {
     return FutureBuilder<List<Venue>>(
-      future: VenueFetcher().fetchVenues('portugal'),
+      future: VenueFetcher().fetchVenuesByCountry('portugal'),
       builder: (BuildContext context, AsyncSnapshot<List<Venue>> snapshot) {
         if (snapshot.hasData) {
           data = snapshot.data!;

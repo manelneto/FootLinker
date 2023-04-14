@@ -17,6 +17,18 @@ class Team {
     required this.logo,
   });
 
+  factory Team.fromException(Exception exception) {
+    return Team(
+      id: -1,
+      name: exception.toString(),
+      code: 'code',
+      country: 'country',
+      founded: -1,
+      national: false,
+      logo: 'https://picsum.photos/200',
+    );
+  }
+
   factory Team.fromJson(Map<String, dynamic> json) {
     return Team(
       id: json['team']['id'] ?? -1,
@@ -38,6 +50,7 @@ class Team {
   }
 
   void show() {
-    print('TEAM id: $id name: $name code: $code country: $country founded: $founded national: $national logo: $logo\n');
+    print(
+        'TEAM id: $id name: $name code: $code country: $country founded: $founded national: $national logo: $logo\n');
   }
 }
