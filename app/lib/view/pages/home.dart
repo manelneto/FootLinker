@@ -3,10 +3,11 @@ import 'package:app/view/pages/friends_page.dart';
 import 'package:app/view/pages/history_page.dart';
 import 'package:app/view/pages/leagues_page.dart';
 import 'package:app/view/pages/nearby_matches_page.dart';
-import 'package:app/view/pages/start_page.dart';
 import 'package:app/view/pages/teams_page.dart';
 import 'package:app/view/pages/venues_page.dart';
 import 'package:flutter/material.dart';
+
+import 'home_page.dart';
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({
@@ -33,7 +34,7 @@ class _MyHomePageState extends State<MyHomePage> {
     Widget page;
     switch (selectedIndex) {
       case 0:
-        page = const StartPage();
+        page = const HomePage();
         break;
       case 1:
         page = const TeamsPage();

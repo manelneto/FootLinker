@@ -1,14 +1,18 @@
 import 'package:app/view/pages/home.dart';
+import 'package:app/view/pages/start_page.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import 'model/match.dart';
+import 'model/utils.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   runApp(MyApp());
 }
+
+final navigatorKey = GlobalKey<NavigatorState>();
 
 class MyApp extends StatelessWidget {
   final Future<FirebaseApp> _fbApp = Firebase.initializeApp();
@@ -20,6 +24,8 @@ class MyApp extends StatelessWidget {
     return ChangeNotifierProvider(
       create: (context) => MyAppState(),
       child: MaterialApp(
+          scaffoldMessengerKey: Utils.messengerKey,
+          navigatorKey: navigatorKey,
           title: 'FootLinker',
           theme: ThemeData(
             useMaterial3: true,
@@ -31,7 +37,7 @@ class MyApp extends StatelessWidget {
               if (snapshot.hasError) {
                 return const Text('Algo correu mal...');
               } else if (snapshot.hasData) {
-                return const MyHomePage();
+                return const StartPage();
               } else {
                 return const Center(
                   child: CircularProgressIndicator(),
