@@ -45,6 +45,7 @@ class MyApp extends StatelessWidget {
 
 class MyAppState extends ChangeNotifier {
   var history = <Match>[];
+  var schedule = <Match>[];
 
   void addToHistory(Match match, BuildContext context) {
     if (!history.contains(match)) {
@@ -52,7 +53,8 @@ class MyAppState extends ChangeNotifier {
       notifyListeners();
       var snackBar = SnackBar(
         content: Center(
-          child: Text('${match.home.name} - ${match.away.name} adicionado ao histórico!'),
+          child: Text(
+              '${match.home.name} - ${match.away.name} adicionado ao histórico!'),
         ),
         action: SnackBarAction(
           label: 'Anular',
@@ -74,12 +76,59 @@ class MyAppState extends ChangeNotifier {
     notifyListeners();
     var snackBar = SnackBar(
       content: Center(
-        child: Text('${match.home.name} - ${match.away.name} removido do histórico!'),
+        child: Text(
+            '${match.home.name} - ${match.away.name} removido do histórico!'),
       ),
       action: SnackBarAction(
         label: 'Anular',
         onPressed: () {
           history.add(match);
+          notifyListeners();
+        },
+      ),
+      duration: const Duration(
+        seconds: 1,
+      ),
+    );
+    ScaffoldMessenger.of(context).showSnackBar(snackBar);
+  }
+
+  void addToSchedule(Match match, BuildContext context) {
+    if (!schedule.contains(match)) {
+      schedule.add(match);
+      notifyListeners();
+      var snackBar = SnackBar(
+        content: Center(
+          child: Text(
+              '${match.home.name} - ${match.away.name} adicionado ao calendário!'),
+        ),
+        action: SnackBarAction(
+          label: 'Anular',
+          onPressed: () {
+            schedule.remove(match);
+            notifyListeners();
+          },
+        ),
+        duration: const Duration(
+          seconds: 1,
+        ),
+      );
+      ScaffoldMessenger.of(context).showSnackBar(snackBar);
+    }
+  }
+
+  void removeFromSchedule(Match match, BuildContext context) {
+    schedule.remove(match);
+    notifyListeners();
+    var snackBar = SnackBar(
+      content: Center(
+        child: Text(
+            '${match.home.name} - ${match.away.name} removido do calendário!'),
+      ),
+      action: SnackBarAction(
+        label: 'Anular',
+        onPressed: () {
+          schedule.add(match);
           notifyListeners();
         },
       ),
