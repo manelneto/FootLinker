@@ -15,7 +15,6 @@ class HomePage extends StatelessWidget {
     final userDoc = FirebaseFirestore.instance.collection('users').doc(_user.uid);
     Stream<DocumentSnapshot<Map<String, dynamic>>> userStream = userDoc.snapshots();
 
-
     return Scaffold(
       appBar: AppBar(
         title: const Text(
@@ -49,45 +48,126 @@ class HomePage extends StatelessWidget {
 
           final userData = snapshot.data!.data();
 
-          return Center(
+          return Padding(
+            padding: EdgeInsets.fromLTRB(20, 5, 20, 20),
             child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 const SizedBox(height: 32),
                 if (_user?.photoURL != null)
-                  CircleAvatar(
-                    backgroundImage: NetworkImage(_user!.photoURL!),
+                  Center(
+                    child: CircleAvatar(
+                      backgroundImage: NetworkImage(_user!.photoURL!),
+                      radius: 50,
+                    ),
+                  ) 
+                else Center(
+                  child: CircleAvatar(
+                    child: Icon(
+                      FontAwesome.user,
+                      size: 80,
+                      color: Colors.green[900],
+                    ),
                     radius: 50,
-                  ) else CircleAvatar(
-                  child: Icon(
-                    FontAwesome.user,
-                    size: 80,
-                    color: Colors.green[900],
                   ),
-                  radius: 50,
                 ),
                 const SizedBox(height: 16),
-                Text(
-                  userData?['first name'] + ' ' + userData?['last name'] ?? _user.displayName ?? '',
-                  style: Theme.of(context).textTheme.titleLarge,
+                Center(
+                  child: Text(
+                    '${userData?['first name'] ?? 'Sem nome'} ${userData?['last name'] ?? ''}' ?? '',
+                    style: TextStyle(
+                      color: Colors.black,
+                      letterSpacing: 2.0,
+                      fontSize: 28,
+                      //fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ),
+                Divider(
+                  height: 60,
+                  color: Colors.grey,
+                ),
+                Row(
+                  children: <Widget> [
+                    Icon(
+                        Icons.email,
+                    ),
+                    SizedBox(width: 10),
+                    Text(
+                      'Email: ${userData?['email'] ?? 'Não cadastrado'}',
+                    style: TextStyle(
+                      letterSpacing: 1.0,
+                      fontSize: 18,
+                      color: Colors.black,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ]),
+                const SizedBox(height: 10),
+                Row(
+                  children: [
+                    SizedBox(width: 35),
+                    Text(
+                        'Idade: ${userData?['age']?.toString() ?? 'Não cadastrada'}',
+                      style: TextStyle(
+                        letterSpacing: 1.0,
+                        fontSize: 18,
+                        color: Colors.black,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ],
+                ),
+                const SizedBox(height: 10),
+                Row(
+                  children: [
+                    SizedBox(width: 35),
+                    Text(
+                        'Telemóvel: ${userData?['phone'] ?? 'Não cadastrado'}',
+                      style: TextStyle(
+                        letterSpacing: 1.0,
+                        fontSize: 18,
+                        color: Colors.black,
+                        fontWeight: FontWeight.bold,
+                      ),
+
+                    ),
+                  ],
                 ),
                 const SizedBox(height: 8),
-                Text( 'Email: ' + userData?['email'] ?? ''),
-                const SizedBox(height: 8),
-                Text('Idade: ${userData?['age']?.toString() ?? ''}'),
-                const SizedBox(height: 8),
-                Text( 'Telemóvel: ' + userData?['phone'] ?? ''),
-                const SizedBox(height: 8),
-                Text( 'Distrito: ' + userData?['location'] ?? ''),
+                Row(
+                  children: [
+                    SizedBox(width: 35),
+                    Text(
+                        'Distrito: ${userData?['location'] ?? 'Não cadastrado'}',
+                      style: TextStyle(
+                        letterSpacing: 1.0,
+                        fontSize: 18,
+                        color: Colors.black,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ],
+                ),
                 const SizedBox(height: 40),
-                ElevatedButton(
-                  onPressed: () {
-                    FirebaseAuth.instance.signOut();
-                    Navigator.pushReplacement(
-                      context,
-                      MaterialPageRoute(builder: (context) => StartPage()),
-                    );
-                  },
-                  child: const Text('Sair'),
+                Center(
+                  child: SizedBox(
+                    width: 120,
+                    height: 50,
+                    child: ElevatedButton(
+                      onPressed: () {
+                        FirebaseAuth.instance.signOut();
+                        Navigator.pushReplacement(
+                          context,
+                          MaterialPageRoute(builder: (context) => StartPage()),
+                        );
+                      },
+                      child: const Text(
+                          'Sair',
+                        style: TextStyle(fontSize: 18),
+                      ),
+                    ),
+                  ),
                 ),
               ],
             ),
