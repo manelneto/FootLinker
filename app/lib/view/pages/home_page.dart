@@ -1,6 +1,8 @@
 import 'package:app/view/pages/start_page.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:fluttericon/font_awesome_icons.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({
@@ -10,7 +12,9 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final _user = FirebaseAuth.instance.currentUser!;
-    _user.updateDisplayName('Footlinker');
+    final userDoc = FirebaseFirestore.instance.collection('users').doc(_user.uid);
+    Stream<DocumentSnapshot<Map<String, dynamic>>> userStream = userDoc.snapshots();
+
 
     return Scaffold(
       appBar: AppBar(
@@ -36,36 +40,62 @@ class HomePage extends StatelessWidget {
           ),
         ],
       ),
-      body: Center(
-        child: Column(
-          children: [
-            const SizedBox(height: 32),
-            if (_user?.photoURL != null)
-              CircleAvatar(
-                backgroundImage: NetworkImage(_user!.photoURL!),
-                radius: 50,
-              ),
-            const SizedBox(height: 16),
-            Text(
-              _user?.displayName ?? '',
-              style: Theme.of(context).textTheme.titleLarge,
+      body: StreamBuilder<DocumentSnapshot<Map<String, dynamic>>>(
+        stream: userStream,
+        builder: (BuildContext context, AsyncSnapshot<DocumentSnapshot<Map<String, dynamic>>> snapshot) {
+          if (!snapshot.hasData) {
+            return Center(child: CircularProgressIndicator());
+          }
+
+          final userData = snapshot.data!.data();
+
+          return Center(
+            child: Column(
+              children: [
+                const SizedBox(height: 32),
+                if (_user?.photoURL != null)
+                  CircleAvatar(
+                    backgroundImage: NetworkImage(_user!.photoURL!),
+                    radius: 50,
+                  ) else CircleAvatar(
+                  child: Icon(
+                    FontAwesome.user,
+                    size: 80,
+                    color: Colors.green[900],
+                  ),
+                  radius: 50,
+                ),
+                const SizedBox(height: 16),
+                Text(
+                  userData?['first name'] + ' ' + userData?['last name'] ?? _user.displayName ?? '',
+                  style: Theme.of(context).textTheme.titleLarge,
+                ),
+                const SizedBox(height: 8),
+                Text( 'Email: ' + userData?['email'] ?? ''),
+                const SizedBox(height: 8),
+                Text('Idade: ${userData?['age']?.toString() ?? ''}'),
+                const SizedBox(height: 8),
+                Text( 'Telemóvel: ' + userData?['phone'] ?? ''),
+                const SizedBox(height: 8),
+                Text( 'Distrito: ' + userData?['location'] ?? ''),
+                const SizedBox(height: 40),
+                ElevatedButton(
+                  onPressed: () {
+                    FirebaseAuth.instance.signOut();
+                    Navigator.pushReplacement(
+                      context,
+                      MaterialPageRoute(builder: (context) => StartPage()),
+                    );
+                  },
+                  child: const Text('Sair'),
+                ),
+              ],
             ),
-            const SizedBox(height: 8),
-            Text(_user?.email ?? ''),
-            const SizedBox(height: 25),
-            ElevatedButton(
-              onPressed: () {
-                FirebaseAuth.instance.signOut();
-                Navigator.pushReplacement(
-                    context,
-                    MaterialPageRoute(builder: (context) => StartPage()),
-                );
-              },
-              child: const Text('Sair'),
-            ),
-          ],
-        ),
+          );
+        },
       ),
     );
   }
 }
+
+
