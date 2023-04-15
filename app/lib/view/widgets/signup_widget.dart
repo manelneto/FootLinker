@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:email_validator/email_validator.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/gestures.dart';
@@ -22,11 +23,21 @@ class _SignUpWidgetState extends State<SignUpWidget> {
   final formKey = GlobalKey<FormState>();
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
+  final firstNameController = TextEditingController();
+  final lastNameController = TextEditingController();
+  final ageController = TextEditingController();
+  final phoneController = TextEditingController();
+  final locationController = TextEditingController();
 
   @override
   void dispose() {
     emailController.dispose();
     passwordController.dispose();
+    firstNameController.dispose();
+    lastNameController.dispose();
+    ageController.dispose();
+    phoneController.dispose();
+    locationController.dispose();
 
     super.dispose();
   }
@@ -41,6 +52,53 @@ class _SignUpWidgetState extends State<SignUpWidget> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             SizedBox(height: 40),
+            TextFormField(
+              controller: firstNameController,
+              cursorColor: Colors.white,
+              textInputAction: TextInputAction.next,
+              decoration: InputDecoration(labelText: 'Primeiro Nome'),
+              autovalidateMode: AutovalidateMode.onUserInteraction,
+              validator: (firstName) =>
+              firstName != null && firstName.length < 3
+                  ? 'Digite um nome válido'
+                  : null,
+            ),
+            SizedBox(height: 4),
+            TextFormField(
+              controller: lastNameController,
+              cursorColor: Colors.white,
+              textInputAction: TextInputAction.next,
+              decoration: InputDecoration(labelText: 'Último Nome'),
+              autovalidateMode: AutovalidateMode.onUserInteraction,
+              validator: (lastName) =>
+              lastName != null && lastName.length < 3
+                  ? 'Digite um nome válido'
+                  : null,
+            ),
+            SizedBox(height: 4),
+            TextFormField(
+              controller: ageController,
+              cursorColor: Colors.white,
+              textInputAction: TextInputAction.next,
+              decoration: InputDecoration(labelText: 'Idade'),
+              autovalidateMode: AutovalidateMode.onUserInteraction,
+              validator: (age) =>
+              age != null &&  int.parse(age) < 12
+                  ? 'Usuários precisam ser maiores de 12 anos'
+                  : null,
+            ),
+            TextFormField(
+              controller: phoneController,
+              cursorColor: Colors.white,
+              textInputAction: TextInputAction.next,
+              decoration: InputDecoration(labelText: 'Telemóvel'),
+              autovalidateMode: AutovalidateMode.onUserInteraction,
+              validator: (phone) =>
+              phone != null && phone.length != 9
+                  ? 'Digite um número válido'
+                  : null,
+            ),
+            SizedBox(height: 4),
             TextFormField(
               controller: emailController,
               cursorColor: Colors.white,
@@ -64,6 +122,18 @@ class _SignUpWidgetState extends State<SignUpWidget> {
               ? 'Senha deve ter pelo menos 6 caracteres'
               : null,
             ),
+            TextFormField(
+              controller: locationController,
+              cursorColor: Colors.white,
+              textInputAction: TextInputAction.next,
+              decoration: InputDecoration(labelText: 'Distrito'),
+              autovalidateMode: AutovalidateMode.onUserInteraction,
+              validator: (distrito) =>
+              distrito != null && distrito.length < 3
+                  ? 'Digite um distrito válido'
+                  : null,
+            ),
+            SizedBox(height: 4),
             SizedBox(height: 20),
             ElevatedButton.icon(
               style: ElevatedButton.styleFrom(
@@ -111,10 +181,14 @@ class _SignUpWidgetState extends State<SignUpWidget> {
     );
 
     try {
-      await FirebaseAuth.instance.createUserWithEmailAndPassword(
+      UserCredential userCredential = await FirebaseAuth.instance.createUserWithEmailAndPassword(
           email: emailController.text.trim(),
           password: passwordController.text.trim(),
       );
+
+      User? user = userCredential.user;
+      addUserDetails(user!, firstNameController.text.trim(), lastNameController.text.trim(), phoneController.text.trim(), emailController.text..trim(), locationController.text.trim(), int.parse(ageController.text.trim()));
+
     } on FirebaseAuthException catch (e) {
       print(e);
 
@@ -123,4 +197,16 @@ class _SignUpWidgetState extends State<SignUpWidget> {
 
     navigatorKey.currentState!.popUntil((route) => route.isFirst);
   }
+}
+
+Future addUserDetails (User user,
+    String firstName, String lastName, String phone, String email, String location, int age) async {
+  await FirebaseFirestore.instance.collection('users').doc(user.uid).set({
+    'first name': firstName,
+    'last name': lastName,
+    'phone': phone,
+    'email': email,
+    'location': location,
+    'age': age,
+  });
 }
