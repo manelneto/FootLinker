@@ -1,9 +1,8 @@
+import 'package:app/model/match.dart';
 import 'package:app/view/pages/home.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-
-import 'model/match.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -13,7 +12,9 @@ void main() async {
 class MyApp extends StatelessWidget {
   final Future<FirebaseApp> _fbApp = Firebase.initializeApp();
 
-  MyApp({super.key});
+  MyApp({
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -45,20 +46,24 @@ class MyApp extends StatelessWidget {
 
 class MyAppState extends ChangeNotifier {
   var history = <Match>[];
+  var schedule = <Match>[];
 
   void addToHistory(Match match, BuildContext context) {
     if (!history.contains(match)) {
       history.add(match);
+      history.sort((a, b) => a.timestamp.compareTo(b.timestamp));
       notifyListeners();
       var snackBar = SnackBar(
         content: Center(
-          child: Text('${match.home.name} - ${match.away.name} adicionado ao histórico!'),
+          child: Text(
+              '${match.home.name} - ${match.away.name} adicionado ao histórico!'),
         ),
         action: SnackBarAction(
           label: 'Anular',
           onPressed: () {
-            history.remove(match);
-            notifyListeners();
+            if (history.remove(match)) {
+              notifyListeners();
+            }
           },
         ),
         duration: const Duration(
@@ -74,13 +79,68 @@ class MyAppState extends ChangeNotifier {
     notifyListeners();
     var snackBar = SnackBar(
       content: Center(
-        child: Text('${match.home.name} - ${match.away.name} removido do histórico!'),
+        child: Text(
+            '${match.home.name} - ${match.away.name} removido do histórico!'),
       ),
       action: SnackBarAction(
         label: 'Anular',
         onPressed: () {
-          history.add(match);
-          notifyListeners();
+          if (!history.contains(match)) {
+            history.add(match);
+            history.sort((a, b) => a.timestamp.compareTo(b.timestamp));
+            notifyListeners();
+          }
+        },
+      ),
+      duration: const Duration(
+        seconds: 1,
+      ),
+    );
+    ScaffoldMessenger.of(context).showSnackBar(snackBar);
+  }
+
+  void addToSchedule(Match match, BuildContext context) {
+    if (!schedule.contains(match)) {
+      schedule.add(match);
+      schedule.sort((a, b) => a.timestamp.compareTo(b.timestamp));
+      notifyListeners();
+      var snackBar = SnackBar(
+        content: Center(
+          child: Text(
+              '${match.home.name} - ${match.away.name} adicionado ao calendário!'),
+        ),
+        action: SnackBarAction(
+          label: 'Anular',
+          onPressed: () {
+            if (schedule.remove(match)) {
+              notifyListeners();
+            }
+          },
+        ),
+        duration: const Duration(
+          seconds: 1,
+        ),
+      );
+      ScaffoldMessenger.of(context).showSnackBar(snackBar);
+    }
+  }
+
+  void removeFromSchedule(Match match, BuildContext context) {
+    schedule.remove(match);
+    notifyListeners();
+    var snackBar = SnackBar(
+      content: Center(
+        child: Text(
+            '${match.home.name} - ${match.away.name} removido do calendário!'),
+      ),
+      action: SnackBarAction(
+        label: 'Anular',
+        onPressed: () {
+          if (!schedule.contains(match)) {
+            schedule.add(match);
+            schedule.sort((a, b) => a.timestamp.compareTo(b.timestamp));
+            notifyListeners();
+          }
         },
       ),
       duration: const Duration(
