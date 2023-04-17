@@ -38,6 +38,7 @@ class MatchFetcher {
     } on Exception catch (e) {
       matches = [Match.fromException(e)];
     }
+    matches.sort((a, b) => (a.timestamp).compareTo(b.timestamp));
     return matches;
   }
 
@@ -49,6 +50,7 @@ class MatchFetcher {
     } on Exception catch (e) {
       matches = [Match.fromException(e)];
     }
+    matches.sort((a, b) => (a.timestamp).compareTo(b.timestamp));
     return matches;
   }
 
@@ -60,6 +62,7 @@ class MatchFetcher {
     } on Exception catch (e) {
       matches = [Match.fromException(e)];
     }
+    matches.sort((a, b) => (a.timestamp).compareTo(b.timestamp));
     return matches;
   }
 
@@ -67,6 +70,7 @@ class MatchFetcher {
     List<Match> last = await fetchLastMatchesByLeague(league, number);
     List<Match> next = await fetchNextMatchesByLeague(league, number);
     List<Match> matches = last + next;
+    matches.sort((a, b) => (a.timestamp).compareTo(b.timestamp));
     return matches;
   }
 }

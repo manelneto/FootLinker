@@ -73,7 +73,7 @@ class MatchListTile extends StatelessWidget {
         if (match.homeGoals != -1 && match.awayGoals != -1) {
           appState.addToHistory(match, context);
         }
-        if (match.homeGoals == -1 && match.awayGoals == -1) {
+        else if (match.homeGoals == -1 && match.awayGoals == -1) {
           appState.addToSchedule(match, context);
         }
       },
@@ -81,7 +81,7 @@ class MatchListTile extends StatelessWidget {
         if (match.homeGoals != -1 && match.awayGoals != -1) {
           appState.removeFromHistory(match, context);
         }
-        if (match.homeGoals == -1 && match.awayGoals == -1) {
+        else if (match.homeGoals == -1 && match.awayGoals == -1) {
           appState.removeFromSchedule(match, context);
         }
       },

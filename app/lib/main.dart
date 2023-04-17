@@ -1,9 +1,8 @@
+import 'package:app/model/match.dart';
 import 'package:app/view/pages/home.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-
-import 'model/match.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -13,7 +12,9 @@ void main() async {
 class MyApp extends StatelessWidget {
   final Future<FirebaseApp> _fbApp = Firebase.initializeApp();
 
-  MyApp({super.key});
+  MyApp({
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -50,6 +51,7 @@ class MyAppState extends ChangeNotifier {
   void addToHistory(Match match, BuildContext context) {
     if (!history.contains(match)) {
       history.add(match);
+      history.sort((a, b) => a.timestamp.compareTo(b.timestamp));
       notifyListeners();
       var snackBar = SnackBar(
         content: Center(
@@ -59,8 +61,9 @@ class MyAppState extends ChangeNotifier {
         action: SnackBarAction(
           label: 'Anular',
           onPressed: () {
-            history.remove(match);
-            notifyListeners();
+            if (history.remove(match)) {
+              notifyListeners();
+            }
           },
         ),
         duration: const Duration(
@@ -82,8 +85,11 @@ class MyAppState extends ChangeNotifier {
       action: SnackBarAction(
         label: 'Anular',
         onPressed: () {
-          history.add(match);
-          notifyListeners();
+          if (!history.contains(match)) {
+            history.add(match);
+            history.sort((a, b) => a.timestamp.compareTo(b.timestamp));
+            notifyListeners();
+          }
         },
       ),
       duration: const Duration(
@@ -96,6 +102,7 @@ class MyAppState extends ChangeNotifier {
   void addToSchedule(Match match, BuildContext context) {
     if (!schedule.contains(match)) {
       schedule.add(match);
+      schedule.sort((a, b) => a.timestamp.compareTo(b.timestamp));
       notifyListeners();
       var snackBar = SnackBar(
         content: Center(
@@ -105,8 +112,9 @@ class MyAppState extends ChangeNotifier {
         action: SnackBarAction(
           label: 'Anular',
           onPressed: () {
-            schedule.remove(match);
-            notifyListeners();
+            if (schedule.remove(match)) {
+              notifyListeners();
+            }
           },
         ),
         duration: const Duration(
@@ -128,8 +136,11 @@ class MyAppState extends ChangeNotifier {
       action: SnackBarAction(
         label: 'Anular',
         onPressed: () {
-          schedule.add(match);
-          notifyListeners();
+          if (!schedule.contains(match)) {
+            schedule.add(match);
+            schedule.sort((a, b) => a.timestamp.compareTo(b.timestamp));
+            notifyListeners();
+          }
         },
       ),
       duration: const Duration(

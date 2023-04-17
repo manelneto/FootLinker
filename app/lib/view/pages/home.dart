@@ -124,7 +124,7 @@ class _MyHomePageState extends State<MyHomePage> {
               children: [
                 const Spacer(),
                 FloatingActionButton(
-                  heroTag: "hist",
+                  heroTag: "history",
                   onPressed: () => _navigateToHistoryPage(context),
                   tooltip: 'History Page',
                   backgroundColor: Colors.white,
@@ -132,7 +132,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 ),
                 const SizedBox(width: 5),
                 FloatingActionButton(
-                  heroTag: "sched",
+                  heroTag: "schedule",
                   onPressed: () => _navigateToSchedulePage(context),
                   tooltip: 'Schedule Page',
                   backgroundColor: Colors.white,
