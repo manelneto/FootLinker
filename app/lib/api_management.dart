@@ -4,18 +4,18 @@ import 'package:http/http.dart' as http;
 
 class ApiManagement {
   bool rapid = true;
-  String url = "";
+  String url = '';
   Map<String, String> headers = {};
 
   ApiManagement() {
-    String urlRapidAPI = "https://api-football-v1.p.rapidapi.com/v3/";
+    String urlRapidAPI = 'https://api-football-v1.p.rapidapi.com/v3/';
 
     Map<String, String> headersRapidAPI = {
       'X-RapidAPI-Host': 'api-football-v1.p.rapidapi.com',
       'X-RapidAPI-Key': 'f98943d9bamshd4cccfea72196b8p106219jsnd303daf9b388',
     };
 
-    String urlFootballAPI = "https://v3.football.api-sports.io/";
+    String urlFootballAPI = 'https://v3.football.api-sports.io/';
 
     Map<String, String> headersFootballAPI = {
       'x-rapidapi-host': 'v3.football.api-sports.io',

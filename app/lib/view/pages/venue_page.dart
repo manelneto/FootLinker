@@ -44,10 +44,10 @@ class _VenuePageState extends State<VenuePage> {
     } else if (widget.venue.city == '') {
       text = widget.venue.address;
     } else {
-      text = "${widget.venue.address}, ${widget.venue.city}";
+      text = '${widget.venue.address}, ${widget.venue.city}';
     }
     if (widget.venue.capacity != 0) {
-      text += "\nCapacidade: ${widget.venue.capacity}";
+      text += '\nCapacidade: ${widget.venue.capacity}';
     }
     return Scaffold(
       appBar: AppBar(

@@ -1,28 +1,28 @@
-import 'package:app/controller/login_controller.dart';
+import 'package:app/controller/register_controller.dart';
 import 'package:email_validator/email_validator.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 
-class LoginWidget extends StatefulWidget {
-  const LoginWidget({
+class RegisterWidget extends StatefulWidget {
+  const RegisterWidget({
     super.key,
-    required this.onClickedSignUp,
+    required this.onClickedSignIn,
     required this.navigatorKey,
   });
 
-  final VoidCallback onClickedSignUp;
+  final Function() onClickedSignIn;
   final GlobalKey<NavigatorState> navigatorKey;
 
   @override
-  State<LoginWidget> createState() => _LoginWidgetState();
+  State<RegisterWidget> createState() => _RegisterWidgetState();
 }
 
-class _LoginWidgetState extends State<LoginWidget> {
-  LoginController loginController = LoginController();
+class _RegisterWidgetState extends State<RegisterWidget> {
+  RegisterController registerController = RegisterController();
 
   @override
   void dispose() {
-    loginController.dispose();
+    registerController.dispose();
     super.dispose();
   }
 
@@ -31,12 +31,42 @@ class _LoginWidgetState extends State<LoginWidget> {
     return SingleChildScrollView(
       padding: const EdgeInsets.all(20),
       child: Form(
-        key: loginController.formKey,
+        key: registerController.formKey,
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             TextFormField(
-              controller: loginController.emailController,
+              controller: registerController.nameController,
+              cursorColor: Colors.white,
+              textInputAction: TextInputAction.next,
+              decoration: const InputDecoration(
+                labelText: 'Nome',
+              ),
+              autovalidateMode: AutovalidateMode.onUserInteraction,
+              validator: (name) => name != null && name.length < 3
+                  ? 'O nome deve ter pelo menos 3 caracteres'
+                  : null,
+            ),
+            const SizedBox(
+              height: 20,
+            ),
+            TextFormField(
+              controller: registerController.surnameController,
+              cursorColor: Colors.white,
+              textInputAction: TextInputAction.next,
+              decoration: const InputDecoration(
+                labelText: 'Apelido',
+              ),
+              autovalidateMode: AutovalidateMode.onUserInteraction,
+              validator: (surname) => surname != null && surname.length < 3
+                  ? 'O apelido deve ter pelo menos 3 caracteres'
+                  : null,
+            ),
+            const SizedBox(
+              height: 20,
+            ),
+            TextFormField(
+              controller: registerController.emailController,
               cursorColor: Colors.white,
               textInputAction: TextInputAction.next,
               decoration: const InputDecoration(
@@ -52,7 +82,7 @@ class _LoginWidgetState extends State<LoginWidget> {
               height: 20,
             ),
             TextFormField(
-              controller: loginController.passwordController,
+              controller: registerController.passwordController,
               textInputAction: TextInputAction.done,
               decoration: const InputDecoration(
                 labelText: 'Senha',
@@ -75,11 +105,11 @@ class _LoginWidgetState extends State<LoginWidget> {
                 size: 30,
               ),
               label: const Text(
-                'Entrar',
+                'Registar',
                 style: TextStyle(fontSize: 25),
               ),
               onPressed: () =>
-                  loginController.signIn(context, widget.navigatorKey),
+                  registerController.signUp(context, widget.navigatorKey),
             ),
             const SizedBox(
               height: 40,
@@ -91,12 +121,12 @@ class _LoginWidgetState extends State<LoginWidget> {
                   fontSize: 20,
                   fontWeight: FontWeight.bold,
                 ),
-                text: 'Ainda não criou uma conta? ',
+                text: 'Já tem uma conta? ',
                 children: [
                   TextSpan(
                     recognizer: TapGestureRecognizer()
-                      ..onTap = widget.onClickedSignUp,
-                    text: 'Registe-se!',
+                      ..onTap = widget.onClickedSignIn,
+                    text: 'Entrar',
                     style: TextStyle(
                       decoration: TextDecoration.underline,
                       color: Theme.of(context).colorScheme.primary,

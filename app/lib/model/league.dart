@@ -41,8 +41,16 @@ class League {
     );
   }
 
+  Map<String, dynamic> toJson() => {
+        'id': id,
+        'name': name,
+        'country': country,
+        'logo': logo,
+      };
+
   void show() {
     print(
-        'LEAGUE id: $id name: $name type: $type country: $country logo: $logo\n');
+      'LEAGUE id: $id name: $name type: $type country: $country logo: $logo\n',
+    );
   }
 }

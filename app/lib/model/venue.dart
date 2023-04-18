@@ -48,8 +48,20 @@ class Venue {
     );
   }
 
+  Map<String, dynamic> toJson() => {
+        'id': id,
+        'name': name,
+        'address': address,
+        'city': city,
+        'country': country,
+        'capacity': capacity,
+        'surface': surface,
+        'image': image,
+      };
+
   void show() {
     print(
-        'VENUE id: $id name: $name address: $address city: $city country: $country capacity: $capacity surface: $surface image: $image\n');
+      'VENUE id: $id name: $name address: $address city: $city country: $country capacity: $capacity surface: $surface image: $image\n',
+    );
   }
 }

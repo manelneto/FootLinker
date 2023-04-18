@@ -8,11 +8,11 @@ class CreditsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     List<String> us = [
-      "André Rodrigues",
-      "Luiz Queiroz",
-      "Manuel Neto",
-      "Patrícia Sousa",
-      "Rúben Fonseca",
+      'André Rodrigues',
+      'Luiz Queiroz',
+      'Manuel Neto',
+      'Patrícia Sousa',
+      'Rúben Fonseca',
     ];
 
     return Scaffold(

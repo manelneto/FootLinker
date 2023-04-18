@@ -1,181 +1,162 @@
-import 'package:app/view/pages/start_page.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:app/view/pages/credits_page.dart';
+import 'package:app/view/pages/history_page.dart';
+import 'package:app/view/pages/leagues_page.dart';
+import 'package:app/view/pages/nearby_matches_page.dart';
+import 'package:app/view/pages/profile_page.dart';
+import 'package:app/view/pages/schedule_page.dart';
+import 'package:app/view/pages/teams_page.dart';
+import 'package:app/view/pages/venues_page.dart';
 import 'package:flutter/material.dart';
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:fluttericon/font_awesome_icons.dart';
 
-class HomePage extends StatelessWidget {
+class HomePage extends StatefulWidget {
   const HomePage({
     super.key,
+    required this.navigatorKey,
   });
 
+  final GlobalKey<NavigatorState> navigatorKey;
+
   @override
-  Widget build(BuildContext context) {
-    final _user = FirebaseAuth.instance.currentUser!;
-    final userDoc = FirebaseFirestore.instance.collection('users').doc(_user.uid);
-    Stream<DocumentSnapshot<Map<String, dynamic>>> userStream = userDoc.snapshots();
+  State<HomePage> createState() => _HomePageState();
+}
 
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text(
-          'Principal',
-          style: TextStyle(
-            fontWeight: FontWeight.bold,
-          ),
-        ),
-        backgroundColor: Theme.of(context).colorScheme.primaryContainer,
-        centerTitle: true,
-        actions: [
-          IconButton(
-            icon: Icon(Icons.exit_to_app),
-            iconSize: 35,
-            onPressed: () async {
-              await FirebaseAuth.instance.signOut();
-              Navigator.pushReplacement(
-                context,
-                MaterialPageRoute(builder: (context) => StartPage()),
-              );
-            },
-          ),
-        ],
-      ),
-      body: StreamBuilder<DocumentSnapshot<Map<String, dynamic>>>(
-        stream: userStream,
-        builder: (BuildContext context, AsyncSnapshot<DocumentSnapshot<Map<String, dynamic>>> snapshot) {
-          if (!snapshot.hasData) {
-            return Center(child: CircularProgressIndicator());
-          }
-
-          final userData = snapshot.data!.data();
-
-          return Padding(
-            padding: EdgeInsets.fromLTRB(20, 5, 20, 20),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                const SizedBox(height: 32),
-                if (_user?.photoURL != null)
-                  Center(
-                    child: CircleAvatar(
-                      backgroundImage: NetworkImage(_user!.photoURL!),
-                      radius: 50,
-                    ),
-                  ) 
-                else Center(
-                  child: CircleAvatar(
-                    child: Icon(
-                      FontAwesome.user,
-                      size: 80,
-                      color: Colors.green[900],
-                    ),
-                    radius: 50,
-                  ),
-                ),
-                const SizedBox(height: 16),
-                Center(
-                  child: Text(
-                    '${userData?['first name'] ?? 'Sem nome'} ${userData?['last name'] ?? ''}' ?? '',
-                    style: TextStyle(
-                      color: Colors.black,
-                      letterSpacing: 2.0,
-                      fontSize: 28,
-                      //fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                ),
-                Divider(
-                  height: 60,
-                  color: Colors.grey,
-                ),
-                Row(
-                  children: <Widget> [
-                    Icon(
-                        Icons.email,
-                    ),
-                    SizedBox(width: 10),
-                    Text(
-                      'Email: ${userData?['email'] ?? 'Não cadastrado'}',
-                    style: TextStyle(
-                      letterSpacing: 1.0,
-                      fontSize: 18,
-                      color: Colors.black,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                ]),
-                const SizedBox(height: 10),
-                Row(
-                  children: [
-                    SizedBox(width: 35),
-                    Text(
-                        'Idade: ${userData?['age']?.toString() ?? 'Não cadastrada'}',
-                      style: TextStyle(
-                        letterSpacing: 1.0,
-                        fontSize: 18,
-                        color: Colors.black,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                  ],
-                ),
-                const SizedBox(height: 10),
-                Row(
-                  children: [
-                    SizedBox(width: 35),
-                    Text(
-                        'Telemóvel: ${userData?['phone'] ?? 'Não cadastrado'}',
-                      style: TextStyle(
-                        letterSpacing: 1.0,
-                        fontSize: 18,
-                        color: Colors.black,
-                        fontWeight: FontWeight.bold,
-                      ),
-
-                    ),
-                  ],
-                ),
-                const SizedBox(height: 8),
-                Row(
-                  children: [
-                    SizedBox(width: 35),
-                    Text(
-                        'Distrito: ${userData?['location'] ?? 'Não cadastrado'}',
-                      style: TextStyle(
-                        letterSpacing: 1.0,
-                        fontSize: 18,
-                        color: Colors.black,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                  ],
-                ),
-                const SizedBox(height: 40),
-                Center(
-                  child: SizedBox(
-                    width: 120,
-                    height: 50,
-                    child: ElevatedButton(
-                      onPressed: () {
-                        FirebaseAuth.instance.signOut();
-                        Navigator.pushReplacement(
-                          context,
-                          MaterialPageRoute(builder: (context) => StartPage()),
-                        );
-                      },
-                      child: const Text(
-                          'Sair',
-                        style: TextStyle(fontSize: 18),
-                      ),
-                    ),
-                  ),
-                ),
-              ],
-            ),
-          );
-        },
+class _HomePageState extends State<HomePage> {
+  void _navigateToHistoryPage(BuildContext context) {
+    Navigator.of(context).push(
+      MaterialPageRoute(
+        builder: (context) => const HistoryPage(),
       ),
     );
   }
+
+  void _navigateToSchedulePage(BuildContext context) {
+    Navigator.of(context).push(
+      MaterialPageRoute(
+        builder: (context) => const SchedulePage(),
+      ),
+    );
+  }
+
+  var selectedIndex = 0;
+
+  @override
+  Widget build(BuildContext context) {
+    Widget page;
+    switch (selectedIndex) {
+      case 0:
+        page = ProfilePage(
+          navigatorKey: widget.navigatorKey,
+        );
+        break;
+      case 1:
+        page = const TeamsPage();
+        break;
+      case 2:
+        page = const VenuesPage();
+        break;
+      case 3:
+        page = const LeaguesPage();
+        break;
+      case 4:
+        page = const NearbyMatchesPage();
+        break;
+      case 5:
+        page = const CreditsPage();
+        break;
+      default:
+        throw UnimplementedError('Índice inválido: $selectedIndex');
+    }
+
+    return LayoutBuilder(
+      builder: (context, constraints) {
+        return Scaffold(
+          body: Row(
+            children: [
+              SafeArea(
+                child: NavigationRail(
+                  extended: constraints.maxWidth >= 600,
+                  destinations: const [
+                    NavigationRailDestination(
+                      icon: Icon(
+                        Icons.home,
+                        size: 30,
+                      ),
+                      label: Text('Página Principal'),
+                    ),
+                    NavigationRailDestination(
+                      icon: Icon(
+                        Icons.sports_soccer,
+                        size: 25,
+                      ),
+                      label: Text('Clubes'),
+                    ),
+                    NavigationRailDestination(
+                      icon: Icon(
+                        Icons.stadium,
+                        size: 25,
+                      ),
+                      label: Text('Estádios'),
+                    ),
+                    NavigationRailDestination(
+                      icon: Icon(
+                        Icons.emoji_events,
+                        size: 25,
+                      ),
+                      label: Text('Ligas'),
+                    ),
+                    NavigationRailDestination(
+                      icon: Icon(
+                        Icons.map,
+                        size: 25,
+                      ),
+                      label: Text('Jogos Perto'),
+                    ),
+                    NavigationRailDestination(
+                      icon: Icon(
+                        Icons.logo_dev,
+                        size: 25,
+                      ),
+                      label: Text('Créditos'),
+                    ),
+                  ],
+                  selectedIndex: selectedIndex,
+                  onDestinationSelected: (value) {
+                    setState(() {
+                      selectedIndex = value;
+                    });
+                  },
+                ),
+              ),
+              Expanded(
+                child: Container(
+                  color: Theme.of(context).colorScheme.primaryContainer,
+                  child: page,
+                ),
+              ),
+            ],
+          ),
+          floatingActionButton: Row(
+            children: [
+              const Spacer(),
+              FloatingActionButton(
+                heroTag: 'history',
+                onPressed: () => _navigateToHistoryPage(context),
+                tooltip: 'History Page',
+                backgroundColor: Colors.white,
+                child: const Icon(Icons.history),
+              ),
+              const SizedBox(width: 5),
+              FloatingActionButton(
+                heroTag: 'schedule',
+                onPressed: () => _navigateToSchedulePage(context),
+                tooltip: 'Schedule Page',
+                backgroundColor: Colors.white,
+                child: const Icon(Icons.date_range),
+              )
+            ],
+          ),
+        );
+      },
+    );
+  }
 }
-
-

@@ -3,8 +3,8 @@ import 'package:app/view/widgets/match_list_tile.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-class HistoryPage extends StatelessWidget {
-  const HistoryPage({
+class SchedulePage extends StatelessWidget {
+  const SchedulePage({
     super.key,
   });
 
@@ -12,11 +12,11 @@ class HistoryPage extends StatelessWidget {
   Widget build(BuildContext context) {
     var appState = context.watch<AppState>();
 
-    if (appState.history.isEmpty) {
+    if (appState.schedule.isEmpty) {
       return Scaffold(
         appBar: AppBar(
           title: const Text(
-            'Histórico',
+            'Calendário',
             style: TextStyle(
               fontWeight: FontWeight.bold,
             ),
@@ -26,7 +26,7 @@ class HistoryPage extends StatelessWidget {
         ),
         body: const Center(
           child: Text(
-            'Ainda não adicionou nenhum jogo ao histórico...\nExperimente carregar num jogo para o adicionar ou manter premido para o remover.',
+            'Ainda não adicionou nenhum jogo ao calendário...\nExperimente carregar num jogo para o adicionar ou manter premido para o remover.',
             textAlign: TextAlign.center,
           ),
         ),
@@ -36,7 +36,7 @@ class HistoryPage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text(
-          'Histórico',
+          'Calendário',
           style: TextStyle(
             fontWeight: FontWeight.bold,
           ),
@@ -47,7 +47,7 @@ class HistoryPage extends StatelessWidget {
       body: Center(
         child: ListView(
           children: [
-            for (var match in appState.history) MatchListTile(match: match),
+            for (var match in appState.schedule) MatchListTile(match: match),
           ],
         ),
       ),

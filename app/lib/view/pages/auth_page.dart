@@ -1,10 +1,14 @@
+import 'package:app/view/widgets/login_widget.dart';
+import 'package:app/view/widgets/register_widget.dart';
 import 'package:flutter/material.dart';
 
-import '../widgets/login_widget.dart';
-import '../widgets/signup_widget.dart';
-
 class AuthPage extends StatefulWidget {
-  const AuthPage({Key? key}) : super(key: key);
+  const AuthPage({
+    super.key,
+    required this.navigatorKey,
+  });
+
+  final GlobalKey<NavigatorState> navigatorKey;
 
   @override
   State<AuthPage> createState() => _AuthPageState();
@@ -13,9 +17,17 @@ class AuthPage extends StatefulWidget {
 class _AuthPageState extends State<AuthPage> {
   bool isLogin = true;
 
-  Widget SignInOrUp() {
-    if (this.isLogin) return LoginWidget(onClickedSignUp: toggle);
-    return SignUpWidget(onClickedSignIn: toggle);
+  Widget signInOrUp() {
+    if (isLogin) {
+      return LoginWidget(
+        onClickedSignUp: toggle,
+        navigatorKey: widget.navigatorKey,
+      );
+    }
+    return RegisterWidget(
+      onClickedSignIn: toggle,
+      navigatorKey: widget.navigatorKey,
+    );
   }
 
   @override
@@ -31,7 +43,7 @@ class _AuthPageState extends State<AuthPage> {
         backgroundColor: Theme.of(context).colorScheme.primaryContainer,
         centerTitle: true,
       ),
-      body: SignInOrUp(),
+      body: signInOrUp(),
     );
   }
 
