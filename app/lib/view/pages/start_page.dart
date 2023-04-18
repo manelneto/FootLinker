@@ -1,28 +1,32 @@
+import 'package:app/view/pages/auth_page.dart';
+import 'package:app/view/pages/home_page.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 class StartPage extends StatelessWidget {
   const StartPage({
     super.key,
+    required this.navigatorKey,
   });
+
+  final GlobalKey<NavigatorState> navigatorKey;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text(
-          'FootLinker',
-          style: TextStyle(
-            fontWeight: FontWeight.bold,
-          ),
-        ),
-        backgroundColor: Theme.of(context).colorScheme.primaryContainer,
-        centerTitle: true,
-      ),
-      body: const Center(
-        child: Text(
-          'FootLinker',
-          textAlign: TextAlign.center,
-        ),
+      body: StreamBuilder<User?>(
+        stream: FirebaseAuth.instance.authStateChanges(),
+        builder: (context, snapshot) {
+          if (snapshot.hasData) {
+            return HomePage(
+              navigatorKey: navigatorKey,
+            );
+          } else {
+            return AuthPage(
+              navigatorKey: navigatorKey,
+            );
+          }
+        },
       ),
     );
   }

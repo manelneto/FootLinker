@@ -1,4 +1,4 @@
-import 'package:app/main.dart';
+import 'package:app/app_state.dart';
 import 'package:app/model/match.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -13,7 +13,7 @@ class MatchListTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var appState = context.watch<MyAppState>();
+    var appState = context.watch<AppState>();
 
     String title = '${match.home.name} - ${match.away.name}';
     if (match.homeGoals != -1 && match.awayGoals != -1) {
@@ -72,16 +72,14 @@ class MatchListTile extends StatelessWidget {
       onTap: () {
         if (match.homeGoals != -1 && match.awayGoals != -1) {
           appState.addToHistory(match, context);
-        }
-        else if (match.homeGoals == -1 && match.awayGoals == -1) {
+        } else if (match.homeGoals == -1 && match.awayGoals == -1) {
           appState.addToSchedule(match, context);
         }
       },
       onLongPress: () {
         if (match.homeGoals != -1 && match.awayGoals != -1) {
           appState.removeFromHistory(match, context);
-        }
-        else if (match.homeGoals == -1 && match.awayGoals == -1) {
+        } else if (match.homeGoals == -1 && match.awayGoals == -1) {
           appState.removeFromSchedule(match, context);
         }
       },

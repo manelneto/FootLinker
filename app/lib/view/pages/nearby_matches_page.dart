@@ -76,7 +76,8 @@ class _NearbyMatchesPageState extends State<NearbyMatchesPage> {
           return _matches(data);
         } else if (snapshot.hasError) {
           return const Text(
-              'Ocorreu um erro de rede.\nTente fechar e voltar a abrir a página.');
+            'Ocorreu um erro de rede.\nTente fechar e voltar a abrir a página.',
+          );
         }
         return const CircularProgressIndicator();
       },

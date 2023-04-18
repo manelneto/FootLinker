@@ -1,152 +1,50 @@
-import 'package:app/model/match.dart';
-import 'package:app/view/pages/home.dart';
+import 'package:app/app_state.dart';
+import 'package:app/view/pages/start_page.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  runApp(MyApp());
+  runApp(App());
 }
 
-class MyApp extends StatelessWidget {
-  final Future<FirebaseApp> _fbApp = Firebase.initializeApp();
-
-  MyApp({
+class App extends StatelessWidget {
+  App({
     super.key,
   });
+
+  final Future<FirebaseApp> _fbApp = Firebase.initializeApp();
+  final navigatorKey = GlobalKey<NavigatorState>();
+  final scaffoldMessengerKey = GlobalKey<ScaffoldMessengerState>();
 
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
-      create: (context) => MyAppState(),
+      create: (context) => AppState(),
       child: MaterialApp(
-          title: 'FootLinker',
-          theme: ThemeData(
-            useMaterial3: true,
-            colorScheme: ColorScheme.fromSeed(seedColor: Colors.green),
-          ),
-          home: FutureBuilder(
-            future: _fbApp,
-            builder: (context, snapshot) {
-              if (snapshot.hasError) {
-                return const Text('Algo correu mal...');
-              } else if (snapshot.hasData) {
-                return const MyHomePage();
-              } else {
-                return const Center(
-                  child: CircularProgressIndicator(),
-                );
-              }
-            },
-          )),
-    );
-  }
-}
-
-class MyAppState extends ChangeNotifier {
-  var history = <Match>[];
-  var schedule = <Match>[];
-
-  void addToHistory(Match match, BuildContext context) {
-    if (!history.contains(match)) {
-      history.add(match);
-      history.sort((a, b) => a.timestamp.compareTo(b.timestamp));
-      notifyListeners();
-      var snackBar = SnackBar(
-        content: Center(
-          child: Text(
-              '${match.home.name} - ${match.away.name} adicionado ao histórico!'),
+        scaffoldMessengerKey: scaffoldMessengerKey,
+        navigatorKey: navigatorKey,
+        title: 'FootLinker',
+        theme: ThemeData(
+          useMaterial3: true,
+          colorScheme: ColorScheme.fromSeed(seedColor: Colors.green),
         ),
-        action: SnackBarAction(
-          label: 'Anular',
-          onPressed: () {
-            if (history.remove(match)) {
-              notifyListeners();
+        home: FutureBuilder(
+          future: _fbApp,
+          builder: (context, snapshot) {
+            if (snapshot.hasError) {
+              return const Text('Algo correu mal...');
+            } else if (snapshot.hasData) {
+              return StartPage(navigatorKey: navigatorKey);
+            } else {
+              return const Center(
+                child: CircularProgressIndicator(),
+              );
             }
           },
         ),
-        duration: const Duration(
-          seconds: 1,
-        ),
-      );
-      ScaffoldMessenger.of(context).showSnackBar(snackBar);
-    }
-  }
-
-  void removeFromHistory(Match match, BuildContext context) {
-    history.remove(match);
-    notifyListeners();
-    var snackBar = SnackBar(
-      content: Center(
-        child: Text(
-            '${match.home.name} - ${match.away.name} removido do histórico!'),
-      ),
-      action: SnackBarAction(
-        label: 'Anular',
-        onPressed: () {
-          if (!history.contains(match)) {
-            history.add(match);
-            history.sort((a, b) => a.timestamp.compareTo(b.timestamp));
-            notifyListeners();
-          }
-        },
-      ),
-      duration: const Duration(
-        seconds: 1,
       ),
     );
-    ScaffoldMessenger.of(context).showSnackBar(snackBar);
-  }
-
-  void addToSchedule(Match match, BuildContext context) {
-    if (!schedule.contains(match)) {
-      schedule.add(match);
-      schedule.sort((a, b) => a.timestamp.compareTo(b.timestamp));
-      notifyListeners();
-      var snackBar = SnackBar(
-        content: Center(
-          child: Text(
-              '${match.home.name} - ${match.away.name} adicionado ao calendário!'),
-        ),
-        action: SnackBarAction(
-          label: 'Anular',
-          onPressed: () {
-            if (schedule.remove(match)) {
-              notifyListeners();
-            }
-          },
-        ),
-        duration: const Duration(
-          seconds: 1,
-        ),
-      );
-      ScaffoldMessenger.of(context).showSnackBar(snackBar);
-    }
-  }
-
-  void removeFromSchedule(Match match, BuildContext context) {
-    schedule.remove(match);
-    notifyListeners();
-    var snackBar = SnackBar(
-      content: Center(
-        child: Text(
-            '${match.home.name} - ${match.away.name} removido do calendário!'),
-      ),
-      action: SnackBarAction(
-        label: 'Anular',
-        onPressed: () {
-          if (!schedule.contains(match)) {
-            schedule.add(match);
-            schedule.sort((a, b) => a.timestamp.compareTo(b.timestamp));
-            notifyListeners();
-          }
-        },
-      ),
-      duration: const Duration(
-        seconds: 1,
-      ),
-    );
-    ScaffoldMessenger.of(context).showSnackBar(snackBar);
   }
 }

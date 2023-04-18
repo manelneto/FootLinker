@@ -141,10 +141,10 @@ packages:
     dependency: "direct main"
     description:
       name: cloud_firestore
-      sha256: "3a2dba23d7d084a2d3c2dfd240d2122908cca40bab2d142f7e107f40df174ab5"
+      sha256: f5431cf41ab5c5e9c64e03ac2af103e10be22bf89020f394130c04b81add0010
       url: "https://pub.dev"
     source: hosted
-    version: "4.5.0"
+    version: "4.5.1"
   cloud_firestore_platform_interface:
     dependency: transitive
     description:
@@ -157,10 +157,10 @@ packages:
     dependency: transitive
     description:
       name: cloud_firestore_web
-      sha256: bc1fbcd6287acedded1139c9b13cfd47e792d5198f130f98759464839ea510a7
+      sha256: "228f1944fb3c61ddf5de3647ec5b6ed88d6aacb0a4d485ef597c1211fe98ef8b"
       url: "https://pub.dev"
     source: hosted
-    version: "3.4.0"
+    version: "3.4.1"
   code_builder:
     dependency: transitive
     description:
@@ -185,6 +185,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "3.1.1"
+  country_picker:
+    dependency: "direct main"
+    description:
+      name: country_picker
+      sha256: aa975b41c8052298d227ff7ff58d6eddcad0196127445f72af7456224c9ef104
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.0.20"
   crypto:
     dependency: transitive
     description:
@@ -217,6 +225,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.3.0"
+  email_validator:
+    dependency: "direct main"
+    description:
+      name: email_validator
+      sha256: e9a90f27ab2b915a27d7f9c2a7ddda5dd752d6942616ee83529b686fc086221b
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.1.17"
   fake_async:
     dependency: transitive
     description:
@@ -233,6 +249,30 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "6.1.4"
+  firebase_auth:
+    dependency: "direct main"
+    description:
+      name: firebase_auth
+      sha256: e5254a39daab8c5bc76b17f5a161c11a7a97a3718cd314f460e2b4366c850c7d
+      url: "https://pub.dev"
+    source: hosted
+    version: "4.4.1"
+  firebase_auth_platform_interface:
+    dependency: transitive
+    description:
+      name: firebase_auth_platform_interface
+      sha256: "5d5f283517ba34afd69ef448cc81ea23bcf8887393bedae4f70f45060b045fb9"
+      url: "https://pub.dev"
+    source: hosted
+    version: "6.13.0"
+  firebase_auth_web:
+    dependency: transitive
+    description:
+      name: firebase_auth_web
+      sha256: c631ec90d05c990fe971774ff12e96ee88fc3dd22839d5cab3b04c8693859116
+      url: "https://pub.dev"
+    source: hosted
+    version: "5.3.1"
   firebase_core:
     dependency: "direct main"
     description:
@@ -296,6 +336,14 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
+  fluttericon:
+    dependency: "direct main"
+    description:
+      name: fluttericon
+      sha256: "252fa8043826e93d972a602497a260cb3d62b5aea6d045793e4381590f2c1e99"
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.0.0"
   frontend_server_client:
     dependency: transitive
     description:
@@ -432,6 +480,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "4.0.2"
+  intl:
+    dependency: transitive
+    description:
+      name: intl
+      sha256: "910f85bce16fb5c6f614e117efa303e85a1731bb0081edf3604a2ae6e9a3cc91"
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.17.0"
   io:
     dependency: transitive
     description:

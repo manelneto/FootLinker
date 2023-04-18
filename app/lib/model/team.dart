@@ -37,7 +37,7 @@ class Team {
       country: json['team']['country'] ?? '',
       founded: json['team']['founded'] ?? -1,
       national: json['team']['national'] ?? false,
-      logo: json['team']['logo'] ?? "",
+      logo: json['team']['logo'] ?? '',
     );
   }
 
@@ -49,8 +49,19 @@ class Team {
     );
   }
 
+  Map<String, dynamic> toJson() => {
+        'id': id,
+        'name': name,
+        'code': code,
+        'country': country,
+        'founded': founded,
+        'national': national,
+        'logo': logo,
+      };
+
   void show() {
     print(
-        'TEAM id: $id name: $name code: $code country: $country founded: $founded national: $national logo: $logo\n');
+      'TEAM id: $id name: $name code: $code country: $country founded: $founded national: $national logo: $logo\n',
+    );
   }
 }

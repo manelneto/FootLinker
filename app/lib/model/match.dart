@@ -57,8 +57,28 @@ class Match {
     );
   }
 
+  Map<String, dynamic> toJson() => {
+        'fixture': {
+          'id': id,
+          'referee': referee,
+          'date': date,
+          'timestamp': timestamp,
+          'venue': venue.toJson(),
+        },
+        'league': league.toJson(),
+        'teams': {
+          'home': home.toJson(),
+          'away': away.toJson(),
+        },
+        'goals': {
+          'home': homeGoals,
+          'away': awayGoals,
+        }
+      };
+
   void show() {
     print(
-        'MATCH id: $id referee: $referee date: $date timestamp: $timestamp venue: ${venue.name} league: ${league.name} home: ${home.name} away: ${away.name} homeGoals: $homeGoals awayGoals: $awayGoals\n');
+      'MATCH id: $id referee: $referee date: $date timestamp: $timestamp venue: ${venue.name} league: ${league.name} home: ${home.name} away: ${away.name} homeGoals: $homeGoals awayGoals: $awayGoals\n',
+    );
   }
 }
