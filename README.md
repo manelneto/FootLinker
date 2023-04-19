@@ -1,3 +1,5 @@
+<a href="https://github.com/FEUP-LEIC-ES-2022-23/2LEIC07T5/actions"><img src="https://github.com/FEUP-LEIC-ES-2022-23/2LEIC07T5/workflows/tests/badge.svg" alt="Build Status"></a>
+
 # 2LEIC07T5
 
 FootLinker Development Report
