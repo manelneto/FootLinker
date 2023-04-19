@@ -20,4 +20,4 @@ jobs:
           api-level: 29
           arch: x86_64
           profile: Nexus 6
-          script: cd ./app && dart test_driver/app_test.dart
+          script: cd ./app && flutter pub get && dart test_driver/app_test.dart
