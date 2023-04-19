@@ -20,6 +20,7 @@ class ProfilePage extends StatelessWidget {
         userDoc.snapshots();
 
     return Scaffold(
+      key: const Key('profile'),
       appBar: AppBar(
         title: const Text(
           'Perfil',
@@ -31,6 +32,7 @@ class ProfilePage extends StatelessWidget {
         centerTitle: true,
         actions: [
           IconButton(
+            key: const Key('logout'),
             icon: const Icon(Icons.exit_to_app),
             iconSize: 25,
             onPressed: () {

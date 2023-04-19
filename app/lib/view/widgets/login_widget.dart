@@ -36,44 +36,36 @@ class _LoginWidgetState extends State<LoginWidget> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             TextFormField(
+              key: const Key('email'),
               controller: loginController.emailController,
               cursorColor: Colors.white,
               textInputAction: TextInputAction.next,
-              decoration: const InputDecoration(
-                labelText: 'E-mail',
-              ),
+              decoration: const InputDecoration(labelText: 'E-mail'),
               autovalidateMode: AutovalidateMode.onUserInteraction,
               validator: (email) =>
                   email != null && !EmailValidator.validate(email)
                       ? 'O e-mail inserido não é válido'
                       : null,
             ),
-            const SizedBox(
-              height: 20,
-            ),
+            const SizedBox(height: 20),
             TextFormField(
+              key: const Key('password'),
               controller: loginController.passwordController,
               textInputAction: TextInputAction.done,
-              decoration: const InputDecoration(
-                labelText: 'Senha',
-              ),
+              decoration: const InputDecoration(labelText: 'Senha'),
               obscureText: true,
               autovalidateMode: AutovalidateMode.onUserInteraction,
               validator: (password) => password != null && password.length < 6
                   ? 'A senha deve ter pelo menos 6 caracteres'
                   : null,
             ),
-            const SizedBox(
-              height: 40,
-            ),
+            const SizedBox(height: 40),
             ElevatedButton.icon(
+              key: const Key('login'),
               style: ElevatedButton.styleFrom(
                 minimumSize: const Size.fromHeight(50),
               ),
-              icon: const Icon(
-                Icons.lock,
-                size: 30,
-              ),
+              icon: const Icon(Icons.lock, size: 30),
               label: const Text(
                 'Entrar',
                 style: TextStyle(fontSize: 25),
@@ -81,9 +73,7 @@ class _LoginWidgetState extends State<LoginWidget> {
               onPressed: () =>
                   loginController.signIn(context, widget.navigatorKey),
             ),
-            const SizedBox(
-              height: 40,
-            ),
+            const SizedBox(height: 40),
             RichText(
               text: TextSpan(
                 style: const TextStyle(

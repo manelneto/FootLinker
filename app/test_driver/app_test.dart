@@ -1,7 +1,8 @@
 import 'package:flutter_gherkin/flutter_gherkin.dart';
 import 'package:gherkin/gherkin.dart';
 import 'package:glob/glob.dart';
-import 'steps/tap_tile_n_times_step.dart';
+
+import 'steps/authentication_steps.dart';
 
 Future<void> main() {
   final config = FlutterTestConfiguration()
@@ -11,8 +12,13 @@ Future<void> main() {
       TestRunSummaryReporter(),
       JsonReporter(path: './report.json')
     ]
-    ..stepDefinitions = [tapTileNTimesStep()]
-    ..customStepParameterDefinitions = []
+    ..stepDefinitions = [
+      givenNotBeLoggedIn(),
+      whenFillField(),
+      whenTapButton(),
+      thenBeLoggedIn(),
+      thenNotBeLoggedIn(),
+    ]
     ..restartAppBetweenScenarios = true
     ..targetAppPath = 'test_driver/app.dart';
   return GherkinRunner().execute(config);
