@@ -75,6 +75,7 @@ class _LoginWidgetState extends State<LoginWidget> {
             ),
             const SizedBox(height: 40),
             RichText(
+              key: const Key('create_account'),
               text: TextSpan(
                 style: const TextStyle(
                   color: Colors.green,
