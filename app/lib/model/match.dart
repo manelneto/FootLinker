@@ -75,4 +75,33 @@ class Match {
           'away': awayGoals,
         }
       };
+
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is Match &&
+          runtimeType == other.runtimeType &&
+          id == other.id &&
+          referee == other.referee &&
+          date == other.date &&
+          timestamp == other.timestamp &&
+          venue == other.venue &&
+          league == other.league &&
+          home == other.home &&
+          away == other.away &&
+          homeGoals == other.homeGoals &&
+          awayGoals == other.awayGoals;
+
+  @override
+  int get hashCode =>
+      id.hashCode ^
+      referee.hashCode ^
+      date.hashCode ^
+      timestamp.hashCode ^
+      venue.hashCode ^
+      league.hashCode ^
+      home.hashCode ^
+      away.hashCode ^
+      homeGoals.hashCode ^
+      awayGoals.hashCode;
 }

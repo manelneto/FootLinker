@@ -2,6 +2,7 @@ import 'package:app/controller/team_fetcher.dart';
 import 'package:app/model/team.dart';
 import 'package:app/view/widgets/team_list_tile.dart';
 import 'package:flutter/material.dart';
+import 'package:http/io_client.dart';
 
 class TeamsPage extends StatefulWidget {
   const TeamsPage({
@@ -34,7 +35,7 @@ class _TeamsPageState extends State<TeamsPage> {
 
   FutureBuilder _teamsData() {
     return FutureBuilder<List<Team>>(
-      future: TeamFetcher().fetchTeamsByCountry('portugal'),
+      future: TeamFetcher().fetchTeamsByCountry('portugal', IOClient()),
       builder: (BuildContext context, AsyncSnapshot<List<Team>> snapshot) {
         if (snapshot.hasData) {
           List<Team> data = snapshot.data!;

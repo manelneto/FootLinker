@@ -2,6 +2,7 @@ import 'package:app/controller/match_fetcher.dart';
 import 'package:app/model/match.dart';
 import 'package:app/view/widgets/match_list_tile.dart';
 import 'package:flutter/material.dart';
+import 'package:http/io_client.dart';
 import 'package:location/location.dart';
 
 class NearbyMatchesPage extends StatefulWidget {
@@ -69,7 +70,7 @@ class _NearbyMatchesPageState extends State<NearbyMatchesPage> {
 
   FutureBuilder _matchesData() {
     return FutureBuilder<List<Match>>(
-      future: MatchFetcher().fetchNextMatchesByLocation(_userLocation, 9),
+      future: MatchFetcher().fetchNextMatchesByLocation(_userLocation, 9, IOClient()),
       builder: (BuildContext context, AsyncSnapshot<List<Match>> snapshot) {
         if (snapshot.hasData) {
           List<Match> data = snapshot.data!;
