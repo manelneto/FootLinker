@@ -32,7 +32,7 @@ void main() {
         headers: apiManagement.headers,
       ),
     ).thenAnswer(
-          (_) async => http.Response('Not Found', 404, reasonPhrase: 'Not Found'),
+      (_) async => http.Response('Not Found', 404, reasonPhrase: 'Not Found'),
     );
 
     final Venue venue = Venue.fromJson({
@@ -54,7 +54,8 @@ void main() {
     });
 
     test('Estádios de um país - Exceção', () async {
-      final venues = await venueFetcher.fetchVenuesByCountry('exception', client);
+      final venues =
+          await venueFetcher.fetchVenuesByCountry('exception', client);
       expect(venues, isA<List<Venue>>());
       expect(venues.length, 1);
       expect(venues[0], Venue.fromException(Exception('404 - Not Found')));

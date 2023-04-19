@@ -5,7 +5,8 @@ import 'package:http/http.dart' as http;
 class LeagueFetcher {
   ApiManagement apiManagement = ApiManagement();
 
-  Future<List<League>> fetchLeaguesByCountry(String country, http.Client client) async {
+  Future<List<League>> fetchLeaguesByCountry(
+      String country, http.Client client) async {
     List<League> leagues;
     try {
       List<dynamic> leaguesList =

@@ -43,7 +43,7 @@ void main() {
         headers: apiManagement.headers,
       ),
     ).thenAnswer(
-          (_) async => http.Response('Not Found', 404, reasonPhrase: 'Not Found'),
+      (_) async => http.Response('Not Found', 404, reasonPhrase: 'Not Found'),
     );
     when(
       client.get(
@@ -51,7 +51,7 @@ void main() {
         headers: apiManagement.headers,
       ),
     ).thenAnswer(
-            (_) async => http.Response('Not Found', 404, reasonPhrase: 'Not Found'),
+      (_) async => http.Response('Not Found', 404, reasonPhrase: 'Not Found'),
     );
 
     final Match match = Match.fromJson({
@@ -102,7 +102,8 @@ void main() {
     });
 
     test('Próximos Jogos de uma Liga - Exceção', () async {
-      final matches = await matchFetcher.fetchNextMatchesByLeague(-1, -1, client);
+      final matches =
+          await matchFetcher.fetchNextMatchesByLeague(-1, -1, client);
       expect(matches, isA<List<Match>>());
       expect(matches.length, 1);
       expect(matches[0], Match.fromException(Exception('404 - Not Found')));
@@ -116,7 +117,8 @@ void main() {
     });
 
     test('Últimos Jogos de uma Liga - Exceção', () async {
-      final matches = await matchFetcher.fetchLastMatchesByLeague(-1, -1, client);
+      final matches =
+          await matchFetcher.fetchLastMatchesByLeague(-1, -1, client);
       expect(matches, isA<List<Match>>());
       expect(matches.length, 1);
       expect(matches[0], Match.fromException(Exception('404 - Not Found')));

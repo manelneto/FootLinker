@@ -5,7 +5,8 @@ import 'package:http/http.dart' as http;
 class VenueFetcher {
   ApiManagement apiManagement = ApiManagement();
 
-  Future<List<Venue>> fetchVenuesByCountry(String country, http.Client client) async {
+  Future<List<Venue>> fetchVenuesByCountry(
+      String country, http.Client client) async {
     List<Venue> venues;
     try {
       List<dynamic> venuesList =

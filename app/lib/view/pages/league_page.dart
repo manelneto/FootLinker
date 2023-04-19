@@ -39,7 +39,8 @@ class _LeaguePageState extends State<LeaguePage> {
 
   FutureBuilder _matchesData() {
     return FutureBuilder<List<Match>>(
-      future: MatchFetcher().fetchMatchesByLeague(widget.league.id, 9, IOClient()),
+      future:
+          MatchFetcher().fetchMatchesByLeague(widget.league.id, 9, IOClient()),
       builder: (BuildContext context, AsyncSnapshot<List<Match>> snapshot) {
         if (snapshot.hasData) {
           List<Match> data = snapshot.data!;

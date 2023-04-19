@@ -32,11 +32,20 @@ void main() {
       expect(venue.country, 'England');
       expect(venue.capacity, 76212);
       expect(venue.surface, 'grass');
-      expect(venue.image, 'https://media.api-sports.io/football/venues/556.png');
+      expect(
+          venue.image, 'https://media.api-sports.io/football/venues/556.png');
     });
 
     test('Estádio para JSON', () async {
-      Venue venue = Venue(id: 0, name: 'venue', address: 'address', city: 'city', country: 'country', capacity: 0, surface: 'surface', image: 'image');
+      Venue venue = Venue(
+          id: 0,
+          name: 'venue',
+          address: 'address',
+          city: 'city',
+          country: 'country',
+          capacity: 0,
+          surface: 'surface',
+          image: 'image');
 
       Map<String, dynamic> json = venue.toJson();
       expect(json.length, 8);

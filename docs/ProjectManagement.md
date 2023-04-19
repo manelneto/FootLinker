@@ -42,3 +42,5 @@ One thing that still puzzles us is related to the interaction with the API - it 
 **Plan:**
 
 ![Start of Iteration 2](/images/iteration2start.png)
+
+![End of Iteration 2](/images/iteration2end.png)

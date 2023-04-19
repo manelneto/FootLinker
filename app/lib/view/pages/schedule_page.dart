@@ -49,7 +49,8 @@ class SchedulePage extends StatelessWidget {
       body: Center(
         child: ListView(
           children: [
-            for (var match in scheduleState.schedule) MatchListTile(match: match),
+            for (var match in scheduleState.schedule)
+              MatchListTile(match: match),
           ],
         ),
       ),

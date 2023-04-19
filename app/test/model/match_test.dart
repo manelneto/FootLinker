@@ -11,7 +11,7 @@ void main() {
       Match match = Match.fromException(exception);
 
       expect(match.id, -1);
-      expect(match.referee,'referee');
+      expect(match.referee, 'referee');
       expect(match.date, 'date');
       expect(match.timestamp, -1);
       expect(match.venue, Venue.fromException(exception));
@@ -20,7 +20,6 @@ void main() {
       expect(match.homeGoals, -1);
       expect(match.awayGoals, -1);
     });
-
 
     test('Jogo a partir de JSON', () async {
       Map<String, dynamic> json = {
@@ -31,11 +30,7 @@ void main() {
           'date': '2020-02-06T14:00:00+00:00',
           'timestamp': 1580997600,
           'periods': {},
-          'venue': {
-            'id': 1887,
-            'name': 'Stade Municipal',
-            'city': 'Oued Zem'
-          },
+          'venue': {'id': 1887, 'name': 'Stade Municipal', 'city': 'Oued Zem'},
           'status': {}
         },
         'league': {
@@ -61,10 +56,7 @@ void main() {
             'winner': true
           }
         },
-        'goals': {
-          'home': 0,
-          'away': 1
-        },
+        'goals': {'home': 0, 'away': 1},
       };
 
       Match match = Match.fromJson(json);
@@ -72,20 +64,48 @@ void main() {
       expect(match.referee, '');
       expect(match.date, '2020-02-06T14:00:00+00:00');
       expect(match.timestamp, 1580997600);
-      expect(match.venue, Venue(id: 1887, name: 'Stade Municipal', city: 'Oued Zem'));
-      expect(match.league, League(id: 200, name: 'Botola Pro', country: 'Morocco', logo: 'https://media.api-sports.io/football/leagues/115.png'));
-      expect(match.home, Team(id: 967, name: 'Rapide Oued ZEM', logo: 'https://media.api-sports.io/football/teams/967.png'));
-      expect(match.away, Team(id: 968, name: 'Wydad AC', logo: 'https://media.api-sports.io/football/teams/968.png'));
+      expect(match.venue,
+          Venue(id: 1887, name: 'Stade Municipal', city: 'Oued Zem'));
+      expect(
+          match.league,
+          League(
+              id: 200,
+              name: 'Botola Pro',
+              country: 'Morocco',
+              logo: 'https://media.api-sports.io/football/leagues/115.png'));
+      expect(
+          match.home,
+          Team(
+              id: 967,
+              name: 'Rapide Oued ZEM',
+              logo: 'https://media.api-sports.io/football/teams/967.png'));
+      expect(
+          match.away,
+          Team(
+              id: 968,
+              name: 'Wydad AC',
+              logo: 'https://media.api-sports.io/football/teams/968.png'));
       expect(match.homeGoals, 0);
       expect(match.awayGoals, 1);
     });
 
     test('Jogo para JSON', () async {
       Venue venue = Venue(id: 0, name: 'venue', city: 'venueCity');
-      League league = League(id: 0, name: 'league', country: 'leagueCountry', logo: 'leagueLogo');
+      League league = League(
+          id: 0, name: 'league', country: 'leagueCountry', logo: 'leagueLogo');
       Team home = Team(id: 0, name: 'home', logo: 'homeLogo');
       Team away = Team(id: 1, name: 'away', logo: 'awayLogo');
-      Match match = Match(id: 0, referee: 'referee', date: 'date', timestamp: 0, venue: venue, league: league, home: home, away: away, homeGoals: 0, awayGoals: 0);
+      Match match = Match(
+          id: 0,
+          referee: 'referee',
+          date: 'date',
+          timestamp: 0,
+          venue: venue,
+          league: league,
+          home: home,
+          away: away,
+          homeGoals: 0,
+          awayGoals: 0);
 
       Map<String, dynamic> json = match.toJson();
       expect(json.length, 4);

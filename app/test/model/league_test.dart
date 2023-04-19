@@ -53,7 +53,8 @@ void main() {
     });
 
     test('Liga para JSON', () async {
-      League league = League(id: 0, name: 'league', country: 'country', logo: 'logo');
+      League league =
+          League(id: 0, name: 'league', country: 'country', logo: 'logo');
 
       Map<String, dynamic> json = league.toJson();
       expect(json.length, 4);
