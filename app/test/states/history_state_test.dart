@@ -12,34 +12,43 @@ void main() {
     League league = League(id: 0, name: 'league', country: 'leagueCountry', logo: 'leagueLogo');
     Team home = Team(id: 0, name: 'home', logo: 'homeLogo');
     Team away = Team(id: 1, name: 'away', logo: 'awayLogo');
-    Match match = Match(id: 0, referee: 'referee', date: 'date', timestamp: 0, venue: venue, league: league, home: home, away: away, homeGoals: 1, awayGoals: 1);
+    Match match0 = Match(id: 0, referee: 'referee', date: 'date', timestamp: 0, venue: venue, league: league, home: home, away: away, homeGoals: 1, awayGoals: 1);
+    Match match1 = Match(id: 1, referee: 'referee', date: 'date', timestamp: 1, venue: venue, league: league, home: home, away: away, homeGoals: 1, awayGoals: 1);
 
     test('Histórico começa vazio', () async {
       expect(historyState.history.isEmpty, isTrue);
     });
 
     testWidgets('Adicionar jogo ao histórico', (WidgetTester tester) async {
-      historyState.addMatch(match);
+      historyState.addMatch(match0);
       expect(historyState.history.length, 1);
-      expect(historyState.history[0], match);
+      expect(historyState.history[0], match0);
     });
 
     testWidgets('Adicionar jogo duplicado ao histórico', (WidgetTester tester) async {
-      historyState.addMatch(match);
-      historyState.addMatch(match);
+      historyState.addMatch(match0);
+      historyState.addMatch(match0);
       expect(historyState.history.length, 1);
-      expect(historyState.history[0], match);
+      expect(historyState.history[0], match0);
     });
 
     testWidgets('Remover jogo do histórico', (WidgetTester tester) async {
-      historyState.addMatch(match);
-      historyState.removeMatch(match);
+      historyState.addMatch(match0);
+      historyState.removeMatch(match0);
       expect(historyState.history.isEmpty, isTrue);
     });
 
     testWidgets('Remover jogo inexistente do histórico', (WidgetTester tester) async {
-      historyState.removeMatch(match);
+      historyState.removeMatch(match0);
       expect(historyState.history.isEmpty, isTrue);
+    });
+
+    testWidgets('Ordenação do histórico', (WidgetTester tester) async {
+      historyState.addMatch(match1);
+      historyState.addMatch(match0);
+      expect(historyState.history.length, 2);
+      expect(historyState.history[0], match1);
+      expect(historyState.history[1], match0);
     });
   });
 }

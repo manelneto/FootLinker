@@ -8,7 +8,7 @@ class HistoryState extends ChangeNotifier {
     if (!history.contains(match)) {
       history.add(match);
       history.sort(
-            (a, b) => a.timestamp.compareTo(b.timestamp),
+            (b, a) => a.timestamp.compareTo(b.timestamp),
       );
       notifyListeners();
     }
