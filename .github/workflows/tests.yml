@@ -7,6 +7,9 @@ on:
 jobs:
   drive:
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./app
     steps:
     - uses: actions/checkout@v1
     - uses: subosito/flutter-action@v1
