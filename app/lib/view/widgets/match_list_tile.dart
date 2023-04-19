@@ -73,18 +73,47 @@ class MatchListTile extends StatelessWidget {
       ),
       onTap: () {
         if (match.homeGoals != -1 && match.awayGoals != -1) {
-          historyState.addMatch(match, context);
+          historyState.addMatch(match);
+          showSnackBar(match, 'adicionado ao histórico',
+              historyState.removeMatch, context);
         } else if (match.homeGoals == -1 && match.awayGoals == -1) {
-          scheduleState.addMatch(match, context);
+          scheduleState.addMatch(match);
+          showSnackBar(match, 'adicionado ao calendário',
+              scheduleState.removeMatch, context);
         }
       },
       onLongPress: () {
         if (match.homeGoals != -1 && match.awayGoals != -1) {
-          historyState.removeMatch(match, context);
+          historyState.removeMatch(match);
+          showSnackBar(
+              match, 'removido do histórico', historyState.addMatch, context);
         } else if (match.homeGoals == -1 && match.awayGoals == -1) {
-          scheduleState.removeMatch(match, context);
+          scheduleState.removeMatch(match);
+          showSnackBar(
+              match, 'removido do calendário', scheduleState.addMatch, context);
         }
       },
     );
+  }
+
+  void showSnackBar(Match match, String text, void Function(Match) function,
+      BuildContext context) {
+    var snackBar = SnackBar(
+      content: Center(
+        child: Text(
+          '${match.home.name} - ${match.away.name} $text!',
+        ),
+      ),
+      action: SnackBarAction(
+        label: 'Anular',
+        onPressed: () => function(match),
+      ),
+      duration: const Duration(
+        seconds: 1,
+      ),
+    );
+    ScaffoldMessenger.of(context)
+      ..removeCurrentSnackBar()
+      ..showSnackBar(snackBar);
   }
 }
