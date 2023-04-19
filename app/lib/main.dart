@@ -1,4 +1,5 @@
-import 'package:app/app_state.dart';
+import 'package:app/states/history_state.dart';
+import 'package:app/states/schedule_state.dart';
 import 'package:app/view/pages/start_page.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
@@ -20,8 +21,11 @@ class App extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ChangeNotifierProvider(
-      create: (context) => AppState(),
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (context) => HistoryState()),
+        ChangeNotifierProvider(create: (context) => ScheduleState()),
+      ],
       child: MaterialApp(
         scaffoldMessengerKey: scaffoldMessengerKey,
         navigatorKey: navigatorKey,

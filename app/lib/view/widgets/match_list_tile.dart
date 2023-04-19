@@ -1,5 +1,6 @@
-import 'package:app/app_state.dart';
 import 'package:app/model/match.dart';
+import 'package:app/states/history_state.dart';
+import 'package:app/states/schedule_state.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -13,7 +14,8 @@ class MatchListTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var appState = context.watch<AppState>();
+    var historyState = context.watch<HistoryState>();
+    var scheduleState = context.watch<ScheduleState>();
 
     String title = '${match.home.name} - ${match.away.name}';
     if (match.homeGoals != -1 && match.awayGoals != -1) {
@@ -71,18 +73,47 @@ class MatchListTile extends StatelessWidget {
       ),
       onTap: () {
         if (match.homeGoals != -1 && match.awayGoals != -1) {
-          appState.addToHistory(match, context);
+          historyState.addMatch(match);
+          showSnackBar(match, 'adicionado ao histórico',
+              historyState.removeMatch, context);
         } else if (match.homeGoals == -1 && match.awayGoals == -1) {
-          appState.addToSchedule(match, context);
+          scheduleState.addMatch(match);
+          showSnackBar(match, 'adicionado ao calendário',
+              scheduleState.removeMatch, context);
         }
       },
       onLongPress: () {
         if (match.homeGoals != -1 && match.awayGoals != -1) {
-          appState.removeFromHistory(match, context);
+          historyState.removeMatch(match);
+          showSnackBar(
+              match, 'removido do histórico', historyState.addMatch, context);
         } else if (match.homeGoals == -1 && match.awayGoals == -1) {
-          appState.removeFromSchedule(match, context);
+          scheduleState.removeMatch(match);
+          showSnackBar(
+              match, 'removido do calendário', scheduleState.addMatch, context);
         }
       },
     );
+  }
+
+  void showSnackBar(Match match, String text, void Function(Match) function,
+      BuildContext context) {
+    var snackBar = SnackBar(
+      content: Center(
+        child: Text(
+          '${match.home.name} - ${match.away.name} $text!',
+        ),
+      ),
+      action: SnackBarAction(
+        label: 'Anular',
+        onPressed: () => function(match),
+      ),
+      duration: const Duration(
+        seconds: 1,
+      ),
+    );
+    ScaffoldMessenger.of(context)
+      ..removeCurrentSnackBar()
+      ..showSnackBar(snackBar);
   }
 }

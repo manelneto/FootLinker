@@ -35,8 +35,8 @@ class ApiManagement {
     rapid = !rapid;
   }
 
-  Future<dynamic> sendRequest(String request) async {
-    final response = await http.get(
+  Future<dynamic> sendRequest(String request, http.Client client) async {
+    final response = await client.get(
       Uri.parse(url + request),
       headers: headers,
     );
@@ -47,7 +47,7 @@ class ApiManagement {
         throw Exception('Alcançando o limite diário de pedidos à API');
       }*/
       var body = jsonDecode(response.body);
-      if (body['errors'].length > 0) {
+      if (body.containsKey('errors') && body['errors'].length > 0) {
         throw Exception(body['errors'][0]);
       }
       List<dynamic> list = body['response'];

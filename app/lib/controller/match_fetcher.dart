@@ -4,14 +4,15 @@ import 'package:app/controller/venue_fetcher.dart';
 import 'package:app/model/match.dart';
 import 'package:app/model/venue.dart';
 import 'package:geocoding/geocoding.dart';
+import 'package:http/http.dart' as http;
 import 'package:location/location.dart';
 
 class MatchFetcher {
   ApiManagement apiManagement = ApiManagement();
 
   Future<List<Match>> fetchNextMatchesByLocation(
-      LocationData locationData, int next) async {
-    List<Venue> venues = await VenueFetcher().fetchVenuesByCountry('portugal');
+      LocationData locationData, int next, http.Client client, ) async {
+    List<Venue> venues = await VenueFetcher().fetchVenuesByCountry('portugal', client);
 
     Venue closestVenue = Venue(id: 0, name: 'name', city: 'city');
     double minDistance = double.maxFinite;
@@ -25,7 +26,7 @@ class MatchFetcher {
               locationData.latitude,
               locationData.longitude,
               location.latitude,
-              location.longitude);
+              location.longitude,);
           if (distance < minDistance) {
             closestVenue = venue;
             minDistance = distance;
@@ -39,7 +40,7 @@ class MatchFetcher {
     List<Match> matches;
     try {
       List<dynamic> matchesList = await apiManagement
-          .sendRequest('fixtures?venue=${closestVenue.id}&next=$next');
+          .sendRequest('fixtures?venue=${closestVenue.id}&next=$next', client);
       matches =
           matchesList.map((dynamic item) => Match.fromJson(item)).toList();
     } on Exception catch (e) {
@@ -49,11 +50,11 @@ class MatchFetcher {
     return matches;
   }
 
-  Future<List<Match>> fetchNextMatchesByLeague(int league, int next) async {
+  Future<List<Match>> fetchNextMatchesByLeague(int league, int next, http.Client client) async {
     List<Match> matches;
     try {
       List<dynamic> matchesList =
-          await apiManagement.sendRequest('fixtures?league=$league&next=$next');
+          await apiManagement.sendRequest('fixtures?league=$league&next=$next', client);
       matches =
           matchesList.map((dynamic item) => Match.fromJson(item)).toList();
     } on Exception catch (e) {
@@ -63,11 +64,11 @@ class MatchFetcher {
     return matches;
   }
 
-  Future<List<Match>> fetchLastMatchesByLeague(int league, int last) async {
+  Future<List<Match>> fetchLastMatchesByLeague(int league, int last, http.Client client) async {
     List<Match> matches;
     try {
       List<dynamic> matchesList =
-          await apiManagement.sendRequest('fixtures?league=$league&last=$last');
+          await apiManagement.sendRequest('fixtures?league=$league&last=$last', client);
       matches =
           matchesList.map((dynamic item) => Match.fromJson(item)).toList();
     } on Exception catch (e) {
@@ -77,9 +78,9 @@ class MatchFetcher {
     return matches;
   }
 
-  Future<List<Match>> fetchMatchesByLeague(int league, int number) async {
-    List<Match> last = await fetchLastMatchesByLeague(league, number);
-    List<Match> next = await fetchNextMatchesByLeague(league, number);
+  Future<List<Match>> fetchMatchesByLeague(int league, int number, http.Client client) async {
+    List<Match> last = await fetchLastMatchesByLeague(league, number, client);
+    List<Match> next = await fetchNextMatchesByLeague(league, number, client);
     List<Match> matches = last + next;
     matches.sort((a, b) => (a.timestamp).compareTo(b.timestamp));
     return matches;

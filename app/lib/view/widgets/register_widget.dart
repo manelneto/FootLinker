@@ -36,6 +36,7 @@ class _RegisterWidgetState extends State<RegisterWidget> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             TextFormField(
+              key: const Key('name'),
               controller: registerController.nameController,
               cursorColor: Colors.white,
               textInputAction: TextInputAction.next,
@@ -51,6 +52,7 @@ class _RegisterWidgetState extends State<RegisterWidget> {
               height: 20,
             ),
             TextFormField(
+              key: const Key('surname'),
               controller: registerController.surnameController,
               cursorColor: Colors.white,
               textInputAction: TextInputAction.next,
@@ -66,6 +68,7 @@ class _RegisterWidgetState extends State<RegisterWidget> {
               height: 20,
             ),
             TextFormField(
+              key: const Key('email'),
               controller: registerController.emailController,
               cursorColor: Colors.white,
               textInputAction: TextInputAction.next,
@@ -82,6 +85,7 @@ class _RegisterWidgetState extends State<RegisterWidget> {
               height: 20,
             ),
             TextFormField(
+              key: const Key('password'),
               controller: registerController.passwordController,
               textInputAction: TextInputAction.done,
               decoration: const InputDecoration(
@@ -97,6 +101,7 @@ class _RegisterWidgetState extends State<RegisterWidget> {
               height: 40,
             ),
             ElevatedButton.icon(
+              key: const Key('register'),
               style: ElevatedButton.styleFrom(
                 minimumSize: const Size.fromHeight(50),
               ),

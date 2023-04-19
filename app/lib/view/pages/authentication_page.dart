@@ -2,8 +2,8 @@ import 'package:app/view/widgets/login_widget.dart';
 import 'package:app/view/widgets/register_widget.dart';
 import 'package:flutter/material.dart';
 
-class AuthPage extends StatefulWidget {
-  const AuthPage({
+class AuthenticationPage extends StatefulWidget {
+  const AuthenticationPage({
     super.key,
     required this.navigatorKey,
   });
@@ -11,10 +11,10 @@ class AuthPage extends StatefulWidget {
   final GlobalKey<NavigatorState> navigatorKey;
 
   @override
-  State<AuthPage> createState() => _AuthPageState();
+  State<AuthenticationPage> createState() => _AuthenticationPageState();
 }
 
-class _AuthPageState extends State<AuthPage> {
+class _AuthenticationPageState extends State<AuthenticationPage> {
   bool isLogin = true;
 
   Widget signInOrUp() {
@@ -33,6 +33,7 @@ class _AuthPageState extends State<AuthPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      key: const Key('authentication'),
       appBar: AppBar(
         title: const Text(
           'FootLinker',

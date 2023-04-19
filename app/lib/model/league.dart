@@ -48,9 +48,22 @@ class League {
         'logo': logo,
       };
 
-  void show() {
-    print(
-      'LEAGUE id: $id name: $name type: $type country: $country logo: $logo\n',
-    );
-  }
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is League &&
+          runtimeType == other.runtimeType &&
+          id == other.id &&
+          name == other.name &&
+          type == other.type &&
+          country == other.country &&
+          logo == other.logo;
+
+  @override
+  int get hashCode =>
+      id.hashCode ^
+      name.hashCode ^
+      type.hashCode ^
+      country.hashCode ^
+      logo.hashCode;
 }
