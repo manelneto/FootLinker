@@ -15,10 +15,9 @@ jobs:
         with:
           channel: stable
       - name: Run Acceptance Tests
-        working-directory: ./app
         uses: reactivecircus/android-emulator-runner@v2
         with:
           api-level: 29
           arch: x86_64
           profile: Nexus 6
-          script: dart test_driver/app_test.dart
+          script: cd ./app && dart test_driver/app_test.dart
