@@ -14,6 +14,7 @@ class SchedulePage extends StatelessWidget {
 
     if (scheduleState.schedule.isEmpty) {
       return Scaffold(
+        key: const Key('schedulePage'),
         appBar: AppBar(
           title: const Text(
             'Calendário',
@@ -34,6 +35,7 @@ class SchedulePage extends StatelessWidget {
     }
 
     return Scaffold(
+      key: const Key('schedulePage'),
       appBar: AppBar(
         title: const Text(
           'Calendário',
