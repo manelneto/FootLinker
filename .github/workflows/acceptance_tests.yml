@@ -11,11 +11,16 @@ jobs:
       run:
         working-directory: ./app
     steps:
-      - name: checkout
+      - name: Checkout
         uses: actions/checkout@v3
-
-      - name: run tests
+      - name: Setup Flutter SDK
+        uses: subosito/flutter-action@v1
+        with:
+          channel: stable
+      - name: Run Acceptance Tests
         uses: reactivecircus/android-emulator-runner@v2
         with:
           api-level: 29
+          arch: x86_64
+          profile: Nexus 6
           script: dart test_driver/app_test.dart
