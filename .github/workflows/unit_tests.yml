@@ -1,4 +1,4 @@
-name: tests
+name: Units Tests
 on:
   push:
     branches: [ "main" ]
@@ -11,6 +11,6 @@ jobs:
       run:
         working-directory: ./app
     steps:
-    - uses: actions/checkout@v1
+    - uses: actions/checkout@v2
     - uses: subosito/flutter-action@v1
     - run: flutter test
