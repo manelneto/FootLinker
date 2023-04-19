@@ -1,4 +1,4 @@
-import 'package:app/app_state.dart';
+import 'package:app/states/history_state.dart';
 import 'package:app/view/widgets/match_list_tile.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -10,9 +10,9 @@ class HistoryPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var appState = context.watch<AppState>();
+    var historyState = context.watch<HistoryState>();
 
-    if (appState.history.isEmpty) {
+    if (historyState.history.isEmpty) {
       return Scaffold(
         appBar: AppBar(
           title: const Text(
@@ -47,7 +47,7 @@ class HistoryPage extends StatelessWidget {
       body: Center(
         child: ListView(
           children: [
-            for (var match in appState.history) MatchListTile(match: match),
+            for (var match in historyState.history) MatchListTile(match: match),
           ],
         ),
       ),

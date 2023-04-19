@@ -1,4 +1,4 @@
-import 'package:app/app_state.dart';
+import 'package:app/states/schedule_state.dart';
 import 'package:app/view/widgets/match_list_tile.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -10,9 +10,9 @@ class SchedulePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var appState = context.watch<AppState>();
+    var scheduleState = context.watch<ScheduleState>();
 
-    if (appState.schedule.isEmpty) {
+    if (scheduleState.schedule.isEmpty) {
       return Scaffold(
         appBar: AppBar(
           title: const Text(
@@ -47,7 +47,7 @@ class SchedulePage extends StatelessWidget {
       body: Center(
         child: ListView(
           children: [
-            for (var match in appState.schedule) MatchListTile(match: match),
+            for (var match in scheduleState.schedule) MatchListTile(match: match),
           ],
         ),
       ),
