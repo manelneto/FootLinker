@@ -139,6 +139,7 @@ class _HomePageState extends State<HomePage> {
             children: [
               const Spacer(),
               FloatingActionButton(
+                key: const Key('history'),
                 heroTag: 'history',
                 onPressed: () => _navigateToHistoryPage(context),
                 tooltip: 'History Page',
@@ -147,6 +148,7 @@ class _HomePageState extends State<HomePage> {
               ),
               const SizedBox(width: 5),
               FloatingActionButton(
+                key: const Key('schedule'),
                 heroTag: 'schedule',
                 onPressed: () => _navigateToSchedulePage(context),
                 tooltip: 'Schedule Page',

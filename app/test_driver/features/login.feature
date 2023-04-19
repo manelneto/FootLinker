@@ -1,4 +1,4 @@
-Feature: Authentication
+Feature: Login
 
   Background:
     Given I am not logged in

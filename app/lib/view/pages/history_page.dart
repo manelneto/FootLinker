@@ -14,6 +14,7 @@ class HistoryPage extends StatelessWidget {
 
     if (historyState.history.isEmpty) {
       return Scaffold(
+        key: const Key('historyPage'),
         appBar: AppBar(
           title: const Text(
             'Histórico',
@@ -35,6 +36,7 @@ class HistoryPage extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
+        key: const Key('historyPage'),
         title: const Text(
           'Histórico',
           style: TextStyle(

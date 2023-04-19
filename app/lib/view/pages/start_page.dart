@@ -18,13 +18,9 @@ class StartPage extends StatelessWidget {
         stream: FirebaseAuth.instance.authStateChanges(),
         builder: (context, snapshot) {
           if (snapshot.hasData) {
-            return HomePage(
-              navigatorKey: navigatorKey,
-            );
+            return HomePage(navigatorKey: navigatorKey);
           } else {
-            return AuthenticationPage(
-              navigatorKey: navigatorKey,
-            );
+            return AuthenticationPage(navigatorKey: navigatorKey);
           }
         },
       ),
