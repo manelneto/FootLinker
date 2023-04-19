@@ -59,9 +59,26 @@ class Team {
         'logo': logo,
       };
 
-  void show() {
-    print(
-      'TEAM id: $id name: $name code: $code country: $country founded: $founded national: $national logo: $logo\n',
-    );
-  }
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is Team &&
+          runtimeType == other.runtimeType &&
+          id == other.id &&
+          name == other.name &&
+          code == other.code &&
+          country == other.country &&
+          founded == other.founded &&
+          national == other.national &&
+          logo == other.logo;
+
+  @override
+  int get hashCode =>
+      id.hashCode ^
+      name.hashCode ^
+      code.hashCode ^
+      country.hashCode ^
+      founded.hashCode ^
+      national.hashCode ^
+      logo.hashCode;
 }

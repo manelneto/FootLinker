@@ -75,10 +75,4 @@ class Match {
           'away': awayGoals,
         }
       };
-
-  void show() {
-    print(
-      'MATCH id: $id referee: $referee date: $date timestamp: $timestamp venue: ${venue.name} league: ${league.name} home: ${home.name} away: ${away.name} homeGoals: $homeGoals awayGoals: $awayGoals\n',
-    );
-  }
 }

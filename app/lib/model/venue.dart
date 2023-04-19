@@ -59,9 +59,28 @@ class Venue {
         'image': image,
       };
 
-  void show() {
-    print(
-      'VENUE id: $id name: $name address: $address city: $city country: $country capacity: $capacity surface: $surface image: $image\n',
-    );
-  }
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is Venue &&
+          runtimeType == other.runtimeType &&
+          id == other.id &&
+          name == other.name &&
+          address == other.address &&
+          city == other.city &&
+          country == other.country &&
+          capacity == other.capacity &&
+          surface == other.surface &&
+          image == other.image;
+
+  @override
+  int get hashCode =>
+      id.hashCode ^
+      name.hashCode ^
+      address.hashCode ^
+      city.hashCode ^
+      country.hashCode ^
+      capacity.hashCode ^
+      surface.hashCode ^
+      image.hashCode;
 }

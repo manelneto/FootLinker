@@ -19,31 +19,31 @@ void main() {
       expect(historyState.history.isEmpty, isTrue);
     });
 
-    testWidgets('Adicionar jogo ao histórico', (WidgetTester tester) async {
+    test('Adicionar jogo ao histórico', () async {
       historyState.addMatch(match0);
       expect(historyState.history.length, 1);
       expect(historyState.history[0], match0);
     });
 
-    testWidgets('Adicionar jogo duplicado ao histórico', (WidgetTester tester) async {
+    test('Adicionar jogo duplicado ao histórico', () async {
       historyState.addMatch(match0);
       historyState.addMatch(match0);
       expect(historyState.history.length, 1);
       expect(historyState.history[0], match0);
     });
 
-    testWidgets('Remover jogo do histórico', (WidgetTester tester) async {
+    test('Remover jogo do histórico', () async {
       historyState.addMatch(match0);
       historyState.removeMatch(match0);
       expect(historyState.history.isEmpty, isTrue);
     });
 
-    testWidgets('Remover jogo inexistente do histórico', (WidgetTester tester) async {
+    test('Remover jogo inexistente do histórico', () async {
       historyState.removeMatch(match0);
       expect(historyState.history.isEmpty, isTrue);
     });
 
-    testWidgets('Ordenação do histórico', (WidgetTester tester) async {
+    test('Ordenação do histórico', () async {
       historyState.addMatch(match1);
       historyState.addMatch(match0);
       expect(historyState.history.length, 2);
