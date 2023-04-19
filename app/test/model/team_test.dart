@@ -16,7 +16,6 @@ void main() {
       expect(team.logo, 'https://picsum.photos/200');
     });
 
-
     test('Equipa a partir de JSON', () async {
       Map<String, dynamic> json = {
         'team': {
@@ -50,7 +49,14 @@ void main() {
     });
 
     test('Equipa para JSON', () async {
-      Team team = Team(id: 0, name: 'team', code: 'code', country: 'country', founded: 0, national: false, logo: 'logo');
+      Team team = Team(
+          id: 0,
+          name: 'team',
+          code: 'code',
+          country: 'country',
+          founded: 0,
+          national: false,
+          logo: 'logo');
 
       Map<String, dynamic> json = team.toJson();
       expect(json.length, 7);

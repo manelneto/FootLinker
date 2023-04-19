@@ -1,5 +1,5 @@
-import 'package:flutter/material.dart';
 import 'package:app/model/match.dart';
+import 'package:flutter/material.dart';
 
 class HistoryState extends ChangeNotifier {
   var history = <Match>[];
@@ -8,7 +8,7 @@ class HistoryState extends ChangeNotifier {
     if (!history.contains(match)) {
       history.add(match);
       history.sort(
-            (b, a) => a.timestamp.compareTo(b.timestamp),
+        (b, a) => a.timestamp.compareTo(b.timestamp),
       );
       notifyListeners();
     }

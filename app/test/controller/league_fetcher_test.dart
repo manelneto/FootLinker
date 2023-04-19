@@ -5,6 +5,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:http/http.dart' as http;
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
+
 import 'mocks.dart';
 
 @GenerateMocks([http.Client])
@@ -31,9 +32,9 @@ void main() {
         headers: apiManagement.headers,
       ),
     ).thenAnswer(
-          (_) async => http.Response('Not Found', 404, reasonPhrase: 'Not Found'),
+      (_) async => http.Response('Not Found', 404, reasonPhrase: 'Not Found'),
     );
-    
+
     final League league = League.fromJson(
       {
         'league': {
@@ -58,7 +59,8 @@ void main() {
     });
 
     test('Ligas de um país - Exceção', () async {
-      final leagues = await leagueFetcher.fetchLeaguesByCountry('exception', client);
+      final leagues =
+          await leagueFetcher.fetchLeaguesByCountry('exception', client);
       expect(leagues, isA<List<League>>());
       expect(leagues.length, 1);
       expect(leagues[0], League.fromException(Exception('404 - Not Found')));

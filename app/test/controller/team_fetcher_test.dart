@@ -32,7 +32,7 @@ void main() {
         headers: apiManagement.headers,
       ),
     ).thenAnswer(
-          (_) async => http.Response('Not Found', 404, reasonPhrase: 'Not Found'),
+      (_) async => http.Response('Not Found', 404, reasonPhrase: 'Not Found'),
     );
 
     final Team team = Team.fromJson({

@@ -1,5 +1,5 @@
-import 'package:flutter/material.dart';
 import 'package:app/model/match.dart';
+import 'package:flutter/material.dart';
 
 class ScheduleState extends ChangeNotifier {
   var schedule = <Match>[];
@@ -8,7 +8,7 @@ class ScheduleState extends ChangeNotifier {
     if (!schedule.contains(match)) {
       schedule.add(match);
       schedule.sort(
-            (a, b) => a.timestamp.compareTo(b.timestamp),
+        (a, b) => a.timestamp.compareTo(b.timestamp),
       );
       notifyListeners();
     }
