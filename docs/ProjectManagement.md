@@ -44,3 +44,17 @@ One thing that still puzzles us is related to the interaction with the API - it 
 ![Start of Iteration 2](/images/iteration2start.png)
 
 ![End of Iteration 2](/images/iteration2end.png)
+
+**Retrospective:**
+
+We believe that Iteration 2 went as planned and resulted in a great product increment. The major factor that contributed to this was that the tasks were distributed in a balanced way among the teams members and everyone did their job.
+
+The biggest issue was that we were not all working at the same pace, which combined with the massive workload led to pushing the integration of some features closer to the deadline than we hoped.
+
+Something that keeps puzzling us is how to manage our time in a better way and, for the first time now, how to improve the use of GitHub Actions to do continuous integration.
+
+### Iteration 3
+
+**Plan:**
+
+![Start of Iteration 3](/images/iteration3start.png)
