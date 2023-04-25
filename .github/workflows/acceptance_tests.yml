@@ -1,26 +1,32 @@
 name: Acceptance Tests
 on:
-  push:
-    branches: [ "main" ]
   pull_request:
     branches: [ "main" ]
 jobs:
   android:
-    runs-on: macos-11
+    runs-on: macos-latest
     strategy:
       fail-fast: true
     steps:
-      - uses: actions/checkout@v3
-      - name: Setup Flutter SDK
+      - name: Checkout
+        uses: actions/checkout@v3
+      
+      - name: Setup Java
+        uses: actions/setup-java@v3
+        with:
+          distribution: "oracle"
+          java-version: "17"
+          
+      - name: Setup Flutter
         uses: subosito/flutter-action@v2
         with:
           channel: stable
-      - name: Install Flutter Dependencies
-        run: cd app && flutter pub get
+
       - name: Run Acceptance Tests
         uses: reactivecircus/android-emulator-runner@v2
         with:
           api-level: 29
+          target: google_apis
           arch: x86_64
           profile: Nexus 6
           script: cd app && flutter driver --target=test_driver/app.dart
