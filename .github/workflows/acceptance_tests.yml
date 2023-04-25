@@ -16,7 +16,7 @@ jobs:
         with:
           channel: stable
       - name: Install Flutter Dependencies
-        run: flutter pub get
+        run: pwd && ls && flutter pub get
       - name: Run Acceptance Tests
         uses: reactivecircus/android-emulator-runner@v2
         with:
