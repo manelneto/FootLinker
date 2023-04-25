@@ -51,7 +51,7 @@ We believe that Iteration 2 went as planned and resulted in a great product incr
 
 The biggest issue was that we were not all working at the same pace, which combined with the massive workload led to pushing the integration of some features closer to the deadline than we hoped.
 
-Something that keeps puzzling us is how to manage our time in a better way and, for the first time now, how to improve the use of GitHub Actions to do continuous integration.
+Something that keeps puzzling us is how to improve the use of GitHub Actions to do continuous integration and run the acceptance tests.
 
 ### Iteration 3
 
