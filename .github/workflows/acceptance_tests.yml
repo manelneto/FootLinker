@@ -5,20 +5,22 @@ on:
   pull_request:
     branches: [ "main" ]
 jobs:
-  drive_android:
-    runs-on: macos-latest
+  android:
+    runs-on: macos-11
+    strategy:
+      fail-fast: true
     steps:
-      - uses: actions/checkout@v2
-      - uses: subosito/flutter-action@v1
+      - uses: actions/checkout@v3
+      - name: Setup Flutter SDK
+        uses: subosito/flutter-action@v2
         with:
-          flutter-version: '2.8.1'
-          channel: 'stable'
-      
+          channel: stable
+      - name: Install Flutter Dependencies
+        run: flutter pub get
       - name: Run Acceptance Tests
         uses: reactivecircus/android-emulator-runner@v2
         with:
-          target: playstore
           api-level: 29
           arch: x86_64
           profile: Nexus 6
-          script: flutter driver --target=test_driver/app.dart
+          script: pwd && ls && flutter driver --target=test_driver/app.dart
