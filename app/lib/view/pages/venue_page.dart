@@ -60,11 +60,12 @@ class _VenuePageState extends State<VenuePage> {
         backgroundColor: Theme.of(context).colorScheme.primaryContainer,
         centerTitle: true,
       ),
-      body: Padding(
-        padding: const EdgeInsets.fromLTRB(25.0, 25.0, 25.0, 25.0),
-        child: Column(
+      body: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
+            const SizedBox(
+              height: 40.0,
+            ),
             CircleAvatar(
               backgroundImage: NetworkImage(widget.venue.image),
               radius: 100.0,
@@ -83,14 +84,16 @@ class _VenuePageState extends State<VenuePage> {
                 textAlign: TextAlign.center,
               ),
             ),
+            const SizedBox(
+              height: 40.0,
+            ),
             Container(
-              margin: const EdgeInsets.fromLTRB(0.0, 40.0, 0.0, 0.0),
+              padding: const EdgeInsets.fromLTRB(20.0, 0.0, 20.0, 0.0),
               height: 350.0,
               child: _locationData(),
             ),
           ],
         ),
-      ),
     );
   }
 }
