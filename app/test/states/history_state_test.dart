@@ -7,7 +7,6 @@ import 'package:flutter_test/flutter_test.dart';
 
 void main() {
   group('Histórico', () {
-    HistoryState historyState = HistoryState();
     Venue venue = Venue(id: 0, name: 'venue', city: 'venueCity');
     League league = League(
         id: 0, name: 'league', country: 'leagueCountry', logo: 'leagueLogo');
@@ -37,16 +36,19 @@ void main() {
         awayGoals: 1);
 
     test('Histórico começa vazio', () async {
+      HistoryState historyState = HistoryState();
       expect(historyState.history.isEmpty, isTrue);
     });
 
     test('Adicionar jogo ao histórico', () async {
+      HistoryState historyState = HistoryState();
       historyState.addMatch(match0);
       expect(historyState.history.length, 1);
       expect(historyState.history[0], match0);
     });
 
     test('Adicionar jogo duplicado ao histórico', () async {
+      HistoryState historyState = HistoryState();
       historyState.addMatch(match0);
       historyState.addMatch(match0);
       expect(historyState.history.length, 1);
@@ -54,17 +56,20 @@ void main() {
     });
 
     test('Remover jogo do histórico', () async {
+      HistoryState historyState = HistoryState();
       historyState.addMatch(match0);
       historyState.removeMatch(match0);
       expect(historyState.history.isEmpty, isTrue);
     });
 
     test('Remover jogo inexistente do histórico', () async {
+      HistoryState historyState = HistoryState();
       historyState.removeMatch(match0);
       expect(historyState.history.isEmpty, isTrue);
     });
 
     test('Ordenação do histórico', () async {
+      HistoryState historyState = HistoryState();
       historyState.addMatch(match1);
       historyState.addMatch(match0);
       expect(historyState.history.length, 2);
