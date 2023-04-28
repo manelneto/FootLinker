@@ -56,6 +56,7 @@ void main() {
     ).thenAnswer(
       (_) async => http.Response('Not Found', 404, reasonPhrase: 'Not Found'),
     );
+
     when(
       client.get(
         Uri.parse('${apiManagement.url}fixtures?team=0&next=0'),
@@ -83,6 +84,15 @@ void main() {
     when(
       client.get(
         Uri.parse('${apiManagement.url}fixtures?team=-1&next=-1'),
+        headers: apiManagement.headers,
+      ),
+    ).thenAnswer(
+      (_) async => http.Response('Not Found', 404, reasonPhrase: 'Not Found'),
+    );
+
+    when(
+      client.get(
+        Uri.parse('${apiManagement.url}fixtures?team=-1&last=-1'),
         headers: apiManagement.headers,
       ),
     ).thenAnswer(
@@ -199,6 +209,14 @@ void main() {
       expect(matches, isA<List<Match>>());
       expect(matches.length, 1);
       expect(matches[0], match);
+    });
+
+    test('Últimos Jogos de uma Equipa - Exceção', () async {
+      final matches =
+          await matchFetcher.fetchLastMatchesByLeague(-1, -1, client);
+      expect(matches, isA<List<Match>>());
+      expect(matches.length, 1);
+      expect(matches[0], Match.fromException(Exception('404 - Not Found')));
     });
   });
 }
