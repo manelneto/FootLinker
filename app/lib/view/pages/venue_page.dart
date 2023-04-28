@@ -62,39 +62,39 @@ class _VenuePageState extends State<VenuePage> {
       ),
       body: SingleChildScrollView(
         child: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              const SizedBox(
-                height: 40.0,
-              ),
-              CircleAvatar(
-                foregroundImage: NetworkImage(widget.venue.image),
-                radius: 100.0,
-              ),
-              const SizedBox(
-                height: 40.0,
-              ),
-              FittedBox(
-                fit: BoxFit.fitWidth,
-                child: Text(
-                  text,
-                  style: const TextStyle(
-                    fontWeight: FontWeight.bold,
-                    fontSize: 17.5,
-                  ),
-                  textAlign: TextAlign.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            const SizedBox(
+              height: 40.0,
+            ),
+            CircleAvatar(
+              foregroundImage: NetworkImage(widget.venue.image),
+              radius: 100.0,
+            ),
+            const SizedBox(
+              height: 40.0,
+            ),
+            FittedBox(
+              fit: BoxFit.fitWidth,
+              child: Text(
+                text,
+                style: const TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 17.5,
                 ),
+                textAlign: TextAlign.center,
               ),
-              const SizedBox(
-                height: 40.0,
-              ),
-              Container(
-                padding: const EdgeInsets.fromLTRB(20.0, 0.0, 20.0, 0.0),
-                height: 350.0,
-                child: _locationData(),
-              ),
-            ],
-          ),
+            ),
+            const SizedBox(
+              height: 40.0,
+            ),
+            Container(
+              padding: const EdgeInsets.fromLTRB(20.0, 0.0, 20.0, 0.0),
+              height: 350.0,
+              child: _locationData(),
+            ),
+          ],
+        ),
       ),
     );
   }
