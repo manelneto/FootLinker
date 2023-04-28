@@ -53,6 +53,17 @@ void main() {
     ).thenAnswer(
       (_) async => http.Response('Not Found', 404, reasonPhrase: 'Not Found'),
     );
+    when(
+      client.get(
+        Uri.parse('${apiManagement.url}fixtures?team=0&next=0'),
+        headers: apiManagement.headers,
+      ),
+    ).thenAnswer(
+      (_) async => http.Response(
+        '{"response": [{"fixture": {"id": 239625, "referee": null, "timezone": "UTC", "date": "2020-02-06T14:00:00+00:00", "timestamp": 1580997600, "periods": {}, "venue": {"id": 1887, "name": "Stade Municipal", "city": "Oued Zem"}, "status": {}}, "league": {"id": 200, "name": "Botola Pro", "country": "Morocco", "logo": "https://media.api-sports.io/football/leagues/115.png", "flag": "https://media.api-sports.io/flags/ma.svg", "season": 2019, "round": "Regular Season - 14"}, "teams": {"home": {"id": 967, "name": "Rapide Oued ZEM", "logo": "https://media.api-sports.io/football/teams/967.png", "winner": false}, "away": {"id": 968, "name": "Wydad AC", "logo": "https://media.api-sports.io/football/teams/968.png", "winner": true}}, "goals": {"home": 0, "away": 1}}]}',
+        200,
+      ),
+    );
 
     final Match match = Match.fromJson({
       'fixture': {
@@ -141,6 +152,13 @@ void main() {
       expect(matches.length, 2);
       expect(matches[0], Match.fromException(Exception('404 - Not Found')));
       expect(matches[1], Match.fromException(Exception('404 - Not Found')));
+    });
+
+    test('Próximos Jogos de uma Equipa', () async {
+      final matches = await matchFetcher.fetchNextMatchesByTeam(0, 0, client);
+      expect(matches, isA<List<Match>>());
+      expect(matches.length, 1);
+      expect(matches[0], match);
     });
   });
 }
