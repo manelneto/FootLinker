@@ -26,6 +26,7 @@ void main() {
         200,
       ),
     );
+
     when(
       client.get(
         Uri.parse('${apiManagement.url}fixtures?league=0&last=0'),
@@ -37,6 +38,7 @@ void main() {
         200,
       ),
     );
+
     when(
       client.get(
         Uri.parse('${apiManagement.url}fixtures?league=-1&next=-1'),
@@ -45,6 +47,7 @@ void main() {
     ).thenAnswer(
       (_) async => http.Response('Not Found', 404, reasonPhrase: 'Not Found'),
     );
+
     when(
       client.get(
         Uri.parse('${apiManagement.url}fixtures?league=-1&last=-1'),
@@ -63,6 +66,15 @@ void main() {
         '{"response": [{"fixture": {"id": 239625, "referee": null, "timezone": "UTC", "date": "2020-02-06T14:00:00+00:00", "timestamp": 1580997600, "periods": {}, "venue": {"id": 1887, "name": "Stade Municipal", "city": "Oued Zem"}, "status": {}}, "league": {"id": 200, "name": "Botola Pro", "country": "Morocco", "logo": "https://media.api-sports.io/football/leagues/115.png", "flag": "https://media.api-sports.io/flags/ma.svg", "season": 2019, "round": "Regular Season - 14"}, "teams": {"home": {"id": 967, "name": "Rapide Oued ZEM", "logo": "https://media.api-sports.io/football/teams/967.png", "winner": false}, "away": {"id": 968, "name": "Wydad AC", "logo": "https://media.api-sports.io/football/teams/968.png", "winner": true}}, "goals": {"home": 0, "away": 1}}]}',
         200,
       ),
+    );
+
+    when(
+      client.get(
+        Uri.parse('${apiManagement.url}fixtures?team=-1&next=-1'),
+        headers: apiManagement.headers,
+      ),
+    ).thenAnswer(
+      (_) async => http.Response('Not Found', 404, reasonPhrase: 'Not Found'),
     );
 
     final Match match = Match.fromJson({
@@ -105,6 +117,7 @@ void main() {
       },
     });
 
+    //league tests
     test('Próximos Jogos de uma Liga', () async {
       final matches = await matchFetcher.fetchNextMatchesByLeague(0, 0, client);
       expect(matches, isA<List<Match>>());
@@ -154,11 +167,19 @@ void main() {
       expect(matches[1], Match.fromException(Exception('404 - Not Found')));
     });
 
+    //team tests
     test('Próximos Jogos de uma Equipa', () async {
       final matches = await matchFetcher.fetchNextMatchesByTeam(0, 0, client);
       expect(matches, isA<List<Match>>());
       expect(matches.length, 1);
       expect(matches[0], match);
+    });
+
+    test('Próximos Jogos de uma Equipa - Exceção', () async {
+      final matches = await matchFetcher.fetchNextMatchesByTeam(-1, -1, client);
+      expect(matches, isA<List<Match>>());
+      expect(matches.length, 1);
+      expect(matches[0], Match.fromException(Exception('404 - Not Found')));
     });
   });
 }
