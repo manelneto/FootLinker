@@ -220,7 +220,7 @@ void main() {
     });
 
     test('Jogos de uma Equipa', () async {
-      final matches = await matchFetcher.fetchMatchesByLeague(0, 0, client);
+      final matches = await matchFetcher.fetchMatchesByTeam(0, 0, client);
       expect(
         matches,
         isA<List<Match>>(),
@@ -228,6 +228,14 @@ void main() {
       expect(matches.length, 2);
       expect(matches[0], match);
       expect(matches[1], match);
+    });
+
+    test('Jogos de uma Equipa - Exceção', () async {
+      final matches = await matchFetcher.fetchMatchesByTeam(-1, -1, client);
+      expect(matches, isA<List<Match>>());
+      expect(matches.length, 2);
+      expect(matches[0], Match.fromException(Exception('404 - Not Found')));
+      expect(matches[1], Match.fromException(Exception('404 - Not Found')));
     });
   });
 }
