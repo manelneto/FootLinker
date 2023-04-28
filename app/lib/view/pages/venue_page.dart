@@ -51,9 +51,9 @@ class _VenuePageState extends State<VenuePage> {
     }
     return Scaffold(
       appBar: AppBar(
-        title: const Text(
-          'Estádio',
-          style: TextStyle(
+        title: Text(
+          widget.venue.name,
+          style: const TextStyle(
             fontWeight: FontWeight.bold,
           ),
         ),
@@ -65,26 +65,12 @@ class _VenuePageState extends State<VenuePage> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            FittedBox(
-              fit: BoxFit.fitWidth,
-              child: Text(
-                widget.venue.name.toUpperCase(),
-                style: const TextStyle(
-                  letterSpacing: 1.0,
-                  fontSize: 30.0,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-            ),
-            const SizedBox(
-              height: 25.0,
-            ),
             CircleAvatar(
               backgroundImage: NetworkImage(widget.venue.image),
               radius: 100.0,
             ),
             const SizedBox(
-              height: 25.0,
+              height: 40.0,
             ),
             FittedBox(
               fit: BoxFit.fitWidth,
@@ -92,13 +78,13 @@ class _VenuePageState extends State<VenuePage> {
                 text,
                 style: const TextStyle(
                   fontWeight: FontWeight.bold,
-                  fontSize: 15.0,
+                  fontSize: 17.5,
                 ),
                 textAlign: TextAlign.center,
               ),
             ),
             Container(
-              margin: const EdgeInsets.fromLTRB(0.0, 25.0, 0.0, 0.0),
+              margin: const EdgeInsets.fromLTRB(0.0, 40.0, 0.0, 0.0),
               height: 350.0,
               child: _locationData(),
             ),
