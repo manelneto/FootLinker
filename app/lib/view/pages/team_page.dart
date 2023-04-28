@@ -39,8 +39,7 @@ class _TeamPageState extends State<TeamPage> {
 
   FutureBuilder _matchesData() {
     return FutureBuilder<List<Match>>(
-      future:
-      MatchFetcher().fetchMatchesByTeam(widget.team.id, 2, IOClient()),
+      future: MatchFetcher().fetchMatchesByTeam(widget.team.id, 3, IOClient()),
       builder: (BuildContext context, AsyncSnapshot<List<Match>> snapshot) {
         if (snapshot.hasData) {
           List<Match> data = snapshot.data!;
@@ -48,7 +47,7 @@ class _TeamPageState extends State<TeamPage> {
         } else if (snapshot.hasError) {
           return Text('${snapshot.error}');
         }
-        return const CircularProgressIndicator();
+        return const LinearProgressIndicator();
       },
     );
   }
@@ -66,8 +65,28 @@ class _TeamPageState extends State<TeamPage> {
         backgroundColor: Theme.of(context).colorScheme.primaryContainer,
         centerTitle: true,
       ),
-      body: Center(
-        child: _matchesData(),
+      body: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          const SizedBox(
+            height: 20.0,
+          ),
+          Image.network(
+            widget.team.logo,
+            loadingBuilder: (context, child, progress) {
+              return progress == null ? child : const LinearProgressIndicator();
+            },
+            fit: BoxFit.contain,
+            semanticLabel: 'Team Logo',
+            height: 100.0,
+          ),
+          const SizedBox(
+            height: 20.0,
+          ),
+          Expanded(
+            child: _matchesData(),
+          )
+        ],
       ),
     );
   }
