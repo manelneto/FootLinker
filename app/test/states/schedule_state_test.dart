@@ -7,7 +7,6 @@ import 'package:flutter_test/flutter_test.dart';
 
 void main() {
   group('Calendário', () {
-    ScheduleState scheduleState = ScheduleState();
     Venue venue = Venue(id: 0, name: 'venue', city: 'venueCity');
     League league = League(
         id: 0, name: 'league', country: 'leagueCountry', logo: 'leagueLogo');
@@ -37,16 +36,19 @@ void main() {
         awayGoals: -1);
 
     test('Calendário começa vazio', () async {
+      ScheduleState scheduleState = ScheduleState();
       expect(scheduleState.schedule.isEmpty, isTrue);
     });
 
     test('Adicionar jogo ao calendário', () async {
+      ScheduleState scheduleState = ScheduleState();
       scheduleState.addMatch(match0);
       expect(scheduleState.schedule.length, 1);
       expect(scheduleState.schedule[0], match0);
     });
 
     test('Adicionar jogo duplicado ao calendário', () async {
+      ScheduleState scheduleState = ScheduleState();
       scheduleState.addMatch(match0);
       scheduleState.addMatch(match0);
       expect(scheduleState.schedule.length, 1);
@@ -54,17 +56,20 @@ void main() {
     });
 
     test('Remover jogo do calendário', () async {
+      ScheduleState scheduleState = ScheduleState();
       scheduleState.addMatch(match0);
       scheduleState.removeMatch(match0);
       expect(scheduleState.schedule.isEmpty, isTrue);
     });
 
     test('Remover jogo inexistente do calendário', () async {
+      ScheduleState scheduleState = ScheduleState();
       scheduleState.removeMatch(match0);
       expect(scheduleState.schedule.isEmpty, isTrue);
     });
 
     test('Ordenação do calendário', () async {
+      ScheduleState scheduleState = ScheduleState();
       scheduleState.addMatch(match1);
       scheduleState.addMatch(match0);
       expect(scheduleState.schedule.length, 2);
