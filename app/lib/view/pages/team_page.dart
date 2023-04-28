@@ -1,9 +1,11 @@
 import 'package:app/controller/match_fetcher.dart';
 import 'package:app/model/team.dart';
 import 'package:app/model/match.dart';
+import 'package:app/states/followed_state.dart';
 import 'package:app/view/widgets/match_list_tile.dart';
 import 'package:flutter/material.dart';
 import 'package:http/io_client.dart';
+import 'package:provider/provider.dart';
 
 class TeamPage extends StatefulWidget {
   const TeamPage({
@@ -54,6 +56,15 @@ class _TeamPageState extends State<TeamPage> {
 
   @override
   Widget build(BuildContext context) {
+    var followedState = context.watch<FollowedState>();
+
+    IconData icon;
+    if (followedState.followed.contains(widget.team)) {
+      icon = Icons.favorite;
+    } else {
+      icon = Icons.favorite_border;
+    }
+
     return Scaffold(
       appBar: AppBar(
         title: Text(
@@ -71,14 +82,31 @@ class _TeamPageState extends State<TeamPage> {
           const SizedBox(
             height: 20.0,
           ),
-          Image.network(
-            widget.team.logo,
-            loadingBuilder: (context, child, progress) {
-              return progress == null ? child : const LinearProgressIndicator();
-            },
-            fit: BoxFit.contain,
-            semanticLabel: 'Team Logo',
-            height: 100.0,
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              const Spacer(),
+              Image.network(
+                widget.team.logo,
+                loadingBuilder: (context, child, progress) {
+                  return progress == null
+                      ? child
+                      : const LinearProgressIndicator();
+                },
+                fit: BoxFit.contain,
+                semanticLabel: 'Team Logo',
+                height: 100.0,
+              ),
+              const Spacer(),
+              ElevatedButton.icon(
+                onPressed: () {
+                  followedState.toggleTeam(widget.team);
+                },
+                icon: Icon(icon),
+                label: const Text('Seguir'),
+              ),
+              const Spacer(),
+            ],
           ),
           const SizedBox(
             height: 20.0,

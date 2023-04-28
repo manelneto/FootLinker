@@ -22,8 +22,8 @@ class MatchListTile extends StatelessWidget {
       title += '\n${match.homeGoals} - ${match.awayGoals}';
     }
 
-    String subtitle =
-        '${match.venue.name}\n${match.date.substring(8, 10)}/${match.date.substring(5, 7)} - ${match.date.substring(11, 16)}';
+    String subtitle = match.date.length >= 16 ?
+        '${match.venue.name}\n${match.date.substring(8, 10)}/${match.date.substring(5, 7)} - ${match.date.substring(11, 16)}' : '';
 
     return ListTile(
       leading: ConstrainedBox(
