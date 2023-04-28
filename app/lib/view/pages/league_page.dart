@@ -48,7 +48,7 @@ class _LeaguePageState extends State<LeaguePage> {
         } else if (snapshot.hasError) {
           return Text('${snapshot.error}');
         }
-        return const CircularProgressIndicator();
+        return const LinearProgressIndicator();
       },
     );
   }
@@ -66,8 +66,28 @@ class _LeaguePageState extends State<LeaguePage> {
         backgroundColor: Theme.of(context).colorScheme.primaryContainer,
         centerTitle: true,
       ),
-      body: Center(
-        child: _matchesData(),
+      body: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          const SizedBox(
+            height: 20.0,
+          ),
+          Image.network(
+            widget.league.logo,
+            loadingBuilder: (context, child, progress) {
+              return progress == null ? child : const LinearProgressIndicator();
+            },
+            fit: BoxFit.contain,
+            semanticLabel: 'League Logo',
+            height: 100.0,
+          ),
+          const SizedBox(
+            height: 20.0,
+          ),
+          Expanded(
+            child: _matchesData(),
+          )
+        ],
       ),
     );
   }
