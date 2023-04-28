@@ -3,7 +3,7 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 
 class ApiManagement {
-  bool rapid = true;
+  bool rapid = false;
   String url = '';
   Map<String, String> headers = {};
 
