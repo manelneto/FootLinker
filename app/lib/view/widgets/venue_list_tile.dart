@@ -49,6 +49,10 @@ class VenueListTile extends StatelessWidget {
           textAlign: TextAlign.center,
         ),
       ),
+      trailing: const SizedBox(
+        height: double.infinity,
+        child: Icon(Icons.arrow_forward_ios),
+      ),
       onTap: () {
         _navigateToVenuePage(context, venue);
       },

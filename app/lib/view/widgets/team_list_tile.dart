@@ -49,7 +49,10 @@ class TeamListTile extends StatelessWidget {
           textAlign: TextAlign.center,
         ),
       ),
-      trailing: const Icon(Icons.arrow_forward_ios),
+      trailing: const SizedBox(
+        height: double.infinity,
+        child: Icon(Icons.arrow_forward_ios),
+      ),
       onTap: () {
         _navigateToTeamPage(context, team);
       },
