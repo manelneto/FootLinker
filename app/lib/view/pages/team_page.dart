@@ -1,23 +1,25 @@
 import 'package:app/controller/match_fetcher.dart';
-import 'package:app/model/league.dart';
 import 'package:app/model/match.dart';
+import 'package:app/model/team.dart';
+import 'package:app/states/followed_state.dart';
 import 'package:app/view/widgets/match_list_tile.dart';
 import 'package:flutter/material.dart';
 import 'package:http/io_client.dart';
+import 'package:provider/provider.dart';
 
-class LeaguePage extends StatefulWidget {
-  const LeaguePage({
+class TeamPage extends StatefulWidget {
+  const TeamPage({
     super.key,
-    required this.league,
+    required this.team,
   });
 
-  final League league;
+  final Team team;
 
   @override
-  State<LeaguePage> createState() => _LeaguePageState();
+  State<TeamPage> createState() => _TeamPageState();
 }
 
-class _LeaguePageState extends State<LeaguePage> {
+class _TeamPageState extends State<TeamPage> {
   Widget _matches(data) {
     if (data.length > 0) {
       return ListView.builder(
@@ -39,8 +41,7 @@ class _LeaguePageState extends State<LeaguePage> {
 
   FutureBuilder _matchesData() {
     return FutureBuilder<List<Match>>(
-      future:
-          MatchFetcher().fetchMatchesByLeague(widget.league.id, 9, IOClient()),
+      future: MatchFetcher().fetchMatchesByTeam(widget.team.id, 3, IOClient()),
       builder: (BuildContext context, AsyncSnapshot<List<Match>> snapshot) {
         if (snapshot.hasData) {
           List<Match> data = snapshot.data!;
@@ -55,11 +56,19 @@ class _LeaguePageState extends State<LeaguePage> {
 
   @override
   Widget build(BuildContext context) {
+    var followedState = context.watch<FollowedState>();
+
+    IconData icon;
+    if (followedState.followed.contains(widget.team)) {
+      icon = Icons.favorite;
+    } else {
+      icon = Icons.favorite_border;
+    }
+
     return Scaffold(
-      key: const Key('leaguePage'),
       appBar: AppBar(
         title: Text(
-          widget.league.name,
+          widget.team.name,
           style: const TextStyle(
             fontWeight: FontWeight.bold,
           ),
@@ -73,14 +82,31 @@ class _LeaguePageState extends State<LeaguePage> {
           const SizedBox(
             height: 20.0,
           ),
-          Image.network(
-            widget.league.logo,
-            loadingBuilder: (context, child, progress) {
-              return progress == null ? child : const LinearProgressIndicator();
-            },
-            fit: BoxFit.contain,
-            semanticLabel: 'League Logo',
-            height: 100.0,
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              const Spacer(),
+              Image.network(
+                widget.team.logo,
+                loadingBuilder: (context, child, progress) {
+                  return progress == null
+                      ? child
+                      : const LinearProgressIndicator();
+                },
+                fit: BoxFit.contain,
+                semanticLabel: 'Team Logo',
+                height: 100.0,
+              ),
+              const Spacer(),
+              ElevatedButton.icon(
+                onPressed: () {
+                  followedState.toggleTeam(widget.team);
+                },
+                icon: Icon(icon),
+                label: const Text('Seguir'),
+              ),
+              const Spacer(),
+            ],
           ),
           const SizedBox(
             height: 20.0,

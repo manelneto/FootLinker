@@ -39,6 +39,7 @@ class _MapState extends State<MapWidget> {
     };
 
     return GoogleMap(
+      key: const Key('map'),
       onMapCreated: _onMapCreated,
       initialCameraPosition: CameraPosition(
         target: LatLng(widget.location.latitude, widget.location.longitude),

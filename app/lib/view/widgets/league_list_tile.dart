@@ -10,7 +10,7 @@ class LeagueListTile extends StatelessWidget {
 
   final League league;
 
-  void _navigateToMatchesPage(BuildContext context, League league) {
+  void _navigateToLeaguePage(BuildContext context, League league) {
     Navigator.of(context).push(
       MaterialPageRoute(
         builder: (context) => LeaguePage(league: league),
@@ -21,6 +21,7 @@ class LeagueListTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListTile(
+      key: const Key('leagueListTile'),
       leading: ConstrainedBox(
         constraints: const BoxConstraints(
           maxHeight: 50,
@@ -49,9 +50,12 @@ class LeagueListTile extends StatelessWidget {
           textAlign: TextAlign.center,
         ),
       ),
-      trailing: const Icon(Icons.arrow_forward_ios),
+      trailing: const SizedBox(
+        height: double.infinity,
+        child: Icon(Icons.arrow_forward_ios),
+      ),
       onTap: () {
-        _navigateToMatchesPage(context, league);
+        _navigateToLeaguePage(context, league);
       },
     );
   }

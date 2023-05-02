@@ -1,4 +1,5 @@
 import 'package:app/model/team.dart';
+import 'package:app/view/pages/team_page.dart';
 import 'package:flutter/material.dart';
 
 class TeamListTile extends StatelessWidget {
@@ -9,9 +10,18 @@ class TeamListTile extends StatelessWidget {
 
   final Team team;
 
+  void _navigateToTeamPage(BuildContext context, Team team) {
+    Navigator.of(context).push(
+      MaterialPageRoute(
+        builder: (context) => TeamPage(team: team),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return ListTile(
+      key: const Key('teamListTile'),
       leading: ConstrainedBox(
         constraints: const BoxConstraints(
           maxHeight: 60,
@@ -40,6 +50,13 @@ class TeamListTile extends StatelessWidget {
           textAlign: TextAlign.center,
         ),
       ),
+      trailing: const SizedBox(
+        height: double.infinity,
+        child: Icon(Icons.arrow_forward_ios),
+      ),
+      onTap: () {
+        _navigateToTeamPage(context, team);
+      },
     );
   }
 }

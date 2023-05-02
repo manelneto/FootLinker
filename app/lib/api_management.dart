@@ -2,8 +2,9 @@ import 'dart:convert';
 
 import 'package:http/http.dart' as http;
 
+bool rapid = true;
+
 class ApiManagement {
-  bool rapid = true;
   String url = '';
   Map<String, String> headers = {};
 
@@ -31,10 +32,6 @@ class ApiManagement {
     }
   }
 
-  void toggleProvider() {
-    rapid = !rapid;
-  }
-
   Future<dynamic> sendRequest(String request, http.Client client) async {
     final response = await client.get(
       Uri.parse(url + request),
@@ -42,17 +39,21 @@ class ApiManagement {
     );
 
     if (response.statusCode == 200) {
-      /*if (int.parse(response.headers['x-ratelimit-requests-remaining']!) <= 1) {
-        toggleProvider();
-        throw Exception('Alcançando o limite diário de pedidos à API');
-      }*/
+      if (response.headers.containsKey('x-ratelimit-requests-remaining') &&
+          int.parse(response.headers['x-ratelimit-requests-remaining']!) <= 1 &&
+          !rapid) {
+        rapid = true;
+        throw Exception('Erro na ligação à API. Tente novamente.');
+      }
       var body = jsonDecode(response.body);
       if (body.containsKey('errors') && body['errors'].length > 0) {
+        rapid = true;
         throw Exception(body['errors'][0]);
       }
       List<dynamic> list = body['response'];
       return list;
     } else {
+      rapid = true;
       throw Exception('${response.statusCode} - ${response.reasonPhrase}');
     }
   }

@@ -113,6 +113,7 @@ class _NearbyMatchesPageState extends State<NearbyMatchesPage> {
     }
 
     return Scaffold(
+      key: const Key('nearbyMatchesPage'),
       appBar: AppBar(
         title: const Text(
           'Jogos Perto',

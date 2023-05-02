@@ -29,6 +29,7 @@ class _RegisterWidgetState extends State<RegisterWidget> {
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
+      key: const Key('registedWidget'),
       padding: const EdgeInsets.all(20),
       child: Form(
         key: registerController.formKey,
@@ -36,7 +37,7 @@ class _RegisterWidgetState extends State<RegisterWidget> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             TextFormField(
-              key: const Key('name'),
+              key: const Key('nameFormField'),
               controller: registerController.nameController,
               cursorColor: Colors.white,
               textInputAction: TextInputAction.next,
@@ -52,7 +53,7 @@ class _RegisterWidgetState extends State<RegisterWidget> {
               height: 20,
             ),
             TextFormField(
-              key: const Key('surname'),
+              key: const Key('surnameFormField'),
               controller: registerController.surnameController,
               cursorColor: Colors.white,
               textInputAction: TextInputAction.next,
@@ -68,7 +69,7 @@ class _RegisterWidgetState extends State<RegisterWidget> {
               height: 20,
             ),
             TextFormField(
-              key: const Key('email'),
+              key: const Key('emailFormField'),
               controller: registerController.emailController,
               cursorColor: Colors.white,
               textInputAction: TextInputAction.next,
@@ -85,7 +86,7 @@ class _RegisterWidgetState extends State<RegisterWidget> {
               height: 20,
             ),
             TextFormField(
-              key: const Key('password'),
+              key: const Key('passwordFormField'),
               controller: registerController.passwordController,
               textInputAction: TextInputAction.done,
               decoration: const InputDecoration(
@@ -101,7 +102,7 @@ class _RegisterWidgetState extends State<RegisterWidget> {
               height: 40,
             ),
             ElevatedButton.icon(
-              key: const Key('register'),
+              key: const Key('registerButton'),
               style: ElevatedButton.styleFrom(
                 minimumSize: const Size.fromHeight(50),
               ),
@@ -120,6 +121,7 @@ class _RegisterWidgetState extends State<RegisterWidget> {
               height: 40,
             ),
             RichText(
+              key: const Key('haveAccount'),
               text: TextSpan(
                 style: const TextStyle(
                   color: Colors.green,

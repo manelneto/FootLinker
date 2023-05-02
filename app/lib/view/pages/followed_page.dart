@@ -1,23 +1,23 @@
-import 'package:app/states/history_state.dart';
-import 'package:app/view/widgets/match_list_tile.dart';
+import 'package:app/states/followed_state.dart';
+import 'package:app/view/widgets/team_list_tile.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-class HistoryPage extends StatelessWidget {
-  const HistoryPage({
+class FollowedPage extends StatelessWidget {
+  const FollowedPage({
     super.key,
   });
 
   @override
   Widget build(BuildContext context) {
-    var historyState = context.watch<HistoryState>();
+    var followedState = context.watch<FollowedState>();
 
-    if (historyState.history.isEmpty) {
+    if (followedState.followed.isEmpty) {
       return Scaffold(
-        key: const Key('historyPage'),
+        key: const Key('followedPage'),
         appBar: AppBar(
           title: const Text(
-            'Histórico',
+            'Favoritos',
             style: TextStyle(
               fontWeight: FontWeight.bold,
             ),
@@ -27,7 +27,7 @@ class HistoryPage extends StatelessWidget {
         ),
         body: const Center(
           child: Text(
-            'Ainda não adicionou nenhum jogo ao histórico...\nExperimente carregar num jogo para o adicionar ou manter premido para o remover!',
+            'Ainda não tem nenhuma equipa favorita...\nExperimente procurar uma equipa e adicioná-la aos favoritos!',
             textAlign: TextAlign.center,
           ),
         ),
@@ -35,10 +35,10 @@ class HistoryPage extends StatelessWidget {
     }
 
     return Scaffold(
+      key: const Key('followedPage'),
       appBar: AppBar(
-        key: const Key('historyPage'),
         title: const Text(
-          'Histórico',
+          'Favoritos',
           style: TextStyle(
             fontWeight: FontWeight.bold,
           ),
@@ -49,7 +49,7 @@ class HistoryPage extends StatelessWidget {
       body: Center(
         child: ListView(
           children: [
-            for (var match in historyState.history) MatchListTile(match: match),
+            for (var team in followedState.followed) TeamListTile(team: team),
           ],
         ),
       ),

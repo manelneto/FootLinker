@@ -64,27 +64,35 @@ void main() {
       expect(match.referee, '');
       expect(match.date, '2020-02-06T14:00:00+00:00');
       expect(match.timestamp, 1580997600);
-      expect(match.venue,
-          Venue(id: 1887, name: 'Stade Municipal', city: 'Oued Zem'));
       expect(
-          match.league,
-          League(
-              id: 200,
-              name: 'Botola Pro',
-              country: 'Morocco',
-              logo: 'https://media.api-sports.io/football/leagues/115.png'));
+        match.venue,
+        Venue(id: 1887, name: 'Stade Municipal', city: 'Oued Zem'),
+      );
       expect(
-          match.home,
-          Team(
-              id: 967,
-              name: 'Rapide Oued ZEM',
-              logo: 'https://media.api-sports.io/football/teams/967.png'));
+        match.league,
+        League(
+          id: 200,
+          name: 'Botola Pro',
+          country: 'Morocco',
+          logo: 'https://media.api-sports.io/football/leagues/115.png',
+        ),
+      );
       expect(
-          match.away,
-          Team(
-              id: 968,
-              name: 'Wydad AC',
-              logo: 'https://media.api-sports.io/football/teams/968.png'));
+        match.home,
+        Team(
+          id: 967,
+          name: 'Rapide Oued ZEM',
+          logo: 'https://media.api-sports.io/football/teams/967.png',
+        ),
+      );
+      expect(
+        match.away,
+        Team(
+          id: 968,
+          name: 'Wydad AC',
+          logo: 'https://media.api-sports.io/football/teams/968.png',
+        ),
+      );
       expect(match.homeGoals, 0);
       expect(match.awayGoals, 1);
     });
@@ -92,20 +100,25 @@ void main() {
     test('Jogo para JSON', () async {
       Venue venue = Venue(id: 0, name: 'venue', city: 'venueCity');
       League league = League(
-          id: 0, name: 'league', country: 'leagueCountry', logo: 'leagueLogo');
+        id: 0,
+        name: 'league',
+        country: 'leagueCountry',
+        logo: 'leagueLogo',
+      );
       Team home = Team(id: 0, name: 'home', logo: 'homeLogo');
       Team away = Team(id: 1, name: 'away', logo: 'awayLogo');
       Match match = Match(
-          id: 0,
-          referee: 'referee',
-          date: 'date',
-          timestamp: 0,
-          venue: venue,
-          league: league,
-          home: home,
-          away: away,
-          homeGoals: 0,
-          awayGoals: 0);
+        id: 0,
+        referee: 'referee',
+        date: 'date',
+        timestamp: 0,
+        venue: venue,
+        league: league,
+        home: home,
+        away: away,
+        homeGoals: 0,
+        awayGoals: 0,
+      );
 
       Map<String, dynamic> json = match.toJson();
       expect(json.length, 4);

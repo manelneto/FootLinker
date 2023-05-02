@@ -1,3 +1,4 @@
+import 'package:app/states/followed_state.dart';
 import 'package:app/states/history_state.dart';
 import 'package:app/states/schedule_state.dart';
 import 'package:app/view/pages/start_page.dart';
@@ -25,6 +26,7 @@ class App extends StatelessWidget {
       providers: [
         ChangeNotifierProvider(create: (context) => HistoryState()),
         ChangeNotifierProvider(create: (context) => ScheduleState()),
+        ChangeNotifierProvider(create: (context) => FollowedState()),
       ],
       child: MaterialApp(
         scaffoldMessengerKey: scaffoldMessengerKey,

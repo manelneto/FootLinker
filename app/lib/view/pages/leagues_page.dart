@@ -51,6 +51,7 @@ class _LeaguesPageState extends State<LeaguesPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      key: const Key('leaguesPage'),
       appBar: AppBar(
         title: const Text(
           'Ligas',

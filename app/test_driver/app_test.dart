@@ -19,7 +19,7 @@ Future<void> main() {
       whenTapButton(),
       thenBeLoggedIn(),
       thenNotBeLoggedIn(),
-      thenSee(),
+      thenSeePage(),
     ]
     ..restartAppBetweenScenarios = true
     ..targetAppPath = 'test_driver/app.dart'

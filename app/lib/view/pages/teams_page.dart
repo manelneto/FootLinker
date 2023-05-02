@@ -51,6 +51,7 @@ class _TeamsPageState extends State<TeamsPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      key: const Key('teamsPage'),
       appBar: AppBar(
         title: const Text(
           'Equipas',

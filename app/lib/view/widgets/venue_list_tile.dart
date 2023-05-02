@@ -21,6 +21,7 @@ class VenueListTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListTile(
+      key: const Key('teamListTile'),
       leading: ConstrainedBox(
         constraints: const BoxConstraints(
           maxHeight: 75,
@@ -48,6 +49,10 @@ class VenueListTile extends StatelessWidget {
           venue.city,
           textAlign: TextAlign.center,
         ),
+      ),
+      trailing: const SizedBox(
+        height: double.infinity,
+        child: Icon(Icons.arrow_forward_ios),
       ),
       onTap: () {
         _navigateToVenuePage(context, venue);

@@ -29,6 +29,7 @@ class _LoginWidgetState extends State<LoginWidget> {
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
+      key: const Key('loginWidget'),
       padding: const EdgeInsets.all(20),
       child: Form(
         key: loginController.formKey,
@@ -36,7 +37,7 @@ class _LoginWidgetState extends State<LoginWidget> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             TextFormField(
-              key: const Key('email'),
+              key: const Key('emailFormField'),
               controller: loginController.emailController,
               cursorColor: Colors.white,
               textInputAction: TextInputAction.next,
@@ -49,7 +50,7 @@ class _LoginWidgetState extends State<LoginWidget> {
             ),
             const SizedBox(height: 20),
             TextFormField(
-              key: const Key('password'),
+              key: const Key('passwordFormField'),
               controller: loginController.passwordController,
               textInputAction: TextInputAction.done,
               decoration: const InputDecoration(labelText: 'Senha'),
@@ -61,7 +62,7 @@ class _LoginWidgetState extends State<LoginWidget> {
             ),
             const SizedBox(height: 40),
             ElevatedButton.icon(
-              key: const Key('login'),
+              key: const Key('loginButton'),
               style: ElevatedButton.styleFrom(
                 minimumSize: const Size.fromHeight(50),
               ),
@@ -75,7 +76,7 @@ class _LoginWidgetState extends State<LoginWidget> {
             ),
             const SizedBox(height: 40),
             RichText(
-              key: const Key('create_account'),
+              key: const Key('createAccount'),
               text: TextSpan(
                 style: const TextStyle(
                   color: Colors.green,
