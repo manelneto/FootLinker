@@ -39,9 +39,9 @@ class ApiManagement {
     );
 
     if (response.statusCode == 200) {
-      if (int.parse(response.headers['x-ratelimit-requests-remaining']!) <= 1 && !rapid) {
+      if (response.headers.containsKey('x-ratelimit-requests-remaining') && int.parse(response.headers['x-ratelimit-requests-remaining']!) <= 1 && !rapid) {
         rapid = true;
-        throw Exception('Alcançando o limite diário de pedidos à API');
+        throw Exception('Erro na ligação à API. Tente novamente.');
       }
       var body = jsonDecode(response.body);
       if (body.containsKey('errors') && body['errors'].length > 0) {
