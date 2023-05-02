@@ -2,7 +2,7 @@ import 'dart:convert';
 
 import 'package:http/http.dart' as http;
 
-bool rapid = false;
+bool rapid = true;
 
 class ApiManagement {
   String url = '';
@@ -45,11 +45,13 @@ class ApiManagement {
       }
       var body = jsonDecode(response.body);
       if (body.containsKey('errors') && body['errors'].length > 0) {
+        rapid = true;
         throw Exception(body['errors'][0]);
       }
       List<dynamic> list = body['response'];
       return list;
     } else {
+      rapid = true;
       throw Exception('${response.statusCode} - ${response.reasonPhrase}');
     }
   }

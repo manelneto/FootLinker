@@ -70,92 +70,50 @@ class _HomePageState extends State<HomePage> {
     return LayoutBuilder(
       builder: (context, constraints) {
         return Scaffold(
-          body: Row(
-            children: [
-              SafeArea(
-                child: NavigationRail(
-                  extended: constraints.maxWidth >= 600,
-                  destinations: const [
-                    NavigationRailDestination(
-                      icon: Icon(
-                        Icons.home,
-                        size: 30,
-                      ),
-                      label: Text('Página Principal'),
-                    ),
-                    NavigationRailDestination(
-                      icon: Icon(
-                        Icons.sports_soccer,
-                        size: 25,
-                      ),
-                      label: Text('Clubes'),
-                    ),
-                    NavigationRailDestination(
-                      icon: Icon(
-                        Icons.stadium,
-                        size: 25,
-                      ),
-                      label: Text('Estádios'),
-                    ),
-                    NavigationRailDestination(
-                      icon: Icon(
-                        Icons.emoji_events,
-                        size: 25,
-                      ),
-                      label: Text('Ligas'),
-                    ),
-                    NavigationRailDestination(
-                      icon: Icon(
-                        Icons.map,
-                        size: 25,
-                      ),
-                      label: Text('Jogos Perto'),
-                    ),
-                    NavigationRailDestination(
-                      icon: Icon(
-                        Icons.logo_dev,
-                        size: 25,
-                      ),
-                      label: Text('Créditos'),
-                    ),
-                  ],
-                  selectedIndex: selectedIndex,
-                  onDestinationSelected: (value) {
-                    setState(() {
-                      selectedIndex = value;
-                    });
-                  },
-                ),
-              ),
-              Expanded(
-                child: Container(
-                  color: Theme.of(context).colorScheme.primaryContainer,
-                  child: page,
-                ),
-              ),
-            ],
+          body: Center(
+            child: page,
           ),
-          floatingActionButton: Row(
-            children: [
-              const Spacer(),
-              FloatingActionButton(
-                key: const Key('history'),
-                heroTag: 'history',
-                onPressed: () => _navigateToHistoryPage(context),
-                tooltip: 'History Page',
-                backgroundColor: Colors.white,
-                child: const Icon(Icons.history),
+          bottomNavigationBar: BottomNavigationBar(
+            type: BottomNavigationBarType.fixed,
+            items: const <BottomNavigationBarItem>[
+              BottomNavigationBarItem(
+                icon: Icon(
+                  Icons.home,
+                ),
+                label: 'Principal',
               ),
-              const SizedBox(width: 5),
-              FloatingActionButton(
-                key: const Key('schedule'),
-                heroTag: 'schedule',
-                onPressed: () => _navigateToSchedulePage(context),
-                tooltip: 'Schedule Page',
-                backgroundColor: Colors.white,
-                child: const Icon(Icons.date_range),
-              )
+              BottomNavigationBarItem(
+                icon: Icon(
+                  Icons.sports_soccer,
+                ),
+                label: 'Clubes',
+              ),
+              BottomNavigationBarItem(
+                icon: Icon(
+                  Icons.stadium,
+                ),
+                label: 'Estádios',
+              ),
+              BottomNavigationBarItem(
+                icon: Icon(
+                  Icons.emoji_events,
+                ),
+                label: 'Ligas',
+              ),
+              BottomNavigationBarItem(
+                icon: Icon(
+                  Icons.map,
+                ),
+                label: 'Por Perto',
+              ),
             ],
+            iconSize: 30,
+            currentIndex: selectedIndex,
+            onTap: (value) {
+              setState(() {
+                selectedIndex = value;
+              });
+            },
           ),
         );
       },
