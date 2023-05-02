@@ -55,6 +55,7 @@ class _AppPageState extends State<AppPage> {
     return LayoutBuilder(
       builder: (context, constraints) {
         return Scaffold(
+          key: const Key('appPage'),
           body: Center(
             child: page,
           ),

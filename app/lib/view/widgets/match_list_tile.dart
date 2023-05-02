@@ -22,10 +22,12 @@ class MatchListTile extends StatelessWidget {
       title += '\n${match.homeGoals} - ${match.awayGoals}';
     }
 
-    String subtitle = match.date.length >= 16 ?
-        '${match.venue.name}\n${match.date.substring(8, 10)}/${match.date.substring(5, 7)} - ${match.date.substring(11, 16)}' : '';
+    String subtitle = match.date.length >= 16
+        ? '${match.venue.name}\n${match.date.substring(8, 10)}/${match.date.substring(5, 7)} - ${match.date.substring(11, 16)}'
+        : '';
 
     return ListTile(
+      key: const Key('matchListTile'),
       leading: ConstrainedBox(
         constraints: const BoxConstraints(
           maxHeight: 60,
@@ -74,30 +76,50 @@ class MatchListTile extends StatelessWidget {
       onTap: () {
         if (match.homeGoals != -1 && match.awayGoals != -1) {
           historyState.addMatch(match);
-          showSnackBar(match, 'adicionado ao histórico',
-              historyState.removeMatch, context);
+          showSnackBar(
+            match,
+            'adicionado ao histórico',
+            historyState.removeMatch,
+            context,
+          );
         } else if (match.homeGoals == -1 && match.awayGoals == -1) {
           scheduleState.addMatch(match);
-          showSnackBar(match, 'adicionado ao calendário',
-              scheduleState.removeMatch, context);
+          showSnackBar(
+            match,
+            'adicionado ao calendário',
+            scheduleState.removeMatch,
+            context,
+          );
         }
       },
       onLongPress: () {
         if (match.homeGoals != -1 && match.awayGoals != -1) {
           historyState.removeMatch(match);
           showSnackBar(
-              match, 'removido do histórico', historyState.addMatch, context);
+            match,
+            'removido do histórico',
+            historyState.addMatch,
+            context,
+          );
         } else if (match.homeGoals == -1 && match.awayGoals == -1) {
           scheduleState.removeMatch(match);
           showSnackBar(
-              match, 'removido do calendário', scheduleState.addMatch, context);
+            match,
+            'removido do calendário',
+            scheduleState.addMatch,
+            context,
+          );
         }
       },
     );
   }
 
-  void showSnackBar(Match match, String text, void Function(Match) function,
-      BuildContext context) {
+  void showSnackBar(
+    Match match,
+    String text,
+    void Function(Match) function,
+    BuildContext context,
+  ) {
     var snackBar = SnackBar(
       content: Center(
         child: Text(

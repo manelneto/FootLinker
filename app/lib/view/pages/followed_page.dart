@@ -14,6 +14,7 @@ class FollowedPage extends StatelessWidget {
 
     if (followedState.followed.isEmpty) {
       return Scaffold(
+        key: const Key('followedPage'),
         appBar: AppBar(
           title: const Text(
             'Favoritos',
@@ -34,6 +35,7 @@ class FollowedPage extends StatelessWidget {
     }
 
     return Scaffold(
+      key: const Key('followedPage'),
       appBar: AppBar(
         title: const Text(
           'Favoritos',

@@ -53,6 +53,7 @@ class _VenuesPageState extends State<VenuesPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      key: const Key('venuesPage'),
       appBar: AppBar(
         title: const Text(
           'Estádios',

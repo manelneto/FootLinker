@@ -47,6 +47,7 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      key: const Key('homePage'),
       appBar: AppBar(
         title: const Text(
           'FootLinker',
@@ -58,6 +59,7 @@ class HomePage extends StatelessWidget {
         centerTitle: true,
         actions: [
           IconButton(
+            key: const Key('profileButton'),
             icon: const Icon(Icons.person),
             iconSize: 30,
             onPressed: () => _navigateToProfilePage(context),
@@ -72,12 +74,18 @@ class HomePage extends StatelessWidget {
               width: 200,
               height: 75,
               child: ElevatedButton.icon(
+                key: const Key('followedButton'),
                 onPressed: () => _navigateToFollowedPage(context),
-                icon: const Icon(Icons.favorite, size: 40,),
-                label: const Text('Favoritos',
+                icon: const Icon(
+                  Icons.favorite,
+                  size: 40,
+                ),
+                label: const Text(
+                  'Favoritos',
                   style: TextStyle(
                     fontSize: 25,
-                  ),),
+                  ),
+                ),
               ),
             ),
             const Spacer(),
@@ -85,12 +93,18 @@ class HomePage extends StatelessWidget {
               width: 200,
               height: 75,
               child: ElevatedButton.icon(
+                key: const Key('scheduleButton'),
                 onPressed: () => _navigateToSchedulePage(context),
-                icon: const Icon(Icons.calendar_month, size: 40,),
-                label: const Text('Calendário',
+                icon: const Icon(
+                  Icons.calendar_month,
+                  size: 40,
+                ),
+                label: const Text(
+                  'Calendário',
                   style: TextStyle(
                     fontSize: 25,
-                  ),),
+                  ),
+                ),
               ),
             ),
             const Spacer(),
@@ -98,12 +112,18 @@ class HomePage extends StatelessWidget {
               width: 200,
               height: 75,
               child: ElevatedButton.icon(
+                key: const Key('historyButton'),
                 onPressed: () => _navigateToHistoryPage(context),
-                icon: const Icon(Icons.history, size: 40,),
-                label: const Text('Histórico',
+                icon: const Icon(
+                  Icons.history,
+                  size: 40,
+                ),
+                label: const Text(
+                  'Histórico',
                   style: TextStyle(
                     fontSize: 25,
-                  ),),
+                  ),
+                ),
               ),
             ),
             const Spacer(),

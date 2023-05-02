@@ -17,7 +17,9 @@ class RegisterController {
   }
 
   Future signUp(
-      BuildContext context, GlobalKey<NavigatorState> navigatorKey) async {
+    BuildContext context,
+    GlobalKey<NavigatorState> navigatorKey,
+  ) async {
     final isValid = formKey.currentState!.validate();
     if (!isValid) return;
 

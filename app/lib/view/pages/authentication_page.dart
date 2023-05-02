@@ -33,7 +33,7 @@ class _AuthenticationPageState extends State<AuthenticationPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      key: const Key('authentication'),
+      key: const Key('authenticationPage'),
       appBar: AppBar(
         title: const Text(
           'FootLinker',

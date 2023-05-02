@@ -50,6 +50,7 @@ class _VenuePageState extends State<VenuePage> {
       text += '\nCapacidade: ${widget.venue.capacity}';
     }
     return Scaffold(
+      key: const Key('venuePage'),
       appBar: AppBar(
         title: Text(
           widget.venue.name,

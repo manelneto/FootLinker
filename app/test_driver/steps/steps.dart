@@ -4,10 +4,15 @@ import 'package:gherkin/gherkin.dart';
 
 StepDefinitionGeneric givenBeLoggedIn() {
   return given<FlutterWorld>('I am logged in', (context) async {
-    final locator = find.byValueKey('profile');
-    if (!await FlutterDriverUtils.isPresent(context.world.driver, locator)) {
-      final email = find.byValueKey('email');
-      final password = find.byValueKey('password');
+    final locator = find.byValueKey('homePage');
+    if (await FlutterDriverUtils.isAbsent(context.world.driver, locator)) {
+      final login = find.byValueKey('loginWidget');
+      if (await FlutterDriverUtils.isAbsent(context.world.driver, login)) {
+        final account = find.byValueKey('haveAccount');
+        await FlutterDriverUtils.tap(context.world.driver, account);
+      }
+      final email = find.byValueKey('emailFormField');
+      final password = find.byValueKey('passwordFormField');
       await FlutterDriverUtils.enterText(
         context.world.driver,
         email,
@@ -18,7 +23,7 @@ StepDefinitionGeneric givenBeLoggedIn() {
         password,
         'password',
       );
-      final button = find.byValueKey('login');
+      final button = find.byValueKey('loginButton');
       await FlutterDriverUtils.tap(
         context.world.driver,
         button,
@@ -36,12 +41,17 @@ StepDefinitionGeneric givenBeLoggedIn() {
 
 StepDefinitionGeneric givenNotBeLoggedIn() {
   return given<FlutterWorld>('I am not logged in', (context) async {
-    final locator = find.byValueKey('profile');
-    if (await FlutterDriverUtils.isPresent(
+    final locator = find.byValueKey('authenticationPage');
+    if (await FlutterDriverUtils.isAbsent(
       context.world.driver,
       locator,
     )) {
-      final button = find.byValueKey('logout');
+      final profile = find.byValueKey('profileButton');
+      await FlutterDriverUtils.tap(
+        context.world.driver,
+        profile,
+      );
+      final button = find.byValueKey('logoutButton');
       await FlutterDriverUtils.tap(
         context.world.driver,
         button,
@@ -52,7 +62,7 @@ StepDefinitionGeneric givenNotBeLoggedIn() {
         context.world.driver,
         locator,
       ),
-      false,
+      true,
     );
   });
 }
@@ -61,7 +71,7 @@ StepDefinitionGeneric whenFillField() {
   return when2<String, String, FlutterWorld>(
       'I fill the {string} field with {string}',
       (input1, input2, context) async {
-    final field = find.byValueKey(input1);
+    final field = find.byValueKey('${input1}FormField');
     await FlutterDriverUtils.enterText(
       context.world.driver,
       field,
@@ -73,7 +83,7 @@ StepDefinitionGeneric whenFillField() {
 StepDefinitionGeneric whenTapButton() {
   return when1<String, FlutterWorld>('I tap the {string} button',
       (input1, context) async {
-    final locator = find.byValueKey(input1);
+    final locator = find.byValueKey('${input1}Button');
     await FlutterDriverUtils.tap(
       context.world.driver,
       locator,
@@ -83,7 +93,7 @@ StepDefinitionGeneric whenTapButton() {
 
 StepDefinitionGeneric thenBeLoggedIn() {
   return then<FlutterWorld>('I am logged in', (context) async {
-    final locator = find.byValueKey('profile');
+    final locator = find.byValueKey('homePage');
     context.expectMatch(
       await FlutterDriverUtils.isPresent(
         context.world.driver,
@@ -96,27 +106,20 @@ StepDefinitionGeneric thenBeLoggedIn() {
 
 StepDefinitionGeneric thenNotBeLoggedIn() {
   return then<FlutterWorld>('I am not logged in', (context) async {
-    final profileLocator = find.byValueKey('profile');
-    context.expectMatch(
-      await FlutterDriverUtils.isPresent(
-        context.world.driver,
-        profileLocator,
-      ),
-      false,
-    );
-    final authenticationLocator = find.byValueKey('authentication');
+    final authenticationLocator = find.byValueKey('authenticationPage');
     context.expectMatch(
       await FlutterDriverUtils.isPresent(
         context.world.driver,
         authenticationLocator,
       ),
-      false,
+      true,
     );
   });
 }
 
-StepDefinitionGeneric thenSee() {
-  return then1<String, FlutterWorld>('I see {string}', (input1, context) async {
+StepDefinitionGeneric thenSeePage() {
+  return then1<String, FlutterWorld>('I see {string} page',
+      (input1, context) async {
     final locator = find.byValueKey('${input1}Page');
     context.expectMatch(
       await FlutterDriverUtils.isPresent(context.world.driver, locator),

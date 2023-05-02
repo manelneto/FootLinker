@@ -1,6 +1,6 @@
 import 'package:app/controller/match_fetcher.dart';
-import 'package:app/model/team.dart';
 import 'package:app/model/match.dart';
+import 'package:app/model/team.dart';
 import 'package:app/states/followed_state.dart';
 import 'package:app/view/widgets/match_list_tile.dart';
 import 'package:flutter/material.dart';

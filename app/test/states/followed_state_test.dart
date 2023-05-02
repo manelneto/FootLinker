@@ -3,22 +3,22 @@ import 'package:app/states/followed_state.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {
-  group('Equipas Seguidas', () {
+  group('Favoritos', () {
     Team team = Team(id: 0, name: 'team', logo: 'logo');
 
-    test('Sem equipas seguidas', () async {
+    test('Favoritos começa vazio', () async {
       FollowedState followedState = FollowedState();
       expect(followedState.followed.isEmpty, isTrue);
     });
 
-    test('Seguir equipa', () async {
+    test('Adicionar equipa aos favoritos', () async {
       FollowedState followedState = FollowedState();
       followedState.toggleTeam(team);
       expect(followedState.followed.length, 1);
       expect(followedState.followed[0], team);
     });
 
-    test('Deixar de seguir equipa', () async {
+    test('Remover equipa dos favoritos', () async {
       FollowedState followedState = FollowedState();
       followedState.toggleTeam(team);
       followedState.toggleTeam(team);

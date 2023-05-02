@@ -50,13 +50,14 @@ void main() {
 
     test('Equipa para JSON', () async {
       Team team = Team(
-          id: 0,
-          name: 'team',
-          code: 'code',
-          country: 'country',
-          founded: 0,
-          national: false,
-          logo: 'logo');
+        id: 0,
+        name: 'team',
+        code: 'code',
+        country: 'country',
+        founded: 0,
+        national: false,
+        logo: 'logo',
+      );
 
       Map<String, dynamic> json = team.toJson();
       expect(json.length, 7);

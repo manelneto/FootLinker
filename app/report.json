@@ -1,0 +1,472 @@
+[
+  {
+    "description": "",
+    "id": "schedule",
+    "keyword": "Feature",
+    "line": 1,
+    "name": "Schedule",
+    "uri": "C:\\Users\\manue\\footlinker\\2LEIC07T5\\app\\test_driver\\features\\schedule.feature",
+    "elements": [
+      {
+        "keyword": "Scenario",
+        "type": "scenario",
+        "id": "schedule;i try to check my schedule",
+        "name": "I try to check my schedule",
+        "description": "",
+        "line": 3,
+        "steps": [
+          {
+            "keyword": "Given ",
+            "name": "I am logged in",
+            "line": 4,
+            "match": {
+              "location": "C:\\Users\\manue\\footlinker\\2LEIC07T5\\app\\test_driver\\features\\schedule.feature:4"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 32679000000
+            }
+          },
+          {
+            "keyword": "And ",
+            "name": "I see \"home\" page",
+            "line": 5,
+            "match": {
+              "location": "C:\\Users\\manue\\footlinker\\2LEIC07T5\\app\\test_driver\\features\\schedule.feature:5"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 33000000
+            }
+          },
+          {
+            "keyword": "When ",
+            "name": "I tap the \"schedule\" button",
+            "line": 6,
+            "match": {
+              "location": "C:\\Users\\manue\\footlinker\\2LEIC07T5\\app\\test_driver\\features\\schedule.feature:6"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 871000000
+            }
+          },
+          {
+            "keyword": "Then ",
+            "name": "I see \"schedule\" page",
+            "line": 7,
+            "match": {
+              "location": "C:\\Users\\manue\\footlinker\\2LEIC07T5\\app\\test_driver\\features\\schedule.feature:7"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 43000000
+            }
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "description": "",
+    "id": "logout",
+    "keyword": "Feature",
+    "line": 1,
+    "name": "Logout",
+    "uri": "C:\\Users\\manue\\footlinker\\2LEIC07T5\\app\\test_driver\\features\\logout.feature",
+    "elements": [
+      {
+        "keyword": "Scenario",
+        "type": "scenario",
+        "id": "logout;i try to log out",
+        "name": "I try to log out",
+        "description": "",
+        "line": 3,
+        "steps": [
+          {
+            "keyword": "Given ",
+            "name": "I am logged in",
+            "line": 4,
+            "match": {
+              "location": "C:\\Users\\manue\\footlinker\\2LEIC07T5\\app\\test_driver\\features\\logout.feature:4"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 30161000000
+            }
+          },
+          {
+            "keyword": "When ",
+            "name": "I tap the \"profile\" button",
+            "line": 5,
+            "match": {
+              "location": "C:\\Users\\manue\\footlinker\\2LEIC07T5\\app\\test_driver\\features\\logout.feature:5"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 1397000000
+            }
+          },
+          {
+            "keyword": "And ",
+            "name": "I tap the \"logout\" button",
+            "line": 6,
+            "match": {
+              "location": "C:\\Users\\manue\\footlinker\\2LEIC07T5\\app\\test_driver\\features\\logout.feature:6"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 427000000
+            }
+          },
+          {
+            "keyword": "Then ",
+            "name": "I am not logged in",
+            "line": 7,
+            "match": {
+              "location": "C:\\Users\\manue\\footlinker\\2LEIC07T5\\app\\test_driver\\features\\logout.feature:7"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 30128000000
+            }
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "description": "",
+    "id": "login",
+    "keyword": "Feature",
+    "line": 1,
+    "name": "Login",
+    "uri": "C:\\Users\\manue\\footlinker\\2LEIC07T5\\app\\test_driver\\features\\login.feature",
+    "elements": [
+      {
+        "keyword": "Scenario",
+        "type": "scenario",
+        "id": "login;i try to log in with right email and right password",
+        "name": "I try to log in with right email and right password",
+        "description": "",
+        "line": 6,
+        "steps": [
+          {
+            "keyword": "Given ",
+            "name": "I am not logged in",
+            "line": 4,
+            "match": {
+              "location": "C:\\Users\\manue\\footlinker\\2LEIC07T5\\app\\test_driver\\features\\login.feature:4"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 30150000000
+            }
+          },
+          {
+            "keyword": "When ",
+            "name": "I fill the \"email\" field with \"test@email.com\"",
+            "line": 7,
+            "match": {
+              "location": "C:\\Users\\manue\\footlinker\\2LEIC07T5\\app\\test_driver\\features\\login.feature:7"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 586000000
+            }
+          },
+          {
+            "keyword": "And ",
+            "name": "I fill the \"password\" field with \"password\"",
+            "line": 8,
+            "match": {
+              "location": "C:\\Users\\manue\\footlinker\\2LEIC07T5\\app\\test_driver\\features\\login.feature:8"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 368000000
+            }
+          },
+          {
+            "keyword": "And ",
+            "name": "I tap the \"login\" button",
+            "line": 9,
+            "match": {
+              "location": "C:\\Users\\manue\\footlinker\\2LEIC07T5\\app\\test_driver\\features\\login.feature:9"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 1091000000
+            }
+          },
+          {
+            "keyword": "Then ",
+            "name": "I am logged in",
+            "line": 10,
+            "match": {
+              "location": "C:\\Users\\manue\\footlinker\\2LEIC07T5\\app\\test_driver\\features\\login.feature:10"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 30155000000
+            }
+          }
+        ]
+      },
+      {
+        "keyword": "Scenario",
+        "type": "scenario",
+        "id": "login;i try to log in with right email and wrong password",
+        "name": "I try to log in with right email and wrong password",
+        "description": "",
+        "line": 12,
+        "steps": [
+          {
+            "keyword": "Given ",
+            "name": "I am not logged in",
+            "line": 4,
+            "match": {
+              "location": "C:\\Users\\manue\\footlinker\\2LEIC07T5\\app\\test_driver\\features\\login.feature:4"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 1151000000
+            }
+          },
+          {
+            "keyword": "When ",
+            "name": "I fill the \"email\" field with \"test@email.com\"",
+            "line": 13,
+            "match": {
+              "location": "C:\\Users\\manue\\footlinker\\2LEIC07T5\\app\\test_driver\\features\\login.feature:13"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 518000000
+            }
+          },
+          {
+            "keyword": "And ",
+            "name": "I fill the \"password\" field with \"wrong\"",
+            "line": 14,
+            "match": {
+              "location": "C:\\Users\\manue\\footlinker\\2LEIC07T5\\app\\test_driver\\features\\login.feature:14"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 396000000
+            }
+          },
+          {
+            "keyword": "And ",
+            "name": "I tap the \"login\" button",
+            "line": 15,
+            "match": {
+              "location": "C:\\Users\\manue\\footlinker\\2LEIC07T5\\app\\test_driver\\features\\login.feature:15"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 917000000
+            }
+          },
+          {
+            "keyword": "Then ",
+            "name": "I am not logged in",
+            "line": 16,
+            "match": {
+              "location": "C:\\Users\\manue\\footlinker\\2LEIC07T5\\app\\test_driver\\features\\login.feature:16"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 30142000000
+            }
+          }
+        ]
+      },
+      {
+        "keyword": "Scenario",
+        "type": "scenario",
+        "id": "login;i try to log in with wrong email and wrong password",
+        "name": "I try to log in with wrong email and wrong password",
+        "description": "",
+        "line": 18,
+        "steps": [
+          {
+            "keyword": "Given ",
+            "name": "I am not logged in",
+            "line": 4,
+            "match": {
+              "location": "C:\\Users\\manue\\footlinker\\2LEIC07T5\\app\\test_driver\\features\\login.feature:4"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 30162000000
+            }
+          },
+          {
+            "keyword": "When ",
+            "name": "I fill the \"email\" field with \"wrong@email.com\"",
+            "line": 19,
+            "match": {
+              "location": "C:\\Users\\manue\\footlinker\\2LEIC07T5\\app\\test_driver\\features\\login.feature:19"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 568000000
+            }
+          },
+          {
+            "keyword": "And ",
+            "name": "I fill the \"password\" field with \"wrong\"",
+            "line": 20,
+            "match": {
+              "location": "C:\\Users\\manue\\footlinker\\2LEIC07T5\\app\\test_driver\\features\\login.feature:20"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 407000000
+            }
+          },
+          {
+            "keyword": "And ",
+            "name": "I tap the \"login\" button",
+            "line": 21,
+            "match": {
+              "location": "C:\\Users\\manue\\footlinker\\2LEIC07T5\\app\\test_driver\\features\\login.feature:21"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 946000000
+            }
+          },
+          {
+            "keyword": "Then ",
+            "name": "I am not logged in",
+            "line": 22,
+            "match": {
+              "location": "C:\\Users\\manue\\footlinker\\2LEIC07T5\\app\\test_driver\\features\\login.feature:22"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 30121000000
+            }
+          }
+        ]
+      },
+      {
+        "keyword": "Scenario",
+        "type": "scenario",
+        "id": "login;i try to log in without email and without password",
+        "name": "I try to log in without email and without password",
+        "description": "",
+        "line": 24,
+        "steps": [
+          {
+            "keyword": "Given ",
+            "name": "I am not logged in",
+            "line": 4,
+            "match": {
+              "location": "C:\\Users\\manue\\footlinker\\2LEIC07T5\\app\\test_driver\\features\\login.feature:4"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 30163000000
+            }
+          },
+          {
+            "keyword": "When ",
+            "name": "I tap the \"login\" button",
+            "line": 25,
+            "match": {
+              "location": "C:\\Users\\manue\\footlinker\\2LEIC07T5\\app\\test_driver\\features\\login.feature:25"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 829000000
+            }
+          },
+          {
+            "keyword": "Then ",
+            "name": "I am not logged in",
+            "line": 26,
+            "match": {
+              "location": "C:\\Users\\manue\\footlinker\\2LEIC07T5\\app\\test_driver\\features\\login.feature:26"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 30157000000
+            }
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "description": "",
+    "id": "history",
+    "keyword": "Feature",
+    "line": 1,
+    "name": "History",
+    "uri": "C:\\Users\\manue\\footlinker\\2LEIC07T5\\app\\test_driver\\features\\history.feature",
+    "elements": [
+      {
+        "keyword": "Scenario",
+        "type": "scenario",
+        "id": "history;i try to check my history",
+        "name": "I try to check my history",
+        "description": "",
+        "line": 3,
+        "steps": [
+          {
+            "keyword": "Given ",
+            "name": "I am logged in",
+            "line": 4,
+            "match": {
+              "location": "C:\\Users\\manue\\footlinker\\2LEIC07T5\\app\\test_driver\\features\\history.feature:4"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 32078000000
+            }
+          },
+          {
+            "keyword": "And ",
+            "name": "I see \"home\" page",
+            "line": 5,
+            "match": {
+              "location": "C:\\Users\\manue\\footlinker\\2LEIC07T5\\app\\test_driver\\features\\history.feature:5"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 54000000
+            }
+          },
+          {
+            "keyword": "When ",
+            "name": "I tap the \"history\" button",
+            "line": 6,
+            "match": {
+              "location": "C:\\Users\\manue\\footlinker\\2LEIC07T5\\app\\test_driver\\features\\history.feature:6"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 717000000
+            }
+          },
+          {
+            "keyword": "Then ",
+            "name": "I see \"history\" page",
+            "line": 7,
+            "match": {
+              "location": "C:\\Users\\manue\\footlinker\\2LEIC07T5\\app\\test_driver\\features\\history.feature:7"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 42000000
+            }
+          }
+        ]
+      }
+    ]
+  }
+]

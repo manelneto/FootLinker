@@ -6,7 +6,9 @@ class LeagueFetcher {
   ApiManagement apiManagement = ApiManagement();
 
   Future<List<League>> fetchLeaguesByCountry(
-      String country, http.Client client) async {
+    String country,
+    http.Client client,
+  ) async {
     List<League> leagues;
     try {
       List<dynamic> leaguesList =

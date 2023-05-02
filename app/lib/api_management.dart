@@ -39,7 +39,9 @@ class ApiManagement {
     );
 
     if (response.statusCode == 200) {
-      if (response.headers.containsKey('x-ratelimit-requests-remaining') && int.parse(response.headers['x-ratelimit-requests-remaining']!) <= 1 && !rapid) {
+      if (response.headers.containsKey('x-ratelimit-requests-remaining') &&
+          int.parse(response.headers['x-ratelimit-requests-remaining']!) <= 1 &&
+          !rapid) {
         rapid = true;
         throw Exception('Erro na ligação à API. Tente novamente.');
       }

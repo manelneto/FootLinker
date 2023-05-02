@@ -16,6 +16,7 @@ class CreditsPage extends StatelessWidget {
     ];
 
     return Scaffold(
+      key: const Key('creditsPage'),
       appBar: AppBar(
         title: const Text(
           'Créditos',

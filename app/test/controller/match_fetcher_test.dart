@@ -187,7 +187,7 @@ void main() {
       expect(matches[0], Match.fromException(Exception('404 - Not Found')));
       expect(matches[1], Match.fromException(Exception('404 - Not Found')));
     });
-    
+
     test('Próximos Jogos de uma Equipa', () async {
       final matches = await matchFetcher.fetchNextMatchesByTeam(0, 0, client);
       expect(matches, isA<List<Match>>());

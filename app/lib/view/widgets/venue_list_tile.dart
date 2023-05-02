@@ -21,6 +21,7 @@ class VenueListTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListTile(
+      key: const Key('teamListTile'),
       leading: ConstrainedBox(
         constraints: const BoxConstraints(
           maxHeight: 75,

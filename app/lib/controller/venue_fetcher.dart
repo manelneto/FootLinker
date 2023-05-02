@@ -6,7 +6,9 @@ class VenueFetcher {
   ApiManagement apiManagement = ApiManagement();
 
   Future<List<Venue>> fetchVenuesByCountry(
-      String country, http.Client client) async {
+    String country,
+    http.Client client,
+  ) async {
     List<Venue> venues;
     try {
       List<dynamic> venuesList =
