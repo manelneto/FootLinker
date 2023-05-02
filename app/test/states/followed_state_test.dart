@@ -4,7 +4,7 @@ import 'package:flutter_test/flutter_test.dart';
 
 void main() {
   group('Equipas Seguidas', () {
-    Team team = Team(id: 0, name: 'team', logo: 'teamLogo');
+    Team team = Team(id: 0, name: 'team', logo: 'logo');
 
     test('Sem equipas seguidas', () async {
       FollowedState followedState = FollowedState();

@@ -9,7 +9,7 @@ void main() {
   group('Histórico', () {
     Venue venue = Venue(id: 0, name: 'venue', city: 'venueCity');
     League league = League(
-        id: 0, name: 'league', country: 'leagueCountry', logo: 'leagueLogo');
+        id: 0, name: 'league', country: 'leagueCountry', logo: 'leagueLogo',);
     Team home = Team(id: 0, name: 'home', logo: 'homeLogo');
     Team away = Team(id: 1, name: 'away', logo: 'awayLogo');
     Match match0 = Match(
@@ -22,7 +22,7 @@ void main() {
         home: home,
         away: away,
         homeGoals: 1,
-        awayGoals: 1);
+        awayGoals: 1,);
     Match match1 = Match(
         id: 1,
         referee: 'referee',
@@ -33,7 +33,7 @@ void main() {
         home: home,
         away: away,
         homeGoals: 1,
-        awayGoals: 1);
+        awayGoals: 1,);
 
     test('Histórico começa vazio', () async {
       HistoryState historyState = HistoryState();
