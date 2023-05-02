@@ -1,14 +1,10 @@
-import 'package:app/view/pages/credits_page.dart';
+import 'package:app/view/pages/followed_page.dart';
 import 'package:app/view/pages/history_page.dart';
-import 'package:app/view/pages/leagues_page.dart';
-import 'package:app/view/pages/nearby_matches_page.dart';
 import 'package:app/view/pages/profile_page.dart';
 import 'package:app/view/pages/schedule_page.dart';
-import 'package:app/view/pages/teams_page.dart';
-import 'package:app/view/pages/venues_page.dart';
 import 'package:flutter/material.dart';
 
-class HomePage extends StatefulWidget {
+class HomePage extends StatelessWidget {
   const HomePage({
     super.key,
     required this.navigatorKey,
@@ -16,15 +12,18 @@ class HomePage extends StatefulWidget {
 
   final GlobalKey<NavigatorState> navigatorKey;
 
-  @override
-  State<HomePage> createState() => _HomePageState();
-}
-
-class _HomePageState extends State<HomePage> {
-  void _navigateToHistoryPage(BuildContext context) {
+  void _navigateToProfilePage(BuildContext context) {
     Navigator.of(context).push(
       MaterialPageRoute(
-        builder: (context) => const HistoryPage(),
+        builder: (context) => ProfilePage(navigatorKey: navigatorKey),
+      ),
+    );
+  }
+
+  void _navigateToFollowedPage(BuildContext context) {
+    Navigator.of(context).push(
+      MaterialPageRoute(
+        builder: (context) => const FollowedPage(),
       ),
     );
   }
@@ -37,98 +36,80 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
-  void _navigateToCreditsPage(BuildContext context) {
+  void _navigateToHistoryPage(BuildContext context) {
     Navigator.of(context).push(
       MaterialPageRoute(
-        builder: (context) => const CreditsPage(),
+        builder: (context) => const HistoryPage(),
       ),
     );
   }
 
-  var selectedIndex = 0;
-
   @override
   Widget build(BuildContext context) {
-    Widget page;
-    switch (selectedIndex) {
-      case 0:
-        page = ProfilePage(
-          navigatorKey: widget.navigatorKey,
-        );
-        break;
-      case 1:
-        page = const TeamsPage();
-        break;
-      case 2:
-        page = const VenuesPage();
-        break;
-      case 3:
-        page = const LeaguesPage();
-        break;
-      case 4:
-        page = const NearbyMatchesPage();
-        break;
-      case 5:
-        page = const CreditsPage();
-        break;
-      default:
-        throw UnimplementedError('Índice inválido: $selectedIndex');
-    }
-
-    return LayoutBuilder(
-      builder: (context, constraints) {
-        return Scaffold(
-          body: Center(
-            child: page,
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text(
+          'FootLinker',
+          style: TextStyle(
+            fontWeight: FontWeight.bold,
           ),
-          bottomNavigationBar: BottomNavigationBar(
-            type: BottomNavigationBarType.fixed,
-            items: const <BottomNavigationBarItem>[
-              BottomNavigationBarItem(
-                icon: Icon(
-                  Icons.home,
-                ),
-                label: 'Principal',
-              ),
-              BottomNavigationBarItem(
-                icon: Icon(
-                  Icons.sports_soccer,
-                ),
-                label: 'Clubes',
-              ),
-              BottomNavigationBarItem(
-                icon: Icon(
-                  Icons.stadium,
-                ),
-                label: 'Estádios',
-              ),
-              BottomNavigationBarItem(
-                icon: Icon(
-                  Icons.emoji_events,
-                ),
-                label: 'Ligas',
-              ),
-              BottomNavigationBarItem(
-                icon: Icon(
-                  Icons.map,
-                ),
-                label: 'Por Perto',
-              ),
-            ],
+        ),
+        backgroundColor: Theme.of(context).colorScheme.primaryContainer,
+        centerTitle: true,
+        actions: [
+          IconButton(
+            icon: const Icon(Icons.person),
             iconSize: 30,
-            currentIndex: selectedIndex,
-            onTap: (value) {
-              setState(() {
-                selectedIndex = value;
-              });
-            },
+            onPressed: () => _navigateToProfilePage(context),
           ),
-          floatingActionButton: FloatingActionButton(
-            onPressed: () => _navigateToCreditsPage(context),
-            child: const Icon(Icons.logo_dev),
-          ),
-        );
-      },
+        ],
+      ),
+      body: Center(
+        child: Column(
+          children: [
+            const Spacer(),
+            SizedBox(
+              width: 200,
+              height: 75,
+              child: ElevatedButton.icon(
+                onPressed: () => _navigateToFollowedPage(context),
+                icon: const Icon(Icons.favorite, size: 40,),
+                label: const Text('Favoritos',
+                  style: TextStyle(
+                    fontSize: 25,
+                  ),),
+              ),
+            ),
+            const Spacer(),
+            SizedBox(
+              width: 200,
+              height: 75,
+              child: ElevatedButton.icon(
+                onPressed: () => _navigateToSchedulePage(context),
+                icon: const Icon(Icons.calendar_month, size: 40,),
+                label: const Text('Calendário',
+                  style: TextStyle(
+                    fontSize: 25,
+                  ),),
+              ),
+            ),
+            const Spacer(),
+            SizedBox(
+              width: 200,
+              height: 75,
+              child: ElevatedButton.icon(
+                onPressed: () => _navigateToHistoryPage(context),
+                icon: const Icon(Icons.history, size: 40,),
+                label: const Text('Histórico',
+                  style: TextStyle(
+                    fontSize: 25,
+                  ),),
+              ),
+            ),
+            const Spacer(),
+          ],
+        ),
+      ),
     );
   }
 }
