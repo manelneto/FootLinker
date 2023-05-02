@@ -37,6 +37,14 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
+  void _navigateToCreditsPage(BuildContext context) {
+    Navigator.of(context).push(
+      MaterialPageRoute(
+        builder: (context) => const CreditsPage(),
+      ),
+    );
+  }
+
   var selectedIndex = 0;
 
   @override
@@ -114,6 +122,10 @@ class _HomePageState extends State<HomePage> {
                 selectedIndex = value;
               });
             },
+          ),
+          floatingActionButton: FloatingActionButton(
+            onPressed: () => _navigateToCreditsPage(context),
+            child: const Icon(Icons.logo_dev),
           ),
         );
       },
