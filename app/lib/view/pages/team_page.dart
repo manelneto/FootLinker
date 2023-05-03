@@ -21,11 +21,16 @@ class TeamPage extends StatefulWidget {
 }
 
 class _TeamPageState extends State<TeamPage> {
+  var nextMatches = <Match>[];
+
   Widget _matches(data) {
     if (data.length > 0) {
       return ListView.builder(
         itemCount: data.length,
         itemBuilder: (context, index) {
+          if (data[index].homeGoals == -1 && data[index].awayGoals == -1) {
+            nextMatches.add(data[index]);
+          }
           return MatchListTile(
             match: data[index],
           );
@@ -42,7 +47,7 @@ class _TeamPageState extends State<TeamPage> {
 
   FutureBuilder _matchesData() {
     return FutureBuilder<List<Match>>(
-      future: MatchFetcher().fetchMatchesByTeam(widget.team.id, 3, IOClient()),
+      future: MatchFetcher().fetchMatchesByTeam(widget.team.id, 5, IOClient()),
       builder: (BuildContext context, AsyncSnapshot<List<Match>> snapshot) {
         if (snapshot.hasData) {
           List<Match> data = snapshot.data!;
@@ -101,15 +106,7 @@ class _TeamPageState extends State<TeamPage> {
               ),
               const Spacer(),
               ElevatedButton.icon(
-                onPressed: () async {
-                  followedState.toggleTeam(widget.team);
-                  List<Match> matches = await MatchFetcher().fetchNextMatchesByTeam(widget.team.id, 5, IOClient());
-                  if (followedState.followed.contains(widget.team)) {
-                    scheduleState.addMatches(matches);
-                  } else {
-                    scheduleState.removeMatches(matches);
-                  }
-                },
+                onPressed: () => followedState.toggleTeam(widget.team, nextMatches, scheduleState),
                 icon: Icon(icon),
                 label: const Text('Seguir'),
               ),

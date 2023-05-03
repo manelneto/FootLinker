@@ -1,4 +1,5 @@
 import 'package:app/model/match.dart';
+import 'package:app/model/team.dart';
 import 'package:flutter/material.dart';
 
 class ScheduleState extends ChangeNotifier {
@@ -14,21 +15,26 @@ class ScheduleState extends ChangeNotifier {
     }
   }
 
-  void addMatches( List<Match> matches) {
-    for (Match match in matches) {
-      addMatch(match);
-    }
-  }
-
-  void removeMatches( List<Match> matches) {
-    for (Match match in matches) {
-      removeMatch(match);
-    }
-  }
-
   void removeMatch(Match match) {
     if (schedule.remove(match)) {
       notifyListeners();
     }
+  }
+
+  void updateScheduleAfterFollow(List<Match> nextMatches) {
+    for (Match match in nextMatches) {
+      addMatch(match);
+    }
+  }
+
+  void updateScheduleAfterUnfollow(List<Team> followed) {
+    var newSchedule = <Match>[];
+    for (Match match in schedule) {
+      if (followed.contains(match.home) || followed.contains(match.away)) {
+        newSchedule.add(match);
+      }
+    }
+    schedule = newSchedule;
+    notifyListeners();
   }
 }
