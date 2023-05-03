@@ -59,7 +59,7 @@ void main() {
 
     when(
       client.get(
-        Uri.parse('${apiManagement.url}fixtures?team=0&next=0'),
+        Uri.parse('${apiManagement.url}fixtures?team=0&status=NS&season=2022'),
         headers: apiManagement.headers,
       ),
     ).thenAnswer(
@@ -83,7 +83,7 @@ void main() {
 
     when(
       client.get(
-        Uri.parse('${apiManagement.url}fixtures?team=-1&next=-1'),
+        Uri.parse('${apiManagement.url}fixtures?team=-1&status=NS&season=2022'),
         headers: apiManagement.headers,
       ),
     ).thenAnswer(
@@ -188,15 +188,15 @@ void main() {
       expect(matches[1], Match.fromException(Exception('404 - Not Found')));
     });
 
-    test('Próximos Jogos de uma Equipa', () async {
-      final matches = await matchFetcher.fetchNextMatchesByTeam(0, 0, client);
+    test('Jogos Agendados de uma Equipa', () async {
+      final matches = await matchFetcher.fetchScheduledMatchesByTeam(0, client);
       expect(matches, isA<List<Match>>());
       expect(matches.length, 1);
       expect(matches[0], match);
     });
 
-    test('Próximos Jogos de uma Equipa - Exceção', () async {
-      final matches = await matchFetcher.fetchNextMatchesByTeam(-1, -1, client);
+    test('Jogos Agendados de uma Equipa - Exceção', () async {
+      final matches = await matchFetcher.fetchScheduledMatchesByTeam(-1, client);
       expect(matches, isA<List<Match>>());
       expect(matches.length, 1);
       expect(matches[0], Match.fromException(Exception('404 - Not Found')));
