@@ -82,5 +82,31 @@ void main() {
       expect(scheduleState.schedule[0], match0);
       expect(scheduleState.schedule[1], match1);
     });
+
+    test('Atualização do calendário depois de seguir equipa', () {
+      ScheduleState scheduleState = ScheduleState();
+      scheduleState.updateScheduleAfterFollow([match0, match1]);
+      expect(scheduleState.schedule.length, 2);
+      expect(scheduleState.schedule[0], match0);
+      expect(scheduleState.schedule[1], match1);
+    });
+
+    test('Atualização do calendário depois de deixar de seguir equipa', () {
+      ScheduleState scheduleState = ScheduleState();
+      scheduleState.addMatch(match0);
+      scheduleState.addMatch(match1);
+      scheduleState.updateScheduleAfterUnfollow([home]);
+      expect(scheduleState.schedule.length, 2);
+      expect(scheduleState.schedule[0], match0);
+      expect(scheduleState.schedule[1], match1);
+    });
+
+    test('Atualização do calendário depois de deixar de seguir equipas', () {
+      ScheduleState scheduleState = ScheduleState();
+      scheduleState.addMatch(match0);
+      scheduleState.addMatch(match1);
+      scheduleState.updateScheduleAfterUnfollow([]);
+      expect(scheduleState.schedule.length, 0);
+    });
   });
 }

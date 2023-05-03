@@ -50,14 +50,7 @@ class League {
 
   @override
   bool operator ==(Object other) =>
-      identical(this, other) ||
-      other is League &&
-          runtimeType == other.runtimeType &&
-          id == other.id &&
-          name == other.name &&
-          type == other.type &&
-          country == other.country &&
-          logo == other.logo;
+      identical(this, other) || (other is League && id == other.id);
 
   @override
   int get hashCode =>

@@ -29,6 +29,9 @@ class SchedulePage extends StatelessWidget {
           child: Text(
             'Ainda não adicionou nenhum jogo ao calendário...\nExperimente carregar num jogo para o adicionar ou manter premido para o remover!',
             textAlign: TextAlign.center,
+            style: TextStyle(
+              fontSize: 20,
+            ),
           ),
         ),
       );

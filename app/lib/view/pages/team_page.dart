@@ -2,6 +2,7 @@ import 'package:app/controller/match_fetcher.dart';
 import 'package:app/model/match.dart';
 import 'package:app/model/team.dart';
 import 'package:app/states/followed_state.dart';
+import 'package:app/states/schedule_state.dart';
 import 'package:app/view/widgets/match_list_tile.dart';
 import 'package:flutter/material.dart';
 import 'package:http/io_client.dart';
@@ -20,11 +21,16 @@ class TeamPage extends StatefulWidget {
 }
 
 class _TeamPageState extends State<TeamPage> {
+  var nextMatches = <Match>[];
+
   Widget _matches(data) {
     if (data.length > 0) {
       return ListView.builder(
         itemCount: data.length,
         itemBuilder: (context, index) {
+          if (data[index].homeGoals == -1 && data[index].awayGoals == -1) {
+            nextMatches.add(data[index]);
+          }
           return MatchListTile(
             match: data[index],
           );
@@ -41,7 +47,7 @@ class _TeamPageState extends State<TeamPage> {
 
   FutureBuilder _matchesData() {
     return FutureBuilder<List<Match>>(
-      future: MatchFetcher().fetchMatchesByTeam(widget.team.id, 3, IOClient()),
+      future: MatchFetcher().fetchMatchesByTeam(widget.team.id, 5, IOClient()),
       builder: (BuildContext context, AsyncSnapshot<List<Match>> snapshot) {
         if (snapshot.hasData) {
           List<Match> data = snapshot.data!;
@@ -57,6 +63,7 @@ class _TeamPageState extends State<TeamPage> {
   @override
   Widget build(BuildContext context) {
     var followedState = context.watch<FollowedState>();
+    var scheduleState = context.watch<ScheduleState>();
 
     IconData icon;
     if (followedState.followed.contains(widget.team)) {
@@ -99,9 +106,11 @@ class _TeamPageState extends State<TeamPage> {
               ),
               const Spacer(),
               ElevatedButton.icon(
-                onPressed: () {
-                  followedState.toggleTeam(widget.team);
-                },
+                onPressed: () => followedState.toggleTeam(
+                  widget.team,
+                  nextMatches,
+                  scheduleState,
+                ),
                 icon: Icon(icon),
                 label: const Text('Seguir'),
               ),

@@ -78,19 +78,7 @@ class Match {
 
   @override
   bool operator ==(Object other) =>
-      identical(this, other) ||
-      other is Match &&
-          runtimeType == other.runtimeType &&
-          id == other.id &&
-          referee == other.referee &&
-          date == other.date &&
-          timestamp == other.timestamp &&
-          venue == other.venue &&
-          league == other.league &&
-          home == other.home &&
-          away == other.away &&
-          homeGoals == other.homeGoals &&
-          awayGoals == other.awayGoals;
+      identical(this, other) || (other is Match && id == other.id);
 
   @override
   int get hashCode =>

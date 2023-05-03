@@ -35,6 +35,7 @@ class _AuthenticationPageState extends State<AuthenticationPage> {
     return Scaffold(
       key: const Key('authenticationPage'),
       appBar: AppBar(
+        automaticallyImplyLeading: false,
         title: const Text(
           'FootLinker',
           style: TextStyle(

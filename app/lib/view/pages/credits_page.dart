@@ -31,12 +31,21 @@ class CreditsPage extends StatelessWidget {
         children: [
           const Padding(
             padding: EdgeInsets.all(20),
-            child: Text('FootLinker foi desenvolvida por:'),
+            child: Text(
+              'FootLinker foi desenvolvida por:',
+              style: TextStyle(fontSize: 20),
+            ),
           ),
           for (var name in us)
             ListTile(
-              leading: const Icon(Icons.person),
-              title: Text(name),
+              leading: const Icon(
+                Icons.person,
+                size: 30,
+              ),
+              title: Text(
+                name,
+                style: const TextStyle(fontSize: 20),
+              ),
             ),
         ],
       ),

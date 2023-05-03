@@ -29,6 +29,9 @@ class FollowedPage extends StatelessWidget {
           child: Text(
             'Ainda não tem nenhuma equipa favorita...\nExperimente procurar uma equipa e adicioná-la aos favoritos!',
             textAlign: TextAlign.center,
+            style: TextStyle(
+              fontSize: 20,
+            ),
           ),
         ),
       );
