@@ -109,15 +109,15 @@ class MatchFetcher {
     return matches;
   }
 
-  Future<List<Match>> fetchNextMatchesByTeam(
-    int team,
-    int next,
-    http.Client client,
-  ) async {
+  Future<List<Match>> fetchScheduledMatchesByTeam(
+      int team,
+      http.Client client,
+      ) async {
     List<Match> matches;
+    DateTime season = DateTime.now();
     try {
       List<dynamic> matchesList = await apiManagement.sendRequest(
-        'fixtures?team=$team&next=$next',
+        'fixtures?team=$team&status=NS&season=${season.year - 1}',
         client,
       );
       matches =
@@ -155,7 +155,7 @@ class MatchFetcher {
     http.Client client,
   ) async {
     List<Match> last = await fetchLastMatchesByTeam(team, number, client);
-    List<Match> next = await fetchNextMatchesByTeam(team, number, client);
+    List<Match> next = await fetchScheduledMatchesByTeam(team, client);
     List<Match> matches = last + next;
     matches.sort((a, b) => (a.timestamp).compareTo(b.timestamp));
     return matches;
