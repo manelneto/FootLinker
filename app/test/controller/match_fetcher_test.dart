@@ -196,7 +196,8 @@ void main() {
     });
 
     test('Jogos Agendados de uma Equipa - Exceção', () async {
-      final matches = await matchFetcher.fetchScheduledMatchesByTeam(-1, client);
+      final matches =
+          await matchFetcher.fetchScheduledMatchesByTeam(-1, client);
       expect(matches, isA<List<Match>>());
       expect(matches.length, 1);
       expect(matches[0], Match.fromException(Exception('404 - Not Found')));

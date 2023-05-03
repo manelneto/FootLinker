@@ -6,7 +6,11 @@ import 'package:flutter/material.dart';
 class FollowedState extends ChangeNotifier {
   var followed = <Team>[];
 
-  void toggleTeam(Team team, List<Match> nextMatches, ScheduleState scheduleState) {
+  void toggleTeam(
+    Team team,
+    List<Match> nextMatches,
+    ScheduleState scheduleState,
+  ) {
     if (followed.contains(team)) {
       followed.remove(team);
       scheduleState.updateScheduleAfterUnfollow(followed);

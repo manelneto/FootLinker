@@ -106,7 +106,11 @@ class _TeamPageState extends State<TeamPage> {
               ),
               const Spacer(),
               ElevatedButton.icon(
-                onPressed: () => followedState.toggleTeam(widget.team, nextMatches, scheduleState),
+                onPressed: () => followedState.toggleTeam(
+                  widget.team,
+                  nextMatches,
+                  scheduleState,
+                ),
                 icon: Icon(icon),
                 label: const Text('Seguir'),
               ),

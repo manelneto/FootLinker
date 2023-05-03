@@ -110,9 +110,9 @@ class MatchFetcher {
   }
 
   Future<List<Match>> fetchScheduledMatchesByTeam(
-      int team,
-      http.Client client,
-      ) async {
+    int team,
+    http.Client client,
+  ) async {
     List<Match> matches;
     DateTime season = DateTime.now();
     try {

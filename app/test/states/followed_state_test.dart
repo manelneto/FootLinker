@@ -1,5 +1,5 @@
-import 'package:app/model/team.dart';
 import 'package:app/model/match.dart';
+import 'package:app/model/team.dart';
 import 'package:app/states/followed_state.dart';
 import 'package:app/states/schedule_state.dart';
 import 'package:flutter_test/flutter_test.dart';
