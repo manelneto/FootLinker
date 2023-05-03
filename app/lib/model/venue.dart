@@ -61,17 +61,7 @@ class Venue {
 
   @override
   bool operator ==(Object other) =>
-      identical(this, other) ||
-      other is Venue &&
-          runtimeType == other.runtimeType &&
-          id == other.id &&
-          name == other.name &&
-          address == other.address &&
-          city == other.city &&
-          country == other.country &&
-          capacity == other.capacity &&
-          surface == other.surface &&
-          image == other.image;
+      identical(this, other) || (other is Venue && id == other.id);
 
   @override
   int get hashCode =>

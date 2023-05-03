@@ -78,9 +78,7 @@ class Match {
 
   @override
   bool operator ==(Object other) =>
-      identical(this, other) ||
-      other is Match &&
-          id == other.id;
+      identical(this, other) || (other is Match && id == other.id);
 
   @override
   int get hashCode =>
