@@ -58,3 +58,5 @@ Something that keeps puzzling us is how to improve the use of GitHub Actions to 
 **Plan:**
 
 ![Start of Iteration 3](/images/iteration3start.png)
+
+![End of Iteration 3](/images/iteration3end.png)
