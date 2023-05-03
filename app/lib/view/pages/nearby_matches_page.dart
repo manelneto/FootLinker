@@ -101,11 +101,21 @@ class _NearbyMatchesPageState extends State<NearbyMatchesPage> {
           centerTitle: true,
         ),
         body: Center(
-          child: ElevatedButton(
-            onPressed: _getUserLocation,
-            child: const Text(
-              'Ativar Localização',
-              textAlign: TextAlign.center,
+          child: SizedBox(
+            height: 75,
+            width: 300,
+            child: ElevatedButton.icon(
+              onPressed: () => _getUserLocation(),
+              icon: const Icon(
+                Icons.location_on,
+                size: 40,
+              ),
+              label: const Text(
+                'Ativar Localização',
+                style: TextStyle(
+                  fontSize: 25,
+                ),
+              ),
             ),
           ),
         ),
