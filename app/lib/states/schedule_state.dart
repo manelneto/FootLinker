@@ -14,6 +14,18 @@ class ScheduleState extends ChangeNotifier {
     }
   }
 
+  void addMatches( List<Match> matches) {
+    for (Match match in matches) {
+      addMatch(match);
+    }
+  }
+
+  void removeMatches( List<Match> matches) {
+    for (Match match in matches) {
+      removeMatch(match);
+    }
+  }
+
   void removeMatch(Match match) {
     if (schedule.remove(match)) {
       notifyListeners();
