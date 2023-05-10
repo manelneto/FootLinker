@@ -4,7 +4,7 @@ on:
     branches: [ "main" ]
 jobs:
   android:
-    runs-on: macos-latest
+    runs-on: self-hosted
     steps:
       - name: Checkout
         uses: actions/checkout@v3
