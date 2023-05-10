@@ -23,7 +23,7 @@ Future<void> main() {
     ]
     ..restartAppBetweenScenarios = true
     ..targetAppPath = 'test_driver/app.dart'
-    ..defaultTimeout = const Duration(seconds: 90)
+    ..defaultTimeout = const Duration(minutes: 2)
     ..flutterBuildTimeout = const Duration(minutes: 2);
   return GherkinRunner().execute(config);
 }

@@ -76,7 +76,6 @@ class _LoginWidgetState extends State<LoginWidget> {
             ),
             const SizedBox(height: 40),
             RichText(
-              key: const Key('createAccount'),
               text: TextSpan(
                 style: const TextStyle(
                   color: Colors.green,
@@ -86,6 +85,7 @@ class _LoginWidgetState extends State<LoginWidget> {
                 text: 'Ainda não criou uma conta? ',
                 children: [
                   TextSpan(
+                    semanticsLabel: 'createAccount',
                     recognizer: TapGestureRecognizer()
                       ..onTap = widget.onClickedSignUp,
                     text: 'Registe-se!',

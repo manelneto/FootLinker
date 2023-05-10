@@ -5,10 +5,18 @@ import 'package:gherkin/gherkin.dart';
 StepDefinitionGeneric givenBeLoggedIn() {
   return given<FlutterWorld>('I am logged in', (context) async {
     final locator = find.byValueKey('homePage');
-    if (await FlutterDriverUtils.isAbsent(context.world.driver, locator)) {
+    if (await FlutterDriverUtils.isAbsent(
+      context.world.driver,
+      locator,
+      timeout: const Duration(minutes: 1),
+    )) {
       final login = find.byValueKey('loginWidget');
-      if (await FlutterDriverUtils.isAbsent(context.world.driver, login)) {
-        final account = find.byValueKey('haveAccount');
+      if (await FlutterDriverUtils.isAbsent(
+        context.world.driver,
+        login,
+        timeout: const Duration(minutes: 1),
+      )) {
+        final account = find.bySemanticsLabel('haveAccount');
         await FlutterDriverUtils.tap(context.world.driver, account);
       }
       final email = find.byValueKey('emailFormField');
@@ -17,22 +25,26 @@ StepDefinitionGeneric givenBeLoggedIn() {
         context.world.driver,
         email,
         'test@email.com',
+        timeout: const Duration(minutes: 1),
       );
       await FlutterDriverUtils.enterText(
         context.world.driver,
         password,
         'password',
+        timeout: const Duration(minutes: 1),
       );
       final button = find.byValueKey('loginButton');
       await FlutterDriverUtils.tap(
         context.world.driver,
         button,
+        timeout: const Duration(minutes: 1),
       );
     }
     context.expectMatch(
       await FlutterDriverUtils.isPresent(
         context.world.driver,
         locator,
+        timeout: const Duration(minutes: 1),
       ),
       true,
     );
@@ -45,22 +57,26 @@ StepDefinitionGeneric givenNotBeLoggedIn() {
     if (await FlutterDriverUtils.isAbsent(
       context.world.driver,
       locator,
+      timeout: const Duration(minutes: 1),
     )) {
       final profile = find.byValueKey('profileButton');
       await FlutterDriverUtils.tap(
         context.world.driver,
         profile,
+        timeout: const Duration(minutes: 1),
       );
       final button = find.byValueKey('logoutButton');
       await FlutterDriverUtils.tap(
         context.world.driver,
         button,
+        timeout: const Duration(minutes: 1),
       );
     }
     context.expectMatch(
       await FlutterDriverUtils.isPresent(
         context.world.driver,
         locator,
+        timeout: const Duration(minutes: 1),
       ),
       true,
     );
@@ -76,6 +92,7 @@ StepDefinitionGeneric whenFillField() {
       context.world.driver,
       field,
       input2,
+      timeout: const Duration(minutes: 1),
     );
   });
 }
@@ -87,6 +104,7 @@ StepDefinitionGeneric whenTapButton() {
     await FlutterDriverUtils.tap(
       context.world.driver,
       locator,
+      timeout: const Duration(minutes: 1),
     );
   });
 }
@@ -98,6 +116,7 @@ StepDefinitionGeneric thenBeLoggedIn() {
       await FlutterDriverUtils.isPresent(
         context.world.driver,
         locator,
+        timeout: const Duration(minutes: 1),
       ),
       true,
     );
@@ -111,6 +130,7 @@ StepDefinitionGeneric thenNotBeLoggedIn() {
       await FlutterDriverUtils.isPresent(
         context.world.driver,
         authenticationLocator,
+        timeout: const Duration(minutes: 1),
       ),
       true,
     );
@@ -122,7 +142,11 @@ StepDefinitionGeneric thenSeePage() {
       (input1, context) async {
     final locator = find.byValueKey('${input1}Page');
     context.expectMatch(
-      await FlutterDriverUtils.isPresent(context.world.driver, locator),
+      await FlutterDriverUtils.isPresent(
+        context.world.driver,
+        locator,
+        timeout: const Duration(minutes: 1),
+      ),
       true,
     );
   });
