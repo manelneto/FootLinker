@@ -4,7 +4,7 @@
 You can find below information and references related with the project management in our team: 
 
 * Backlog management: Product backlog and Iteration backlog in a [Github Projects board](https://github.com/orgs/FEUP-LEIC-ES-2022-23/projects/37);
-* Release management: [v0](https://github.com/FEUP-LEIC-ES-2022-23/2LEIC07T5/releases/tag/v0), [v1](https://github.com/FEUP-LEIC-ES-2022-23/2LEIC07T5/releases/tag/v1), [v2](https://github.com/FEUP-LEIC-ES-2022-23/2LEIC07T5/releases/tag/v2);
+* Release management: [v0](https://github.com/FEUP-LEIC-ES-2022-23/2LEIC07T5/releases/tag/v0), [v1](https://github.com/FEUP-LEIC-ES-2022-23/2LEIC07T5/releases/tag/v1), [v2](https://github.com/FEUP-LEIC-ES-2022-23/2LEIC07T5/releases/tag/v2), [v3](https://github.com/FEUP-LEIC-ES-2022-23/2LEIC07T5/releases/tag/v3);
 * Iteration planning and retrospectives.
 
 ### Iteration 0
@@ -60,3 +60,17 @@ Something that keeps puzzling us is how to improve the use of GitHub Actions to 
 ![Start of Iteration 3](/images/iteration3start.png)
 
 ![End of Iteration 3](/images/iteration3end.png)
+
+**Retrospective:**
+
+In our belief, Iteration 3 went exceedingly well and improved the previous version of the app. This happened due to better iteration planning which allowed us to implement each feature with an increased attention to detail.
+
+Our biggest obstacle this iteration was running the Acceptance Tests with GitHub Actions. The tests were taking too long to complete, which led to some time wasted while waiting to check the results.
+
+What keeps intriguing us is the integration of Firebase on our app (mainly sending and retrieving data).
+
+### Iteration 4
+
+**Plan:**
+
+![Start of Iteration 4](/images/iteration4start.png)

@@ -121,7 +121,6 @@ class _RegisterWidgetState extends State<RegisterWidget> {
               height: 40,
             ),
             RichText(
-              key: const Key('haveAccount'),
               text: TextSpan(
                 style: const TextStyle(
                   color: Colors.green,
@@ -131,6 +130,7 @@ class _RegisterWidgetState extends State<RegisterWidget> {
                 text: 'Já tem uma conta? ',
                 children: [
                   TextSpan(
+                    semanticsLabel: 'haveAccount',
                     recognizer: TapGestureRecognizer()
                       ..onTap = widget.onClickedSignIn,
                     text: 'Entrar',
