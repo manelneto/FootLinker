@@ -5,7 +5,7 @@ class HistoryState extends ChangeNotifier {
   var history = <Match>[];
 
   void addMatch(Match match) {
-    if (!history.contains(match)) {
+    if (!checkMatch(match)) {
       history.add(match);
       history.sort(
         (b, a) => a.timestamp.compareTo(b.timestamp),
@@ -18,5 +18,9 @@ class HistoryState extends ChangeNotifier {
     if (history.remove(match)) {
       notifyListeners();
     }
+  }
+
+  bool checkMatch(Match match) {
+    return history.contains(match);
   }
 }

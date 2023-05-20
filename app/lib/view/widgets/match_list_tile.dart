@@ -4,7 +4,7 @@ import 'package:app/states/schedule_state.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-bool toggle = true;
+bool toggle = false;
 
 class MatchListTile extends StatelessWidget {
   const MatchListTile({
@@ -28,8 +28,11 @@ class MatchListTile extends StatelessWidget {
         ? '${match.venue.name}\n${match.date.substring(8, 10)}/${match.date.substring(5, 7)} - ${match.date.substring(11, 16)}'
         : '';
 
+    bool toggle = historyState.checkMatch(match);
+
     return ListTile(
       key: const Key('matchListTile'),
+      tileColor: toggle ? const Color.fromARGB(255, 118, 250, 133) : null,
       leading: ConstrainedBox(
         constraints: const BoxConstraints(
           maxHeight: 60,
@@ -76,6 +79,7 @@ class MatchListTile extends StatelessWidget {
         ),
       ),
       onTap: () {
+        toggle = !toggle;
         if (toggle) {
           if (match.homeGoals != -1 && match.awayGoals != -1) {
             historyState.addMatch(match);
