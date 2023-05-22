@@ -7,7 +7,7 @@
 
 **FootLinker Business Logic:** module responsible for the app logic
 
-**Firebase:** module responsible for cloud storage (database) and users' authentication
+**Firebase (Database):** module responsible for cloud storage (database) and users' authentication
 
 **API-Footbal:** external API responsible for supplying all information related to football (fixtures, leagues, teams, venues, ...)
 
