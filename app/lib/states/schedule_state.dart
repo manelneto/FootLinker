@@ -4,23 +4,7 @@ import 'package:flutter/material.dart';
 
 class ScheduleState extends ChangeNotifier {
   var schedule = <Match>[];
-/*
-  void addMatch(Match match) {
-    if (!schedule.contains(match)) {
-      schedule.add(match);
-      schedule.sort(
-        (a, b) => a.timestamp.compareTo(b.timestamp),
-      );
-      notifyListeners();
-    }
-  }
 
-  void removeMatch(Match match) {
-    if (schedule.remove(match)) {
-      notifyListeners();
-    }
-  }
-*/
   bool toggleMatch(Match match) {
     if (schedule.contains(match)) {
       schedule.remove(match);
@@ -30,7 +14,7 @@ class ScheduleState extends ChangeNotifier {
 
     schedule.add(match);
     schedule.sort(
-          (a, b) => a.timestamp.compareTo(b.timestamp),
+      (a, b) => a.timestamp.compareTo(b.timestamp),
     );
     notifyListeners();
     return true;
@@ -41,7 +25,7 @@ class ScheduleState extends ChangeNotifier {
       if (!schedule.contains(match)) {
         schedule.add(match);
         schedule.sort(
-              (a, b) => a.timestamp.compareTo(b.timestamp),
+          (a, b) => a.timestamp.compareTo(b.timestamp),
         );
       }
     }

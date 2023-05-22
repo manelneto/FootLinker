@@ -30,7 +30,8 @@ class MatchListTile extends StatelessWidget {
 
     return ListTile(
       key: const Key('matchListTile'),
-      tileColor: historyState.history.contains(match) || scheduleState.schedule.contains(match)
+      tileColor: historyState.history.contains(match) ||
+              scheduleState.schedule.contains(match)
           ? Theme.of(context).colorScheme.secondaryContainer
           : null,
       leading: ConstrainedBox(

@@ -17,7 +17,7 @@ class FollowedState extends ChangeNotifier {
     } else {
       followed.add(team);
       followed.sort(
-          (a, b) => a.name.compareTo(b.name),
+        (a, b) => a.name.compareTo(b.name),
       );
       scheduleState.updateScheduleAfterFollow(nextMatches);
     }
