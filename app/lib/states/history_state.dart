@@ -4,19 +4,18 @@ import 'package:flutter/material.dart';
 class HistoryState extends ChangeNotifier {
   var history = <Match>[];
 
-  void addMatch(Match match) {
-    if (!history.contains(match)) {
-      history.add(match);
-      history.sort(
-        (b, a) => a.timestamp.compareTo(b.timestamp),
-      );
+  bool toggleMatch(Match match) {
+    if (history.contains(match)) {
+      history.remove(match);
       notifyListeners();
+      return false;
     }
-  }
 
-  void removeMatch(Match match) {
-    if (history.remove(match)) {
-      notifyListeners();
-    }
+    history.add(match);
+    history.sort(
+      (b, a) => a.timestamp.compareTo(b.timestamp),
+    );
+    notifyListeners();
+    return true;
   }
 }

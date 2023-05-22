@@ -4,6 +4,8 @@ import 'package:app/states/schedule_state.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+bool toggle = false;
+
 class MatchListTile extends StatelessWidget {
   const MatchListTile({
     super.key,
@@ -28,6 +30,10 @@ class MatchListTile extends StatelessWidget {
 
     return ListTile(
       key: const Key('matchListTile'),
+      tileColor: historyState.history.contains(match) ||
+              scheduleState.schedule.contains(match)
+          ? Theme.of(context).colorScheme.secondaryContainer
+          : null,
       leading: ConstrainedBox(
         constraints: const BoxConstraints(
           maxHeight: 60,
@@ -73,42 +79,39 @@ class MatchListTile extends StatelessWidget {
           semanticLabel: 'Away Team Logo',
         ),
       ),
-      onTap: () {
-        if (match.homeGoals != -1 && match.awayGoals != -1) {
-          historyState.addMatch(match);
-          showSnackBar(
-            match,
-            'adicionado ao histórico',
-            historyState.removeMatch,
-            context,
-          );
-        } else if (match.homeGoals == -1 && match.awayGoals == -1) {
-          scheduleState.addMatch(match);
-          showSnackBar(
-            match,
-            'adicionado ao calendário',
-            scheduleState.removeMatch,
-            context,
-          );
-        }
-      },
       onLongPress: () {
         if (match.homeGoals != -1 && match.awayGoals != -1) {
-          historyState.removeMatch(match);
-          showSnackBar(
-            match,
-            'removido do histórico',
-            historyState.addMatch,
-            context,
-          );
+          if (historyState.toggleMatch(match)) {
+            showSnackBar(
+              match,
+              'adicionado ao histórico',
+              historyState.toggleMatch,
+              context,
+            );
+          } else {
+            showSnackBar(
+              match,
+              'removido do histórico',
+              historyState.toggleMatch,
+              context,
+            );
+          }
         } else if (match.homeGoals == -1 && match.awayGoals == -1) {
-          scheduleState.removeMatch(match);
-          showSnackBar(
-            match,
-            'removido do calendário',
-            scheduleState.addMatch,
-            context,
-          );
+          if (scheduleState.toggleMatch(match)) {
+            showSnackBar(
+              match,
+              'adicionado ao calendário',
+              scheduleState.toggleMatch,
+              context,
+            );
+          } else {
+            showSnackBar(
+              match,
+              'removido do calendário',
+              scheduleState.toggleMatch,
+              context,
+            );
+          }
         }
       },
     );
