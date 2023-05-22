@@ -48,36 +48,22 @@ void main() {
 
     test('Adicionar jogo ao calendário', () async {
       ScheduleState scheduleState = ScheduleState();
-      scheduleState.addMatch(match0);
-      expect(scheduleState.schedule.length, 1);
-      expect(scheduleState.schedule[0], match0);
-    });
-
-    test('Adicionar jogo duplicado ao calendário', () async {
-      ScheduleState scheduleState = ScheduleState();
-      scheduleState.addMatch(match0);
-      scheduleState.addMatch(match0);
+      scheduleState.toggleMatch(match0);
       expect(scheduleState.schedule.length, 1);
       expect(scheduleState.schedule[0], match0);
     });
 
     test('Remover jogo do calendário', () async {
       ScheduleState scheduleState = ScheduleState();
-      scheduleState.addMatch(match0);
-      scheduleState.removeMatch(match0);
-      expect(scheduleState.schedule.isEmpty, isTrue);
-    });
-
-    test('Remover jogo inexistente do calendário', () async {
-      ScheduleState scheduleState = ScheduleState();
-      scheduleState.removeMatch(match0);
-      expect(scheduleState.schedule.isEmpty, isTrue);
+      scheduleState.toggleMatch(match0);
+      scheduleState.toggleMatch(match0);
+      expect(scheduleState.schedule.length, 0);
     });
 
     test('Ordenação do calendário', () async {
       ScheduleState scheduleState = ScheduleState();
-      scheduleState.addMatch(match1);
-      scheduleState.addMatch(match0);
+      scheduleState.toggleMatch(match1);
+      scheduleState.toggleMatch(match0);
       expect(scheduleState.schedule.length, 2);
       expect(scheduleState.schedule[0], match0);
       expect(scheduleState.schedule[1], match1);
@@ -93,8 +79,8 @@ void main() {
 
     test('Atualização do calendário depois de deixar de seguir equipa', () {
       ScheduleState scheduleState = ScheduleState();
-      scheduleState.addMatch(match0);
-      scheduleState.addMatch(match1);
+      scheduleState.toggleMatch(match0);
+      scheduleState.toggleMatch(match1);
       scheduleState.updateScheduleAfterUnfollow([home]);
       expect(scheduleState.schedule.length, 2);
       expect(scheduleState.schedule[0], match0);
@@ -103,8 +89,8 @@ void main() {
 
     test('Atualização do calendário depois de deixar de seguir equipas', () {
       ScheduleState scheduleState = ScheduleState();
-      scheduleState.addMatch(match0);
-      scheduleState.addMatch(match1);
+      scheduleState.toggleMatch(match0);
+      scheduleState.toggleMatch(match1);
       scheduleState.updateScheduleAfterUnfollow([]);
       expect(scheduleState.schedule.length, 0);
     });
