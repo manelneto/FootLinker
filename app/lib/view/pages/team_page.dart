@@ -4,6 +4,8 @@ import 'package:app/model/team.dart';
 import 'package:app/states/followed_state.dart';
 import 'package:app/states/schedule_state.dart';
 import 'package:app/view/widgets/match_list_tile.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:http/io_client.dart';
 import 'package:provider/provider.dart';
@@ -103,6 +105,13 @@ class _TeamPageState extends State<TeamPage> {
                 fit: BoxFit.contain,
                 semanticLabel: 'Team Logo',
                 height: 100.0,
+                errorBuilder: (
+                  BuildContext context,
+                  Object exception,
+                  StackTrace? stackTrace,
+                ) {
+                  return const Icon(Icons.error);
+                },
               ),
               const Spacer(),
               ElevatedButton.icon(
@@ -110,6 +119,9 @@ class _TeamPageState extends State<TeamPage> {
                   widget.team,
                   nextMatches,
                   scheduleState,
+                  FirebaseFirestore.instance
+                      .collection('users')
+                      .doc(FirebaseAuth.instance.currentUser!.uid),
                 ),
                 icon: Icon(icon),
                 label: const Text('Seguir'),

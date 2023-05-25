@@ -1,6 +1,8 @@
 import 'package:app/model/match.dart';
 import 'package:app/states/history_state.dart';
 import 'package:app/states/schedule_state.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -48,6 +50,10 @@ class MatchListTile extends StatelessWidget {
           },
           fit: BoxFit.contain,
           semanticLabel: 'Home Team Logo',
+          errorBuilder:
+              (BuildContext context, Object exception, StackTrace? stackTrace) {
+            return const Icon(Icons.error);
+          },
         ),
       ),
       title: Center(
@@ -77,11 +83,19 @@ class MatchListTile extends StatelessWidget {
           },
           fit: BoxFit.contain,
           semanticLabel: 'Away Team Logo',
+          errorBuilder:
+              (BuildContext context, Object exception, StackTrace? stackTrace) {
+            return const Icon(Icons.error);
+          },
         ),
       ),
       onLongPress: () {
         if (match.homeGoals != -1 && match.awayGoals != -1) {
-          if (historyState.toggleMatch(match)) {
+          if (historyState.toggleMatch(
+              match,
+              FirebaseFirestore.instance
+                  .collection('users')
+                  .doc(FirebaseAuth.instance.currentUser!.uid))) {
             showSnackBar(
               match,
               'adicionado ao histórico',
@@ -97,7 +111,11 @@ class MatchListTile extends StatelessWidget {
             );
           }
         } else if (match.homeGoals == -1 && match.awayGoals == -1) {
-          if (scheduleState.toggleMatch(match)) {
+          if (scheduleState.toggleMatch(
+              match,
+              FirebaseFirestore.instance
+                  .collection('users')
+                  .doc(FirebaseAuth.instance.currentUser!.uid))) {
             showSnackBar(
               match,
               'adicionado ao calendário',
@@ -120,7 +138,7 @@ class MatchListTile extends StatelessWidget {
   void showSnackBar(
     Match match,
     String text,
-    void Function(Match) function,
+    void Function(Match, DocumentReference<Map<String, dynamic>>) function,
     BuildContext context,
   ) {
     var snackBar = SnackBar(
@@ -131,7 +149,11 @@ class MatchListTile extends StatelessWidget {
       ),
       action: SnackBarAction(
         label: 'Anular',
-        onPressed: () => function(match),
+        onPressed: () => function(
+            match,
+            FirebaseFirestore.instance
+                .collection('users')
+                .doc(FirebaseAuth.instance.currentUser!.uid)),
       ),
       duration: const Duration(
         seconds: 1,
