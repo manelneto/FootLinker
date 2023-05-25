@@ -36,6 +36,10 @@ class TeamListTile extends StatelessWidget {
           },
           fit: BoxFit.contain,
           semanticLabel: 'Team Logo',
+          errorBuilder:
+              (BuildContext context, Object exception, StackTrace? stackTrace) {
+            return const Icon(Icons.error);
+          },
         ),
       ),
       title: Center(

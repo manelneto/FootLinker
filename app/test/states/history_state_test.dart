@@ -3,6 +3,8 @@ import 'package:app/model/match.dart';
 import 'package:app/model/team.dart';
 import 'package:app/model/venue.dart';
 import 'package:app/states/history_state.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:fake_cloud_firestore/fake_cloud_firestore.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {
@@ -40,6 +42,8 @@ void main() {
       homeGoals: 1,
       awayGoals: 1,
     );
+    DocumentReference<Map<String, dynamic>> user =
+        FakeFirebaseFirestore().collection('users').doc('test');
 
     test('Histórico começa vazio', () async {
       HistoryState historyState = HistoryState();
@@ -48,36 +52,22 @@ void main() {
 
     test('Adicionar jogo ao histórico', () async {
       HistoryState historyState = HistoryState();
-      historyState.addMatch(match0);
-      expect(historyState.history.length, 1);
-      expect(historyState.history[0], match0);
-    });
-
-    test('Adicionar jogo duplicado ao histórico', () async {
-      HistoryState historyState = HistoryState();
-      historyState.addMatch(match0);
-      historyState.addMatch(match0);
+      historyState.toggleMatch(match0, user);
       expect(historyState.history.length, 1);
       expect(historyState.history[0], match0);
     });
 
     test('Remover jogo do histórico', () async {
       HistoryState historyState = HistoryState();
-      historyState.addMatch(match0);
-      historyState.removeMatch(match0);
-      expect(historyState.history.isEmpty, isTrue);
-    });
-
-    test('Remover jogo inexistente do histórico', () async {
-      HistoryState historyState = HistoryState();
-      historyState.removeMatch(match0);
+      historyState.toggleMatch(match0, user);
+      historyState.toggleMatch(match0, user);
       expect(historyState.history.isEmpty, isTrue);
     });
 
     test('Ordenação do histórico', () async {
       HistoryState historyState = HistoryState();
-      historyState.addMatch(match1);
-      historyState.addMatch(match0);
+      historyState.toggleMatch(match1, user);
+      historyState.toggleMatch(match0, user);
       expect(historyState.history.length, 2);
       expect(historyState.history[0], match1);
       expect(historyState.history[1], match0);

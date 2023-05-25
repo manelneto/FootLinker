@@ -36,6 +36,10 @@ class LeagueListTile extends StatelessWidget {
           },
           fit: BoxFit.fitHeight,
           semanticLabel: 'League Logo',
+          errorBuilder:
+              (BuildContext context, Object exception, StackTrace? stackTrace) {
+            return const Icon(Icons.error);
+          },
         ),
       ),
       title: Center(
