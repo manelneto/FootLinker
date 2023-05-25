@@ -42,8 +42,8 @@ void main() {
       homeGoals: -1,
       awayGoals: -1,
     );
-    DocumentReference<Map<String, dynamic>> user = FakeFirebaseFirestore().collection('users').doc('test');
-
+    DocumentReference<Map<String, dynamic>> user =
+        FakeFirebaseFirestore().collection('users').doc('test');
 
     test('Calendário começa vazio', () async {
       ScheduleState scheduleState = ScheduleState();

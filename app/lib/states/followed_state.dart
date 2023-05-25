@@ -23,7 +23,11 @@ class FollowedState extends ChangeNotifier {
   }
 
   void toggleTeam(
-      Team team, List<Match> nextMatches, ScheduleState scheduleState, DocumentReference<Map<String, dynamic>> user,) {
+    Team team,
+    List<Match> nextMatches,
+    ScheduleState scheduleState,
+    DocumentReference<Map<String, dynamic>> user,
+  ) {
     if (followed.contains(team)) {
       followed.remove(team);
       user.collection('followed').doc(team.id.toString()).delete();

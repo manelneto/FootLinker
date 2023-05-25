@@ -105,6 +105,10 @@ class _TeamPageState extends State<TeamPage> {
                 fit: BoxFit.contain,
                 semanticLabel: 'Team Logo',
                 height: 100.0,
+                errorBuilder:
+                    (BuildContext context, Object exception, StackTrace? stackTrace) {
+                  return const Icon(Icons.error);
+                },
               ),
               const Spacer(),
               ElevatedButton.icon(
@@ -112,9 +116,9 @@ class _TeamPageState extends State<TeamPage> {
                   widget.team,
                   nextMatches,
                   scheduleState,
-                    FirebaseFirestore.instance
-                        .collection('users')
-                        .doc(FirebaseAuth.instance.currentUser!.uid)
+                  FirebaseFirestore.instance
+                      .collection('users')
+                      .doc(FirebaseAuth.instance.currentUser!.uid),
                 ),
                 icon: Icon(icon),
                 label: const Text('Seguir'),

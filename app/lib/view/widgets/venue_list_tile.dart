@@ -36,6 +36,10 @@ class VenueListTile extends StatelessWidget {
           },
           fit: BoxFit.contain,
           semanticLabel: 'Venue Image',
+          errorBuilder:
+              (BuildContext context, Object exception, StackTrace? stackTrace) {
+            return const Icon(Icons.error);
+          },
         ),
       ),
       title: Center(

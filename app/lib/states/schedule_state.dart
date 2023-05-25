@@ -38,7 +38,10 @@ class ScheduleState extends ChangeNotifier {
     return true;
   }
 
-  void updateScheduleAfterFollow(List<Match> nextMatches, DocumentReference<Map<String, dynamic>> user) {
+  void updateScheduleAfterFollow(
+    List<Match> nextMatches,
+    DocumentReference<Map<String, dynamic>> user,
+  ) {
     for (Match match in nextMatches) {
       if (!schedule.contains(match)) {
         schedule.add(match);
@@ -54,10 +57,15 @@ class ScheduleState extends ChangeNotifier {
     notifyListeners();
   }
 
-  void updateScheduleAfterUnfollow(Team unfollowed, List<Team> followed, DocumentReference<Map<String, dynamic>> user) {
+  void updateScheduleAfterUnfollow(
+    Team unfollowed,
+    List<Team> followed,
+    DocumentReference<Map<String, dynamic>> user,
+  ) {
     final List<Match> matches = <Match>[];
     for (Match match in schedule) {
-      if ((match.home == unfollowed && !followed.contains(match.away)) || (match.away == unfollowed && !followed.contains(match.home))) {
+      if ((match.home == unfollowed && !followed.contains(match.away)) ||
+          (match.away == unfollowed && !followed.contains(match.home))) {
         matches.add(match);
       }
     }

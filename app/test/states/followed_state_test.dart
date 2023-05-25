@@ -9,7 +9,8 @@ import 'package:flutter_test/flutter_test.dart';
 void main() async {
   group('Favoritos', () {
     Team team = Team(id: 0, name: 'team', logo: 'logo');
-    DocumentReference<Map<String, dynamic>> user = FakeFirebaseFirestore().collection('users').doc('test');
+    DocumentReference<Map<String, dynamic>> user =
+        FakeFirebaseFirestore().collection('users').doc('test');
 
     test('Favoritos começa vazio', () async {
       FollowedState followedState = FollowedState();

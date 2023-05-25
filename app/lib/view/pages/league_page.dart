@@ -81,6 +81,10 @@ class _LeaguePageState extends State<LeaguePage> {
             fit: BoxFit.contain,
             semanticLabel: 'League Logo',
             height: 100.0,
+            errorBuilder:
+                (BuildContext context, Object exception, StackTrace? stackTrace) {
+              return const Icon(Icons.error);
+            },
           ),
           const SizedBox(
             height: 20.0,

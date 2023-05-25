@@ -50,6 +50,10 @@ class MatchListTile extends StatelessWidget {
           },
           fit: BoxFit.contain,
           semanticLabel: 'Home Team Logo',
+          errorBuilder:
+              (BuildContext context, Object exception, StackTrace? stackTrace) {
+            return const Icon(Icons.error);
+          },
         ),
       ),
       title: Center(
@@ -79,13 +83,19 @@ class MatchListTile extends StatelessWidget {
           },
           fit: BoxFit.contain,
           semanticLabel: 'Away Team Logo',
+          errorBuilder:
+              (BuildContext context, Object exception, StackTrace? stackTrace) {
+            return const Icon(Icons.error);
+          },
         ),
       ),
       onLongPress: () {
         if (match.homeGoals != -1 && match.awayGoals != -1) {
-          if (historyState.toggleMatch(match, FirebaseFirestore.instance
-              .collection('users')
-              .doc(FirebaseAuth.instance.currentUser!.uid))) {
+          if (historyState.toggleMatch(
+              match,
+              FirebaseFirestore.instance
+                  .collection('users')
+                  .doc(FirebaseAuth.instance.currentUser!.uid))) {
             showSnackBar(
               match,
               'adicionado ao histórico',
@@ -101,9 +111,11 @@ class MatchListTile extends StatelessWidget {
             );
           }
         } else if (match.homeGoals == -1 && match.awayGoals == -1) {
-          if (scheduleState.toggleMatch(match, FirebaseFirestore.instance
-              .collection('users')
-              .doc(FirebaseAuth.instance.currentUser!.uid))) {
+          if (scheduleState.toggleMatch(
+              match,
+              FirebaseFirestore.instance
+                  .collection('users')
+                  .doc(FirebaseAuth.instance.currentUser!.uid))) {
             showSnackBar(
               match,
               'adicionado ao calendário',
@@ -137,9 +149,11 @@ class MatchListTile extends StatelessWidget {
       ),
       action: SnackBarAction(
         label: 'Anular',
-        onPressed: () => function(match, FirebaseFirestore.instance
-            .collection('users')
-            .doc(FirebaseAuth.instance.currentUser!.uid)),
+        onPressed: () => function(
+            match,
+            FirebaseFirestore.instance
+                .collection('users')
+                .doc(FirebaseAuth.instance.currentUser!.uid)),
       ),
       duration: const Duration(
         seconds: 1,
