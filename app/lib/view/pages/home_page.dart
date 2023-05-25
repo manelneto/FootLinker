@@ -1,8 +1,13 @@
+import 'package:app/states/followed_state.dart';
+import 'package:app/states/history_state.dart';
+import 'package:app/states/schedule_state.dart';
 import 'package:app/view/pages/followed_page.dart';
 import 'package:app/view/pages/history_page.dart';
 import 'package:app/view/pages/profile_page.dart';
 import 'package:app/view/pages/schedule_page.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+
 
 class HomePage extends StatelessWidget {
   const HomePage({
@@ -46,6 +51,10 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    context.watch<FollowedState>().fetch();
+    context.watch<HistoryState>().fetch();
+    context.watch<ScheduleState>().fetch();
+
     return Scaffold(
       key: const Key('homePage'),
       appBar: AppBar(
