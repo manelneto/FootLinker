@@ -105,8 +105,11 @@ class _TeamPageState extends State<TeamPage> {
                 fit: BoxFit.contain,
                 semanticLabel: 'Team Logo',
                 height: 100.0,
-                errorBuilder:
-                    (BuildContext context, Object exception, StackTrace? stackTrace) {
+                errorBuilder: (
+                  BuildContext context,
+                  Object exception,
+                  StackTrace? stackTrace,
+                ) {
                   return const Icon(Icons.error);
                 },
               ),
