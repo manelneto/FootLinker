@@ -5,6 +5,8 @@ import 'package:app/view/pages/followed_page.dart';
 import 'package:app/view/pages/history_page.dart';
 import 'package:app/view/pages/profile_page.dart';
 import 'package:app/view/pages/schedule_page.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -51,9 +53,12 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    context.watch<FollowedState>().fetch();
-    context.watch<HistoryState>().fetch();
-    context.watch<ScheduleState>().fetch();
+    final user = FirebaseFirestore.instance
+        .collection('users')
+        .doc(FirebaseAuth.instance.currentUser!.uid);
+    context.watch<FollowedState>().fetch(user);
+    context.watch<HistoryState>().fetch(user);
+    context.watch<ScheduleState>().fetch(user);
 
     return Scaffold(
       key: const Key('homePage'),

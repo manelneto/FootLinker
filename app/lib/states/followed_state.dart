@@ -2,17 +2,13 @@ import 'package:app/model/match.dart';
 import 'package:app/model/team.dart';
 import 'package:app/states/schedule_state.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 class FollowedState extends ChangeNotifier {
   var followed = <Team>[];
 
-  void fetch() {
+  void fetch(DocumentReference<Map<String, dynamic>> user) {
     followed.clear();
-    final user = FirebaseFirestore.instance
-        .collection('users')
-        .doc(FirebaseAuth.instance.currentUser!.uid);
     user.collection('followed').get().then((querySnapshot) {
       for (var docSnapshot in querySnapshot.docs) {
         Team team = Team.fromJson({'team': docSnapshot.data()});
@@ -27,21 +23,18 @@ class FollowedState extends ChangeNotifier {
   }
 
   void toggleTeam(
-      Team team, List<Match> nextMatches, ScheduleState scheduleState,) {
-    final user = FirebaseFirestore.instance
-        .collection('users')
-        .doc(FirebaseAuth.instance.currentUser!.uid);
+      Team team, List<Match> nextMatches, ScheduleState scheduleState, DocumentReference<Map<String, dynamic>> user,) {
     if (followed.contains(team)) {
       followed.remove(team);
       user.collection('followed').doc(team.id.toString()).delete();
-      scheduleState.updateScheduleAfterUnfollow(team, followed);
+      scheduleState.updateScheduleAfterUnfollow(team, followed, user);
     } else {
       followed.add(team);
       followed.sort(
         (a, b) => a.name.compareTo(b.name),
       );
       user.collection('followed').doc(team.id.toString()).set(team.toJson());
-      scheduleState.updateScheduleAfterFollow(nextMatches);
+      scheduleState.updateScheduleAfterFollow(nextMatches, user);
     }
     notifyListeners();
   }

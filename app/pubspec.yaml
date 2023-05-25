@@ -47,6 +47,7 @@ dependencies:
   flutter_gherkin: ^2.0.0
   gherkin: ^2.0.8
   glob: ^2.1.1
+  fake_cloud_firestore: ^2.4.1+1
 
 dev_dependencies:
   flutter_driver:

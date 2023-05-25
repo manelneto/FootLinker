@@ -1,17 +1,13 @@
 import 'package:app/model/match.dart';
 import 'package:app/model/team.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 class ScheduleState extends ChangeNotifier {
   var schedule = <Match>[];
 
-  void fetch() {
+  void fetch(DocumentReference<Map<String, dynamic>> user) {
     schedule.clear();
-    final user = FirebaseFirestore.instance
-        .collection('users')
-        .doc(FirebaseAuth.instance.currentUser!.uid);
     user.collection('schedule').get().then((querySnapshot) {
       for (var docSnapshot in querySnapshot.docs) {
         Match match = Match.fromJson(docSnapshot.data());
@@ -25,10 +21,7 @@ class ScheduleState extends ChangeNotifier {
     });
   }
 
-  bool toggleMatch(Match match) {
-    final user = FirebaseFirestore.instance
-        .collection('users')
-        .doc(FirebaseAuth.instance.currentUser!.uid);
+  bool toggleMatch(Match match, DocumentReference<Map<String, dynamic>> user) {
     if (schedule.contains(match)) {
       schedule.remove(match);
       user.collection('schedule').doc(match.id.toString()).delete();
@@ -45,10 +38,7 @@ class ScheduleState extends ChangeNotifier {
     return true;
   }
 
-  void updateScheduleAfterFollow(List<Match> nextMatches) {
-    final user = FirebaseFirestore.instance
-        .collection('users')
-        .doc(FirebaseAuth.instance.currentUser!.uid);
+  void updateScheduleAfterFollow(List<Match> nextMatches, DocumentReference<Map<String, dynamic>> user) {
     for (Match match in nextMatches) {
       if (!schedule.contains(match)) {
         schedule.add(match);
@@ -64,10 +54,7 @@ class ScheduleState extends ChangeNotifier {
     notifyListeners();
   }
 
-  void updateScheduleAfterUnfollow(Team unfollowed, List<Team> followed) {
-    final user = FirebaseFirestore.instance
-        .collection('users')
-        .doc(FirebaseAuth.instance.currentUser!.uid);
+  void updateScheduleAfterUnfollow(Team unfollowed, List<Team> followed, DocumentReference<Map<String, dynamic>> user) {
     final List<Match> matches = <Match>[];
     for (Match match in schedule) {
       if ((match.home == unfollowed && !followed.contains(match.away)) || (match.away == unfollowed && !followed.contains(match.home))) {

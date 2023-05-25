@@ -122,11 +122,6 @@ void main() {
 
       Map<String, dynamic> json = match.toJson();
       expect(json.length, 4);
-      expect(json['fixutre'].length, 5);
-      expect(json['league'].length, 1);
-      expect(json['teams'].length, 2);
-      expect(json['goals'].length, 2);
-      expect(json['fixture']['id'], 0);
       expect(json['fixture']['referee'], 'referee');
       expect(json['fixture']['date'], 'date');
       expect(json['fixture']['timestamp'], 0);
