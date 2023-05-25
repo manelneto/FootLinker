@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 
 class RegisterController {
@@ -69,10 +70,12 @@ Future addUserDetails(
   String surname,
   String email,
 ) async {
+  String? token = await FirebaseMessaging.instance.getToken();
   await FirebaseFirestore.instance.collection('users').doc(user.uid).set({
     'name': name,
     'surname': surname,
     'email': email,
+    'token': token,
     'history': {},
     'schedule': {},
   });
