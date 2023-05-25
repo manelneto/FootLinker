@@ -1,7 +1,6 @@
 import 'package:app/states/followed_state.dart';
 import 'package:app/states/history_state.dart';
 import 'package:app/states/schedule_state.dart';
-import 'package:app/view/pages/schedule_page.dart';
 import 'package:app/view/pages/start_page.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';

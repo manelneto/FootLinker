@@ -1,9 +1,8 @@
 import 'package:firebase_messaging/firebase_messaging.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 
-import '../view/pages/schedule_page.dart';
+import 'package:app/view/pages/schedule_page.dart';
 
 class NotificationController {
   GlobalKey<NavigatorState> navigatorKey;

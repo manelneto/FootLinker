@@ -1,5 +1,5 @@
 import 'package:firebase_messaging/firebase_messaging.dart';
-import 'notification_controller.dart';
+import 'package:app/controller/notification_controller.dart';
 
 class FirebaseMessagingController {
   final NotificationController _notificationController;
