@@ -5,6 +5,8 @@ import 'package:app/view/pages/start_page.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'controller/firebase_messaging_controller.dart';
+import 'controller/notification_controller.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -41,7 +43,13 @@ class App extends StatelessWidget {
           builder: (context, snapshot) {
             if (snapshot.hasError) {
               return const Text('Algo correu mal...');
-            } else if (snapshot.hasData) {
+            } else if (snapshot.connectionState == ConnectionState.done) {
+              NotificationController notifController = NotificationController(navigatorKey);
+              FirebaseMessagingController fbNotif = FirebaseMessagingController(notifController);
+
+              initializeFirebaseMessaging(fbNotif);
+              checkNotifications(notifController);
+
               return StartPage(navigatorKey: navigatorKey);
             } else {
               return const Center(
@@ -53,4 +61,13 @@ class App extends StatelessWidget {
       ),
     );
   }
+}
+
+
+initializeFirebaseMessaging(FirebaseMessagingController fbNotif) async {
+  await fbNotif.initialize();
+}
+
+checkNotifications(NotificationController notifController) async {
+  await notifController.checkForNotifications();
 }
