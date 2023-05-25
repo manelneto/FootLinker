@@ -1,8 +1,7 @@
+import 'package:app/view/pages/schedule_page.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
-
-import 'package:app/view/pages/schedule_page.dart';
 
 class NotificationController {
   GlobalKey<NavigatorState> navigatorKey;
@@ -36,11 +35,12 @@ class NotificationController {
   }
 
   _onDidReceiveNotificationResponse(NotificationResponse response) {
-    if (response.payload == null) return ;
+    if (response.payload == null) return;
 
     if (response.payload == 'Schedule') {
-      navigatorKey.currentState?.push(MaterialPageRoute(
-        builder: (context) => const SchedulePage(),
+      navigatorKey.currentState?.push(
+        MaterialPageRoute(
+          builder: (context) => const SchedulePage(),
         ),
       );
     }
@@ -52,17 +52,19 @@ class NotificationController {
       notification.title,
       notification.body,
       NotificationDetails(
-          android: androidDetails,
+        android: androidDetails,
       ),
       payload: payload,
     );
   }
 
   checkForNotifications() async {
-    final details = await localNotificationsPlugin.getNotificationAppLaunchDetails();
+    final details =
+        await localNotificationsPlugin.getNotificationAppLaunchDetails();
     if (details != null && details.didNotificationLaunchApp) {
-      navigatorKey.currentState?.push(MaterialPageRoute(
-        builder: (context) => const SchedulePage(),
+      navigatorKey.currentState?.push(
+        MaterialPageRoute(
+          builder: (context) => const SchedulePage(),
         ),
       );
     }

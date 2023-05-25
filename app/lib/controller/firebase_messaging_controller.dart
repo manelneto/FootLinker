@@ -1,5 +1,5 @@
-import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:app/controller/notification_controller.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 
 class FirebaseMessagingController {
   final NotificationController _notificationController;
@@ -7,7 +7,8 @@ class FirebaseMessagingController {
   FirebaseMessagingController(this._notificationController);
 
   Future<void> initialize() async {
-    await FirebaseMessaging.instance.setForegroundNotificationPresentationOptions(
+    await FirebaseMessaging.instance
+        .setForegroundNotificationPresentationOptions(
       badge: true,
       sound: true,
       alert: true,
@@ -22,7 +23,8 @@ class FirebaseMessagingController {
       AndroidNotification? android = message.notification?.android;
 
       if (notification != null && android != null) {
-        _notificationController.showLocalNotification(notification, message.data['route']);
+        _notificationController.showLocalNotification(
+            notification, message.data['route']);
       }
     });
   }

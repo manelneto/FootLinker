@@ -71,6 +71,7 @@ Future addUserDetails(
   String email,
 ) async {
   String? token = await FirebaseMessaging.instance.getToken();
+  await FirebaseMessaging.instance.subscribeToTopic('schedule');
   await FirebaseFirestore.instance.collection('users').doc(user.uid).set({
     'name': name,
     'surname': surname,
@@ -78,5 +79,6 @@ Future addUserDetails(
     'token': token,
     'history': {},
     'schedule': {},
+    'followed': {},
   });
 }
