@@ -1,6 +1,10 @@
+# FootLinker
+
+Este projeto foi desenvolvido no âmbito da Unidade Curricular **Engenharia de Software (ES)** do 2º semestre do 2º ano da **Licenciatura em Engenharia Informática e Computação (LEIC)** da **Faculdade de Engenharia da Universidade do Porto (FEUP)**, no ano letivo 2022/2023.
+
 <a href="https://github.com/FEUP-LEIC-ES-2022-23/2LEIC07T5/actions"><img src="https://github.com/FEUP-LEIC-ES-2022-23/2LEIC07T5/workflows/tests/badge.svg" alt="Build Status"></a>
 
-# 2LEIC07T5
+## 2LEIC07T5
 
 FootLinker Development Report
 
